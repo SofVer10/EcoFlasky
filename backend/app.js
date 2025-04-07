@@ -9,9 +9,14 @@ import clientsRoutes from "./src/sources/clients.js"
 import RatingRoutes from "./src/sources/ratings.js"
 import ProductsRoutes from "./src/sources/products.js"
 import FavoriteRoute from "./src/sources/favorites.js"
+import LoginRoutes from "./src/routes/login.js"
+import cookieParse from "cookie-parser"
+import logoutRoutes from "./src/routes/logout.js"
 
 const app = express();
 app.use (express.json());
+app.use(cookieParse())
+
 
 app.use("/api/clients", clientsRoutes)
 app.use("/api/ratings", RatingRoutes)
@@ -23,5 +28,7 @@ app.use("/api/shoppingCart", shoppingCartRoutes);
 app.use("/api/supplier", SupplierRoutes)
 app.use("/api/category", CategoryRoutes)
 app.use("/api/desings", desingRouter)
+app.use("/api/login", LoginRoutes)
+app.use("/api/logout", logoutRoutes)
 export default app;    
 //Aaron
