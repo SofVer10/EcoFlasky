@@ -23,10 +23,15 @@ password:{
     require:true,
     maxLenght:100
 },
+email:{
+    type:String,
+    require:true,
+    maxLength:100
+},
 speciality:{
-type:String,
-require:true,
-maxLenght:100
+    type: Schema.Types.ObjectId,
+    ref: "Speciality",
+    require:true
 },
 isVerified:{
     type:Boolean,

@@ -1,5 +1,5 @@
 import jsonwebtoken from "jsonwebtoken";//Token
-import bcrypt from "bcryptjs"; //encriptar
+import bcrypt from "bcrypt"; //encriptar
 import nodemailer from "nodemailer"; //enviar correo
 import crypto from "crypto"; // código aleatorio
 
@@ -14,7 +14,7 @@ const registerClientsController = {};
 registerClientsController.register = async (req,res) => {
 
     //1- Solicitas las cosas que vamos a guardar
-    const {name, lastname, birthday, email, password, telephone, dui, isVerified} = req.body;
+    const {name, lastname, email, password, cellphone, isVerified} = req.body;
 
     try {
         //Verificamos si el cliente ya existe
@@ -33,11 +33,9 @@ registerClientsController.register = async (req,res) => {
     //Guardo al cliente en la base de datos
     const newClient = new clientsModel({name, 
         lastname, 
-        birthday, 
         email, 
         password: passwordHash /*el campo sigue llamandose password, entonces con : decimos que valor se va a guardar*/ , 
-        telephone, 
-        dui: dui || null /*aqui indicamos si el usuario es menor de edad, por que si no se tiene edad no se tiene dui, y sería nulo*/, 
+        cellphone, 
         isVerified: isVerified || false, /*Aqui indicamos que isVerified SIEMPRE sera false al principio*/
     
     });

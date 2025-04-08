@@ -5,8 +5,8 @@ SE IMPORTAN TAMBIÉN LAS LIBRERIAS BYCRIPT, JSONWEBTOKEN Y el archivo config
 */
 
 import CustomersModel from "../models/Clients.js"
-import EmployeesModel from "../models/Employees.js"
-import bcrypt from "bcryptjs"
+import EmployeesModel from "../models/employee.js"
+import bcrypt from "bcrypt"
 import jswonwebtoken from "jsonwebtoken"
 import {config} from "../config.js"
 
