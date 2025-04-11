@@ -1,0 +1,41 @@
+/* styles/styleNav.css */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  
+  }
+  
+  .logo-link {
+    height: 150px; /* Ajusta según el tamaño del logo */
+  }
+  
+  .logo {
+    height: 100%;
+    width: auto;
+  }
+  
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem; /* Espacio entre elementos del menú */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-item {
+    font-weight: 600; /* Texto en negrita como en la imagen */
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: #333333; /* Color del texto */
+    font-size: 1rem;
+    text-transform: uppercase; /* Convertir texto a mayúsculas */
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover {
+    color: #007bff; /* Color al hacer hover (ajusta según tu diseño) */
+  }
