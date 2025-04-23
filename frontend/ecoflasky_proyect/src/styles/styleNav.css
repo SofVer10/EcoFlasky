@@ -1,41 +1,38 @@
 /* styles/styleNav.css */
+
+.navbar {
+  position: fixed; /* Mantiene la barra de navegación en la parte superior */
+  top: 0;
+  left: 0;
+  width: 100%; /* Asegúrate de que ocupe todo el ancho */
+  background-color: white; /* Cambia el color de fondo según tu diseño */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
 .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-  
-  }
-  
-  .logo-link {
-    height: 150px; /* Ajusta según el tamaño del logo */
-  }
-  
-  .logo {
-    height: 100%;
-    width: auto;
-  }
-  
-  .nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 2rem; /* Espacio entre elementos del menú */
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-item {
-    font-weight: 600; /* Texto en negrita como en la imagen */
-  }
-  
-  .nav-link {
-    text-decoration: none;
-    color: #333333; /* Color del texto */
-    font-size: 1rem;
-    text-transform: uppercase; /* Convertir texto a mayúsculas */
-    transition: color 0.3s;
-  }
-  
-  .nav-link:hover {
-    color: #007bff; /* Color al hacer hover (ajusta según tu diseño) */
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem; /* Espacio entre elementos del menú */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  font-weight: 600; /* Texto en negrita */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333333; /* Color del texto */
+  font-size: 1rem;
+  text-transform: uppercase; /* Convertir texto a mayúsculas */
+  transition: color 0.3s;
+}
