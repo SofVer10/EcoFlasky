@@ -15,10 +15,11 @@ function App() {
      <Router>
         <Nav/>
           <Routes>
-            <Route path="/" element={<Products/>} />
+            <Route path="/productos" element={<Products/>} />
           </Routes>
+<Footer/>
+
       </Router>
-      <Footer/>
 
     </>
   )

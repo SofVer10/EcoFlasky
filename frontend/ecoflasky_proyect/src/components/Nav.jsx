@@ -20,8 +20,10 @@ const Nav = () => {
         <li className="nav-item">
           <Link to="/sobre-nosotros" className="nav-link">SOBRE NOSOTROS</Link>
         </li>
-        <li className="nav-item">
-          <Link to="/productos" className="nav-link">PRODUCTOS</Link>
+        <li>
+                        <a href="/productos" className="hover:text-gray-200">
+                            Productos 
+                        </a>
         </li>
         <li className="nav-item">
           <Link to="/contactanos" className="nav-link">CONTACTANOS</Link>

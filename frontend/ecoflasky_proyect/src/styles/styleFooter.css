@@ -1,177 +1,108 @@
-
 .component {
-    height: 380px; /* Puedes ajustar la altura según sea necesario */
+    display: flex;
+    flex-direction: column; /* Permite que los elementos se apilen verticalmente */
+    min-height: 10vh; /* Asegura que el componente ocupe al menos toda la altura de la ventana */
+    background-color: transparent; /* Cambia el fondo a transparente */
+}
+
+.overlap {
+    flex: 1; /* Permite que este contenedor ocupe el espacio restante */
+    position: relative; /* Cambiado a relative para que los elementos hijos se posicionen en relación a este */
+    background-color: black; /* Aplica el fondo negro solo a esta sección */
+}
+
+.header {
+    display: flex; /* Usar flexbox para alinear el logo y los enlaces horizontalmente */
+    align-items: center; /* Centra verticalmente el contenido */
+    padding: 5px 10px; /* Reduce el espaciado alrededor */
+}
+
+.footer {
+    height: 60px; /* Ajusta la altura del footer según sea necesario */
     width: 100%; /* Asegúrate de que ocupe todo el ancho de la pantalla */
-    background-color: black;
-    position: fixed; /* Cambiado a fixed para que se mantenga en la parte inferior */
-    bottom: 0; /* Asegúrate de que esté en la parte inferior de la página */
-    left: 0; /* Asegúrate de que esté alineado a la izquierda */
-    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    background-color: #333; /* Color de fondo del footer */
+    color: white; /* Color del texto en el footer */
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    position: relative; /* Cambiado a relative para que no se superponga al contenido */
 }
 
-.component .overlap {
-    height: 280px;
-    position: relative;
-}
-
-.component .rectangle {
-    height: 273px;
-    left: 0;
-    width: 100%; /* Cambiado a 100% para que ocupe todo el ancho */
-    position: absolute; /* Cambiado a absolute para que se ajuste al contenedor */
-    top: 7px;
-}
-
-.component .group {
-    height: 18px;
-    left: 57px;
-    position: absolute;
-    top: 155px;
-    width: 82px;
-}
-
-.component .iconmonstr-instagram,
-.component .iconmonstr-twitter,
-.component .iconmonstr-facebook {
-    height: 18px;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 18px;
-}
-
-.component .iconmonstr-instagram { left: 32px; }
-.component .iconmonstr-twitter { left: 0; }
-.component .iconmonstr-facebook { left: 64px; }
-
-.component .copia-de-ECOFLASKY {
-    height: 175px;
-    left: 11px;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 175px;
-}
-
-.component .div {
-    height: 17px;
-    position: absolute;
-    top: 43px;
-    left: 416px;
-    width: 912px; /* Puedes ajustar este ancho según sea necesario */
-}
-
-.component .overlap-group-wrapper {
-    height: 13px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 54px;
-}
-
-.component .overlap-group {
-    height: 13px;
-    position: relative;
-    width: 52px;
-}
-
-.component .rectangle-2 {
-    background-color: #53acc8;
-    height: 1px;
-    left: 0;
-    position: absolute;
-    top: 11px;
-    width: 45px;
-}
-
-.component .text-wrapper,
-.component .text-wrapper-2,
-.component .text-wrapper-3,
-.component .text-wrapper-4,
-.component .text-wrapper-5,
-.component .text-wrapper-6 {
+.text-wrapper,
+.text-wrapper-2,
+.text-wrapper-3,
+.text-wrapper-4,
+.text-wrapper-5,
+.text-wrapper-6 {
     color: #ffffff;
     font-family: "Bellefair-Regular", Helvetica;
     font-size: 13px;
     font-weight: 400;
-    position: absolute;
-    white-space: nowrap;
+    margin: 0 5px; /* Reduce el espaciado entre los enlaces */
 }
 
-.component .text-wrapper { left: 2px; width: 50px; top: 0; }
-.component .text-wrapper-2 { left: 125px; width: 120px; top: 0; }
-.component .text-wrapper-3 { left: 318px; width: 84px; top: 0; }
-.component .text-wrapper-4 { left: 475px; width: 128px; top: 0; }
-.component .text-wrapper-5 { left: 676px; width: 105px; top: 0; }
-.component .text-wrapper-6 { left: 854px; width: 48px; top: 0; }
-
-.component .p {
+.p {
     color: #ffffff;
     font-family: "Buda-Light", Helvetica;
     font-size: 13px;
     font-weight: 300;
-    position: absolute;
-    top: 125px;
-    left: 416px;
-    width: 662px;
+    margin: 10px 0; /* Reduce el espaciado superior e inferior */
 }
 
-.component .text-wrapper-7 {
+.text-wrapper-7 {
     color: #ffffff;
     font-family: "Buda-Light", Helvetica;
     font-size: 13px;
     font-weight: 300;
-    position: absolute;
-    top: 195px;
-    left: 41px;
-    width: 290px;
+    margin: 10px 0; /* Reduce el espaciado superior e inferior */
 }
 
-.component .group-wrapper {
-    height: 28px;
-    position: absolute;
-    top: 214px;
-    left: 1116px;
-    width: 202px;
+.group-wrapper {
+    display: flex; /* Cambiado a flex para alinear los elementos horizontalmente */
+    justify-content: space-between; /* Espaciado entre los elementos */
+    margin-top: 10px; /* Reduce el margen superior */
 }
 
-.component .group-2 {
-    height: 28px;
-    position: relative;
+.social-text-credit {
+    display: flex; /* Usar flexbox para alinear los elementos */
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center; /* Alinear verticalmente al centro */
+    padding: 10px; /* Reduce el espaciado interno */
 }
 
-.component .image {
-    height: 23px;
-    left: 164px;
-    object-fit: cover;
-    position: absolute;
-    top: 2px;
-    width: 38px;
+.social-media {
+    display: flex; /* Alinear los íconos horizontalmente */
 }
 
-.component .mastr {
-    height: 22px;
-    left: 64px;
-    object-fit: cover;
-    position: absolute;
-    top: 2px;
-    width: 32px;
+.social-media img {
+    width: 30px; /* Ajustar el tamaño de los íconos */
+    margin-right: 5px; /* Reduce el espaciado entre íconos */
 }
 
-.component .credoma-removebg {
-    height: 24px;
-    left: 111px;
-    object-fit: cover;
-    position: absolute;
-    top: 2px;
-    width: 43px;
+.lorem-text {
+    flex: 1; /* Permitir que el texto ocupe el espacio restante */
+    text-align: justify; /* Justificar el texto */
+    padding: 0 10px; /* Reduce el espaciado lateral */
+    color: #ffffff;
 }
 
-.component .gtyh-removebg {
-    height: 28px;
-    left: 0;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 58px;
+.credit-cards {
+    display: flex; /* Alinear las imágenes de las tarjetas horizontalmente */
+}
+
+.credit-cards img {
+    width: 50px; /* Ajustar el tamaño de las imágenes de las tarjetas */
+    margin-left: 5px; /* Reduce el espaciado entre las imágenes */
+}
+
+.iconmonstr-instagram,
+.iconmonstr-twitter,
+.iconmonstr-facebook {
+    height: 18px; /* Ajusta la altura según sea necesario */
+    width: 18px; /* Ajusta el ancho según sea necesario */
+}
+
+/* Para mover los íconos un poco a la izquierda */
+.social-media {
+    margin-left: -10px; /* Ajusta este valor según sea necesario */
 }
