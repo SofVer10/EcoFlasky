@@ -1,0 +1,73 @@
+.card-container {
+    display: grid; /* Usar grid para organizar las tarjetas */
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 20px; /* Espacio entre las tarjetas */
+    padding: 20px; /* Espaciado alrededor del contenedor */
+}
+.color-before-menu{
+    background-color: #53ACC8CC;
+    opacity: 80;
+}
+
+.card {
+    border: 1px solid #ccc; /* Border for the card */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px; /* Inner padding */
+    margin: 10px; /* Margin between cards */
+    width: 180px; /* Fixed width for cards */
+    position: relative; /* Position relative for absolute positioning of children */
+    background-color: white; /* Background color */
+}
+
+
+.card h4 {
+    margin: 0 0 10px; /* Margen inferior para el título */
+}
+
+.card p {
+    margin: 0; /* Sin margen para el párrafo */
+
+}
+.card h5{
+    background-color:  rgba(83, 172, 200, 0.5); /* Change this to your desired background color */
+    border-radius: 40px; /* Adjust the value for more or less rounding */
+    padding: 20px; /* Space inside the section */
+    margin: 0; /* Space outside the section */
+    width: 50px; /* Ancho de la sección coloreada */
+    height: 20px; /* Alto de la sección coloreada */
+    position: absolute; /* Permite mover la sección a una esquina */
+    top: 10px; /* Distancia desde la parte superior */
+    left: 10px; /* Distancia desde la izquierda */
+    
+}
+.carritoCompras {
+    position: absolute; /* Position the cart image absolutely within the card */
+    top: 10px; /* Distance from the top */
+    right: 10px; /* Distance from the right */
+    width: 20px; /* Adjust the size of the cart image */
+    height: auto; /* Maintain aspect ratio */
+    margin-top: 10px;
+
+}
+.botellaGris{
+    display: block; /* Change the image to a block-level element */
+    margin-left: auto; /* Automatically adjust left margin */
+    margin-right: auto; /* Automatically adjust right margin */
+    width: 100%; /* Set a width for the image, adjust as needed */
+    height: auto; /* Maintain aspect ratio */   
+    margin-top: 50px;
+ 
+}
+.precio {
+    background-color: rgba(46, 192, 249, 0.5); /* Background color */
+    border-radius: 40px; /* Rounded corners */
+    padding: 5px 10px; /* Space inside the section */
+    margin: 45 0 0 0; /* Add margin-top to move it down */
+  margin-top: 500;
+    position: absolute; /* Position it absolutely within the card */
+    bottom: 10px; /* Distance from the bottom */
+    right: 10px; /* Distance from the right */
+    width: auto; /* Adjust width as needed */
+    height: auto; /* Adjust height as needed */
+    text-align: center; /* Center the text */
+}

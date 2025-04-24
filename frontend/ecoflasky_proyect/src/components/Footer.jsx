@@ -57,8 +57,7 @@ export const Component = () => {
 
         <p className="text-wrapper-7">© Copyright 2025 Derechos Reservados</p>
       </div>
-     
-    </div>
+        </div>
   );
 };
 
