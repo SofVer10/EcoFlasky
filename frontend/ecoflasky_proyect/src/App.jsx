@@ -6,8 +6,17 @@ import { BrowserRouter as Router, Routes, Route }
 import Products from './pages/products'
 import Nav from "./components/Nav"
 import Footer from "./components/Footer"
+<<<<<<< HEAD
 import Contactanos from './pages/contacts';
 import AcercaDe from './pages/acercadenosotros'
+=======
+import Register from './pages/register'
+import Login from './pages/login'
+import Password from './pages/contrasena'
+import Regular from "./pages/regular"
+import Disenado from "./pages/disenado"
+import Economico from "./pages/economico"
+>>>>>>> 9b65f732aff402801170be3aa285df4e19b72968
 
 
 function App() {
@@ -15,6 +24,7 @@ function App() {
 
   return (
     <>
+<<<<<<< HEAD
       <Router>
         <Nav />
         <Routes>
@@ -24,6 +34,21 @@ function App() {
         </Routes>
       </Router>
       <Footer />
+=======
+     <Router>
+        <Nav/>
+          <Routes>
+            <Route path="/productos" element={<Products/>} />
+            <Route path="/register" element={<Register/>} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/password" element={<Password/>} />
+            <Route path="/regular" element={<Regular/>} />
+            <Route path="/economico" element={<Economico/>} />
+            <Route path="/disenado" element={<Disenado/>} />
+          </Routes>
+<Footer/>
+      </Router>
+>>>>>>> 9b65f732aff402801170be3aa285df4e19b72968
 
     </>
   )

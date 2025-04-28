@@ -1,177 +1,115 @@
-
 .component {
-    height: 380px; /* Puedes ajustar la altura según sea necesario */
-    width: 100%; /* Asegúrate de que ocupe todo el ancho de la pantalla */
-    background-color: black;
-    position: fixed; /* Cambiado a fixed para que se mantenga en la parte inferior */
-    bottom: 0; /* Asegúrate de que esté en la parte inferior de la página */
-    left: 0; /* Asegúrate de que esté alineado a la izquierda */
-    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    display: flex;
+    flex-direction: column; 
+    min-height: 10vh; 
+    background-color: transparent; 
 }
 
-.component .overlap {
-    height: 280px;
-    position: relative;
+.overlap {
+    flex: 1; 
+    position: relative; 
+    width: 158%;
+    background-color: black; 
+    right: 30%;
+    top: 10%;
 }
 
-.component .rectangle {
-    height: 273px;
-    left: 0;
-    width: 100%; /* Cambiado a 100% para que ocupe todo el ancho */
-    position: absolute; /* Cambiado a absolute para que se ajuste al contenedor */
-    top: 7px;
+.header {
+    display: flex; 
+    align-items: center; 
+    padding: 5px 10px; 
 }
 
-.component .group {
-    height: 18px;
-    left: 57px;
-    position: absolute;
-    top: 155px;
-    width: 82px;
+.footer {
+    height: 60px; 
+    width: 100%; 
+    background-color: #333; 
+    color: white; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    position: relative; 
 }
 
-.component .iconmonstr-instagram,
-.component .iconmonstr-twitter,
-.component .iconmonstr-facebook {
-    height: 18px;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 18px;
-}
-
-.component .iconmonstr-instagram { left: 32px; }
-.component .iconmonstr-twitter { left: 0; }
-.component .iconmonstr-facebook { left: 64px; }
-
-.component .copia-de-ECOFLASKY {
-    height: 175px;
-    left: 11px;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 175px;
-}
-
-.component .div {
-    height: 17px;
-    position: absolute;
-    top: 43px;
-    left: 416px;
-    width: 912px; /* Puedes ajustar este ancho según sea necesario */
-}
-
-.component .overlap-group-wrapper {
-    height: 13px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 54px;
-}
-
-.component .overlap-group {
-    height: 13px;
-    position: relative;
-    width: 52px;
-}
-
-.component .rectangle-2 {
-    background-color: #53acc8;
-    height: 1px;
-    left: 0;
-    position: absolute;
-    top: 11px;
-    width: 45px;
-}
-
-.component .text-wrapper,
-.component .text-wrapper-2,
-.component .text-wrapper-3,
-.component .text-wrapper-4,
-.component .text-wrapper-5,
-.component .text-wrapper-6 {
+.text-wrapper,
+.text-wrapper-2,
+.text-wrapper-3,
+.text-wrapper-4,
+.text-wrapper-5,
+.text-wrapper-6 {
     color: #ffffff;
     font-family: "Bellefair-Regular", Helvetica;
     font-size: 13px;
     font-weight: 400;
-    position: absolute;
-    white-space: nowrap;
+    margin: 0 5px; 
 }
 
-.component .text-wrapper { left: 2px; width: 50px; top: 0; }
-.component .text-wrapper-2 { left: 125px; width: 120px; top: 0; }
-.component .text-wrapper-3 { left: 318px; width: 84px; top: 0; }
-.component .text-wrapper-4 { left: 475px; width: 128px; top: 0; }
-.component .text-wrapper-5 { left: 676px; width: 105px; top: 0; }
-.component .text-wrapper-6 { left: 854px; width: 48px; top: 0; }
-
-.component .p {
+.p {
     color: #ffffff;
     font-family: "Buda-Light", Helvetica;
     font-size: 13px;
     font-weight: 300;
-    position: absolute;
-    top: 125px;
-    left: 416px;
-    width: 662px;
+    margin: 10px 0; 
 }
 
-.component .text-wrapper-7 {
+.text-wrapper-7 {
     color: #ffffff;
     font-family: "Buda-Light", Helvetica;
     font-size: 13px;
     font-weight: 300;
-    position: absolute;
-    top: 195px;
-    left: 41px;
-    width: 290px;
+    margin: 10px 0; 
 }
 
-.component .group-wrapper {
-    height: 28px;
-    position: absolute;
-    top: 214px;
-    left: 1116px;
-    width: 202px;
+.group-wrapper {
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 10px; 
 }
 
-.component .group-2 {
-    height: 28px;
-    position: relative;
+.social-text-credit {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px; 
 }
 
-.component .image {
-    height: 23px;
-    left: 164px;
-    object-fit: cover;
-    position: absolute;
-    top: 2px;
-    width: 38px;
+.social-media {
+    display: flex; 
 }
 
-.component .mastr {
-    height: 22px;
-    left: 64px;
-    object-fit: cover;
-    position: absolute;
-    top: 2px;
-    width: 32px;
+.social-media img {
+    width: 30px; 
+    margin-right: 5px; 
 }
 
-.component .credoma-removebg {
-    height: 24px;
-    left: 111px;
-    object-fit: cover;
-    position: absolute;
-    top: 2px;
-    width: 43px;
+.lorem-text {
+    flex: 1; 
+    text-align: justify; 
+    padding: 0 10px; 
+    color: #ffffff;
 }
 
-.component .gtyh-removebg {
-    height: 28px;
-    left: 0;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 58px;
+.credit-cards {
+    display: flex; 
+}
+
+.credit-cards img {
+    width: 50px; 
+    margin-left: 5px; 
+}
+
+.iconmonstr-instagram,
+.iconmonstr-twitter,
+.iconmonstr-facebook {
+    height: 18px; 
+    width: 18px; 
+}
+
+.social-media {
+    margin-left: -10px; 
+}
+
+.logo {
+    width: 15%;
+    height: auto;
 }
