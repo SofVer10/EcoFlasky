@@ -31,19 +31,13 @@ function App() {
             <Route path="/regular" element={<Regular/>} />
             <Route path="/economico" element={<Economico/>} />
             <Route path="/disenado" element={<Disenado/>} />
-          </Routes>
-<Footer/>
-      </Router>
-
-      <Router>
-        <Nav />
-        <Routes>
+      
           <Route path="/" element={<Products />} />
           <Route path="/contactanos" element={<Contactanos />} />
-          <Route path="/sobrenosotros" element={<AcercaDe />} />
+          <Route path="/acercadenosotros" element={<AcercaDe />} />
         </Routes>
+        <Footer />
       </Router>
-      <Footer />
 
     </>
   )

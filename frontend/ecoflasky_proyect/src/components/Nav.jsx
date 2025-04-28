@@ -19,13 +19,13 @@ const Nav = () => {
         </li>
         <li className="nav-item">
 
-          <Link to="/sobrenosotros" className="nav-link">SOBRE NOSOTROS</Link>
+          <Link to="/Acercadenosotros" className="nav-link">SOBRE NOSOTROS</Link>
         </li>
         <li>
         <Link to="/productos" className="nav-link">PRODUCTOS</Link>
         </li>
         <li className="nav-item">
-          <Link to="/login" className="nav-link">CONTACTANOS</Link>
+          <Link to="/contactanos" className="nav-link">CONTACTANOS</Link>
         </li>
         <li className="nav-item">
           <Link to="/register" className="nav-link">TERMINOS Y CONDICIONES</Link>
