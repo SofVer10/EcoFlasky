@@ -16,7 +16,8 @@ import Disenado from "./pages/disenado"
 import Economico from "./pages/economico"
 import Contactanos from './pages/contacts';
 import AcercaDe from './pages/acercadenosotros'
-
+import Inicio from './pages/inicio';
+import Favoritos from './pages/favoritos';
 
 function App() {
 
@@ -39,9 +40,12 @@ function App() {
           <Route path="/" element={<Products />} />
           <Route path="/contactanos" element={<Contactanos />} />
           <Route path="/sobrenosotros" element={<AcercaDe />} />
+          <Route path="/" element={<Inicio />} />
+          <Route path="/" element={<Favoritos />} />
           </Routes>
       </Router>
-      <Footer />
+      <Footer/>
+
     </>
   )
 
