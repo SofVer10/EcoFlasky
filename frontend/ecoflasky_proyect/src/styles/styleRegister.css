@@ -141,3 +141,65 @@
 .image-wrapper-register{
     top: 15%;
 }
+
+
+/* Media Queries para Responsividad */
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column; /* Cambia a columna en pantallas más pequeñas */
+    }
+
+    .half-color-register,
+    .content-register {
+        width: 100%; /* Ambos ocupan el 100% del ancho */
+        height: auto; /* Ajusta la altura automáticamente */
+    }
+
+    .input-container,
+    .input-container-password,
+    .input-container-gmail {
+        margin-left: 20px; /* Ajusta el margen para pantallas más pequeñas */
+        margin-top: 30px; /* Ajusta el margen superior */
+    }
+
+    .underline-input {
+        width: 80%; /* Aumenta el ancho del input */
+    }
+
+    .elipse1-register {
+        width: 100px; /* Ajusta el tamaño de la elipse */
+    }
+
+    .elipse2-register {
+        width: 150px; /* Ajusta el tamaño de la elipse */
+    }
+}
+
+@media (max-width: 768px) {
+    .p {
+        font-size: 18px; /* Ajusta el tamaño de la fuente */
+        margin-top: 5%; /* Ajusta el margen superior */
+    }
+
+    .input-container,
+    .input-container-password,
+    .input-container-gmail {
+        flex-direction: column; /* Cambia a columna para los inputs */
+        align-items: flex-start; /* Alinea a la izquierda */
+        margin-left: 0; /* Elimina el margen izquierdo */
+    }
+
+    .user,
+    .gmail,
+    .password-register {
+        margin-top: 0; /* Elimina el margen superior */
+    }
+
+    .underline-input {
+        width: 90%; /* Aumenta el ancho del input */
+    }
+
+    .Registrarse {
+        width: 100%; /* Asegúrate de que el botón ocupe el 100% */
+    }
+}

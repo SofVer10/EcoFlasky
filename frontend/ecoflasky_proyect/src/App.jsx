@@ -15,6 +15,7 @@ import Economico from "./pages/economico"
 import Contactanos from './pages/contacts';
 import Inicio from './pages/inicio';
 import Favoritos from './pages/favoritos';
+import TerminosCondiciones from './pages/terminosycondiciones'
 
 function App() {
 
@@ -33,12 +34,17 @@ function App() {
             <Route path="/regular" element={<Regular/>} />
             <Route path="/economico" element={<Economico/>} />
             <Route path="/disenado" element={<Disenado/>} />
+          <Route path="/TerminosCondiciones" element={<TerminosCondiciones />} />
           <Route path="/" element={<Inicio />} />
           <Route path="/favoritos" element={<Favoritos />} />
-          </Routes>
-          <Footer/>
 
-          </Router>
+
+        </Routes>
+        <Footer />
+      </Router>
+
+
+  
 
       
     </>
