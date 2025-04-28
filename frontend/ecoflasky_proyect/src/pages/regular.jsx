@@ -30,7 +30,9 @@ const Regular = () => {
     return (
         <>
             <section className="parteCeleste-regular">
-                <div className="menu-regular">
+
+</section>                
+<div className="menu-regular">
                     <div className="parteMenu-regular">
                     <Link to="/regular">
                             <p>Regular|</p>
@@ -54,7 +56,6 @@ const Regular = () => {
                         <img className="circular" alt="Copia de ECOFLASKY" src={Quinta} />
                     </div>
                 </div>
-            </section>
 
             <div className="card-container">
                 {products.map((product, index) => (
