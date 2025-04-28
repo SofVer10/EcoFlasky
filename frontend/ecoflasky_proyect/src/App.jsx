@@ -7,6 +7,7 @@ import Products from './pages/products'
 import Nav from "./components/Nav"
 import Footer from "./components/Footer"
 import Inicio from './pages/inicio';
+import Favoritos from './pages/favoritos';
 
 function App() {
   
@@ -17,7 +18,7 @@ function App() {
         <Nav/>
           <Routes>
           <Route path="/" element={<Inicio />} />
-          <Route path="/" element={<Inicio />} />
+          <Route path="/" element={<Favoritos />} />
           </Routes>
       </Router>
 

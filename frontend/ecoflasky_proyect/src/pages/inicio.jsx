@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/stylesinicio.css';
-import Footer from '../components/Footer';
 import botellaRosa from '../images/vector-1.png';
 import productoimagen from '../images/termonegro.png';
 import par from '../images/par.png';
@@ -10,6 +9,8 @@ import ofertas from '../images/ofertas.png';
 import personalizados from '../images/personalizados.png';
 import solidos from '../images/solidos.png';
 import resena from '../images/resenas.png';
+import favoritos from '../pages/favoritos';
+
 
 // Import review profile images
 import user1Profile from '../images/user1245.png';
@@ -270,7 +271,7 @@ const Inicio = () => {
           <div className="logo">Inicio</div>
           <div className="nav-links">
             <Link to="/">INICIO</Link>
-            <Link to="/sobre-nosotros">SOBRE NOSOTROS</Link>
+            <Link to="/favoritos">SOBRE NOSOTROS</Link>
             <Link to="/productos">PRODUCTOS</Link>
             <Link to="/contactanos">CONTÁCTANOS</Link>
             <Link to="/terminos">TÉRMINOS Y CONDICIONES</Link>
@@ -476,7 +477,9 @@ const Inicio = () => {
             elementum tortor lacus. Amet tempor lorem faucibus ut nunc dictum 
             adipiscing. Dictad esce purus pretium praesent augue ori pretia lacus natoquesit. Eget in cursus placerat id.
           </p>
-          <button className="shop-button">PRODUCTOS</button>
+          <Link to= "/favoritos">
+  <button className="shop-button">PRODUCTOS</button>
+</Link>
         </div>
       </div>
       
