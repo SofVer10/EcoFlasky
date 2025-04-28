@@ -1,7 +1,7 @@
 
 import './App.css'
 import { BrowserRouter as Router, Routes, Route }
-from "react-router"
+  from "react-router"
 
 import Products from './pages/products'
 import Nav from "./components/Nav"
@@ -12,10 +12,12 @@ import Password from './pages/contrasena'
 import Regular from "./pages/regular"
 import Disenado from "./pages/disenado"
 import Economico from "./pages/economico"
+import Contactanos from './pages/contacts';
+import AcercaDe from './pages/acercadenosotros'
 
 
 function App() {
-  
+
 
   return (
     <>
@@ -33,8 +35,20 @@ function App() {
 <Footer/>
       </Router>
 
+      <Router>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Products />} />
+          <Route path="/contactanos" element={<Contactanos />} />
+          <Route path="/sobrenosotros" element={<AcercaDe />} />
+        </Routes>
+      </Router>
+      <Footer />
+
     </>
   )
+
+
 }
 
 export default App
