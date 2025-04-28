@@ -9,7 +9,7 @@ const Nav = () => {
     <nav className="nav-container">
       {/* Logo que redirige al inicio */}
       <Link to="/" className="logo-link">
-        <img src={logo} alt="Logo EcoFlaky" className="logo" />
+        <img src={logo} alt="Logo EcoFlaky" className="logo-nav" />
       </Link>
 
       {/* Menú de navegación */}
@@ -18,18 +18,16 @@ const Nav = () => {
           <Link to="/" className="nav-link">INICIO</Link>
         </li>
         <li className="nav-item">
-          <Link to="/sobre-nosotros" className="nav-link">SOBRE NOSOTROS</Link>
+          <Link to="/password" className="nav-link">SOBRE NOSOTROS</Link>
         </li>
         <li>
-                        <a href="/productos" className="hover:text-gray-200">
-                            Productos 
-                        </a>
+        <Link to="/productos" className="nav-link">PRODUCTOS</Link>
         </li>
         <li className="nav-item">
-          <Link to="/contactanos" className="nav-link">CONTACTANOS</Link>
+          <Link to="/login" className="nav-link">CONTACTANOS</Link>
         </li>
         <li className="nav-item">
-          <Link to="/terminos-y-condiciones" className="nav-link">TERMINOS Y CONDICIONES</Link>
+          <Link to="/register" className="nav-link">TERMINOS Y CONDICIONES</Link>
         </li>
       </ul>
     </nav>

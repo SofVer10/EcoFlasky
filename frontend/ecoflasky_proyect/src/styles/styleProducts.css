@@ -4,7 +4,8 @@
     gap: 20px; /* Espacio entre las tarjetas */
     padding: 20px; /* Espaciado alrededor del contenedor */
 }
-.color-before-menu{
+
+.color-before-menu {
     background-color: #53ACC8CC;
     opacity: 80;
 }
@@ -19,55 +20,137 @@
     background-color: white; /* Background color */
 }
 
-
 .card h4 {
     margin: 0 0 10px; /* Margen inferior para el título */
 }
 
 .card p {
     margin: 0; /* Sin margen para el párrafo */
-
 }
-.card h5{
-    background-color:  rgba(83, 172, 200, 0.5); /* Change this to your desired background color */
-    border-radius: 40px; /* Adjust the value for more or less rounding */
-    padding: 20px; /* Space inside the section */
-    margin: 0; /* Space outside the section */
-    width: 50px; /* Ancho de la sección coloreada */
+
+.card h5 {
+    background-color: rgba(83, 172, 200, 0.5); /* Color de fondo */
+    border-radius: 40px; /* Bordes redondeados */
+    padding: 0px; /* Espacio interno */
+    margin: 0; /* Sin margen */
+    width: 90px; /* Ancho de la sección coloreada */
     height: 20px; /* Alto de la sección coloreada */
     position: absolute; /* Permite mover la sección a una esquina */
     top: 10px; /* Distancia desde la parte superior */
     left: 10px; /* Distancia desde la izquierda */
-    
 }
+
 .carritoCompras {
-    position: absolute; /* Position the cart image absolutely within the card */
-    top: 10px; /* Distance from the top */
-    right: 10px; /* Distance from the right */
-    width: 20px; /* Adjust the size of the cart image */
-    height: auto; /* Maintain aspect ratio */
-    margin-top: 10px;
+    position: absolute; /* Posiciona la imagen del carrito dentro de la tarjeta */
+    top: 10px; /* Distancia desde la parte superior */
+    right: 10px; /* Distancia desde la derecha */
+    width: 20px; /* Ajusta el tamaño de la imagen del carrito */
+    height: auto; /* Mantiene la proporción */
+}
+
+.botellaGris {
+    display: block; /* Cambia la imagen a un elemento de bloque */
+    margin-left: auto; /* Ajusta automáticamente el margen izquierdo */
+    margin-right: auto; /* Ajusta automáticamente el margen derecho */
+    width: 100%; /* Establece un ancho para la imagen */
+    height: auto; /* Mantiene la proporción */
+    margin-top: 50px;
+}
+
+.precio {
+    background-color: rgba(46, 192, 249, 0.5); /* Color de fondo */
+    border-radius: 40px; /* Bordes redondeados */
+    padding: 5px 10px; /* Espacio interno */
+    position: absolute; 
+    bottom: 10px; 
+    right: 10px; 
+    text-align: center; /* Centra el texto */
+}
+
+.vermas {
+    text-decoration: underline cadetblue;
+    text-align: center;
+}
+
+.card h5.disenado {
+    background-color: rgba(188, 110, 212, 0.5); /* Color de fondo */
+    border-radius: 40px; /* Bordes redondeados */
+    margin: 0; /* Sin margen */
+    width: 65px; /* Ancho de la sección coloreada */
+    height: 20px; /* Alto de la sección coloreada */
+    position: absolute; /* Permite mover la sección a una esquina */
+    top: 10px; /* Distancia desde la parte superior */
+    left: 10px; /* Distancia desde la izquierda */
+}
+
+.card h5.economico{
+    background-color:  rgba(2, 195, 154, 0.5)    ; /* Change this to your desired background color */
+    border-radius: 40px; /* Adjust the value for more or less rounding */
+    width: 75px; /* Ancho de la sección coloreada */
+    height: 20px; /* Alto de la sección coloreada */
+    position: absolute; /* Permite mover la sección a una esquina */
+    top: 10px; /* Distancia desde la parte superior */
+    left: 10px; /* Distancia desde la izquierda */ 
+}
+.parteCeleste{
+    background-color:  rgba(83, 172, 200, 0.4)    ; /* Change this to your desired background color */
+    border-radius: 40px; /* Adjust the value for more or less rounding */
+    padding: 18px; /* Space inside the section */
+    width: 95%; /* Ancho de la sección coloreada */
+    height: 55%; /* Alto de la sección coloreada */
+    position: absolute; /* Permite mover la sección a una esquina */
+    top: 10px; /* Distancia desde la parte superior */
+    left: 10px;  
+}
+
+.menu{
+    background-color:  rgba(83, 172, 200, 0.4)    ; /* Change this to your desired background color */
+    border-radius: 40px; /* Adjust the value for more or less rounding */
+    padding: 15px; /* Space inside the section */
+    width: 85%; /* Ancho de la sección coloreada */
+    height: 40%; /* Alto de la sección coloreada */
+    position: relative; /* Permite mover la sección a una esquina */
+    top: 150px; /* Distancia desde la parte superior */
+    left: 70px;  
+    flex-direction: column;
+}
+
+.card-container{
+margin-top: 18%;
+margin-left: 5%;
+}
+
+.parteMenu {
+    display: flex; /* Usar flexbox para alinear los elementos en una fila */
+    justify-content: flex-start; /* Alinear los elementos al inicio (izquierda) */
+    align-items: center; /* Alinear verticalmente al centro si es necesario */  
+  font-family: bellefair;
+    margin-bottom: 5px; /* Ajusta este valor para reducir el espacio */
+    flex-direction: row;
+}
+
+.explora {
+    display: flex;
+    text-align: left;
+    gap: 90px;
+    flex-direction: row;
+    margin-top: 2%;
+    font-family: bellefair;
+}
+
+.explora img {
+    margin: 0  ; /* Centra la imagen dentro del div */
+}
+
+.circular {
+    width: 50px; /* Ajusta el tamaño según sea necesario */
+    height: 50px; /* Debe ser igual al ancho para que sea circular */
+    border-radius: 50%; /* Hace que la imagen sea circular */
+    object-fit: cover; /* Asegura que la imagen se ajuste bien dentro del círculo */
 
 }
-.botellaGris{
-    display: block; /* Change the image to a block-level element */
-    margin-left: auto; /* Automatically adjust left margin */
-    margin-right: auto; /* Automatically adjust right margin */
-    width: 100%; /* Set a width for the image, adjust as needed */
-    height: auto; /* Maintain aspect ratio */   
-    margin-top: 50px;
- 
-}
-.precio {
-    background-color: rgba(46, 192, 249, 0.5); /* Background color */
-    border-radius: 40px; /* Rounded corners */
-    padding: 5px 10px; /* Space inside the section */
-    margin: 45 0 0 0; /* Add margin-top to move it down */
-  margin-top: 500;
-    position: absolute; /* Position it absolutely within the card */
-    bottom: 10px; /* Distance from the bottom */
-    right: 10px; /* Distance from the right */
-    width: auto; /* Adjust width as needed */
-    height: auto; /* Adjust height as needed */
-    text-align: center; /* Center the text */
+
+.vermas{
+    flex-direction: column;
+    margin-right: 30%;
 }

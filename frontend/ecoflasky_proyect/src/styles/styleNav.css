@@ -36,3 +36,8 @@
   text-transform: uppercase; /* Convertir texto a mayúsculas */
   transition: color 0.3s;
 }
+
+.logo-nav{
+  width: 50%;
+  height: auto;
+}
