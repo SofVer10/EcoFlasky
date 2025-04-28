@@ -100,8 +100,8 @@
 }
 
 
-.parteCeleste{
-    background-color:  rgba(83, 172, 200, 0.4)    ; /* Change this to your desired background color */
+.parteCeleste-disenado{
+    background-color: rgba(196, 170, 255, 0.4)    ; /* Change this to your desired background color */
     border-radius: 40px; /* Adjust the value for more or less rounding */
     padding: 18px; /* Space inside the section */
     width: 95%; /* Ancho de la sección coloreada */
@@ -111,8 +111,8 @@
     left: 10px;  
 }
 
-.menu{
-    background-color:  rgba(83, 172, 200, 0.4)    ; /* Change this to your desired background color */
+.menu-disenado{
+    background-color: #DEB7E9   ; /* Change this to your desired background color */
     border-radius: 40px; /* Adjust the value for more or less rounding */
     padding: 15px; /* Space inside the section */
     width: 85%; /* Ancho de la sección coloreada */
@@ -128,7 +128,7 @@ margin-top: 18%;
 margin-left: 5%;
 }
 
-.parteMenu {
+.parteMenu-disenado {
     display: flex; /* Usar flexbox para alinear los elementos en una fila */
     justify-content: flex-start; /* Alinear los elementos al inicio (izquierda) */
     align-items: center; /* Alinear verticalmente al centro si es necesario */  
@@ -137,7 +137,7 @@ margin-left: 5%;
     flex-direction: row;
 }
 
-.explora {
+.explora-disenado {
     display: flex;
     text-align: left;
     gap: 90px;
