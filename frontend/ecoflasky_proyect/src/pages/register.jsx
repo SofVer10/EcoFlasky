@@ -14,8 +14,8 @@ const Register = () => {
             <div className="container">
                 <div className="half-color-register">
                     <div className="texto-register">
-                    <h1>BIENVENIDO</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur. Non maecenas tortor suscipit odio volutpat turpis adipiscing.</p>
+                    <h1 style={{color:"black", opacity: 0.5}}>BIENVENIDO</h1>
+                    <p style={{color: "black"}}>Lorem ipsum dolor sit amet consectetur. Non maecenas tortor suscipit odio volutpat turpis adipiscing.</p>
                     </div>
                     <div className="input-container">
                         <img className="user" alt="Copia de ECOFLASKY" src={user} />
