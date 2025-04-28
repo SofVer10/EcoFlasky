@@ -30,6 +30,7 @@ const Economico = () => {
     return (
         <>
             <section className="parteCeleste-economico">
+                </section>
                 <div className="menu-economico">
                     <div className="parteMenu-economico">
                     <Link to="/regular">
@@ -54,7 +55,6 @@ const Economico = () => {
                         <img className="circular" alt="Copia de ECOFLASKY" src={Quinta} />
                     </div>
                 </div>
-            </section>
 
             <div className="card-container">
                 {products.map((product, index) => (

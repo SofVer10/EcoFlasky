@@ -4,125 +4,129 @@
     box-sizing: border-box;
 }
 
-.texto{
-font-family: bellefair;
-margin-top: 10%;
-color: #000000;
-opacity: 50%;
+.texto {
+    font-family: bellefair;
+    margin-top: 10%;
+    color: #000000;
+    opacity: 50%;
 }
+
 .container {
-    display: flex; /* Usar flexbox para alinear los elementos en fila */
-    height: 100vh; /* Altura completa de la ventana */
+    display: flex; 
+    height: 100vh; 
 }
 
 .half-color {
-  background-color: rgba(83, 172, 200, 0.4);
-    width: 50%; /* Ocupa la mitad de la pantalla */
+    background-color: rgba(83, 172, 200, 0.4);
+    width: 50%; 
     height: 100%;
-    padding: 20px; /* Espaciado interno */
+    padding: 20px; 
 }
 
 .content {
-    width: 50%; /* Ocupa la otra mitad de la pantalla */
-    padding: 20px; /* Espaciado interno */
-    background-color: white; /* Color de fondo para la otra mitad */
-    position: relative; /* Necesario para el posicionamiento absoluto de la imagen */
+    width: 50%; 
+    padding: 20px; 
+    background-color: white; 
+    position: relative; 
 }
 
 .image-wrapper {
-    position: relative; /* Contenedor relativo para las imágenes */
+    position: relative; 
 }
 
 .elipse1 {
-    position: absolute; /* Posiciona la elipse de forma absoluta */
-    top: 5%; /* Ajusta la posición vertical según sea necesario */
-    left: 70%; /* Centra horizontalmente */
-    transform: translate(-50%, -50%); /* Ajusta la posición para centrar */
-    width: 220px; /* Ajusta el tamaño según sea necesario */
-    height: auto; /* Mantiene la proporción */
-    z-index: 1; /* Asegura que esté por encima de la imagen de registro */
+    position: absolute; 
+    top: 5%; 
+    left: 70%; 
+    transform: translate(-50%, -50%); 
+    width: 220px; 
+    height: auto; 
+    z-index: 1; 
 }
 
-.elipse2{
-    position: absolute; /* Posiciona la elipse de forma absoluta */
-    top: 108%; /* Ajusta la posición vertical según sea necesario */
-    right: 40%; /* Centra horizontalmente */
-    transform: translate(-50%, -50%); /* Ajusta la posición para centrar */
-    width: 200px; /* Ajusta el tamaño según sea necesario */
-    height: auto; /* Mantiene la proporción */
-    z-index: 1; /* Asegura que esté por encima de la imagen de registro */
+.elipse2 {
+    position: absolute; 
+    top: 108%; 
+    right: 40%; 
+    transform: translate(-50%, -50%); 
+    width: 200px; 
+    height: auto; 
+    z-index: 1; 
 }
-.irRegistro{
+
+.irRegistro {
     color: rgb(0, 0, 0);
     opacity: 50%;
 }
+
 .register {
-    width: 100%; /* Ajusta el tamaño de la imagen de registro */
-    height: auto; /* Mantiene la proporción */
-    z-index: 0; /* Asegura que esté por debajo de la elipse */
+    width: 100%; 
+    height: auto; 
+    z-index: 0; 
 }
 
 .input-container-password {
-    display: flex; /* Usar flexbox para alinear los elementos */
-    flex-direction: row; /* Asegúrate de que la dirección sea fila para alinear horizontalmente */
-    align-items: center; /* Alinear verticalmente al centro */
-    margin: 20px; /* Espaciado alrededor del contenedor */
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    margin: 20px; 
     margin-left: 142px;
     margin-top: 75px;
 }
+
 .input-container-gmail {
-    display: flex; /* Usar flexbox para alinear los elementos */
-    flex-direction: row; /* Asegúrate de que la dirección sea fila para alinear horizontalmente */
-    align-items: center; /* Alinear verticalmente al centro */
-    margin: 20px; /* Espaciado alrededor del contenedor */
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    margin: 20px; 
     margin-left: 155px;
     margin-top: 75px;
 }
+
 .user {
-    width: 24px; /* Ajusta el tamaño de la imagen según sea necesario */
-    height: 24px; /* Ajusta el tamaño de la imagen según sea necesario */
-    margin-right: 10px; /* Espacio entre la imagen y el input */
+    width: 24px; 
+    height: 24px; 
+    margin-right: 10px; 
 }
 
 .gmail {
-    width: 18px; /* Ajusta el tamaño de la imagen según sea necesario */
-    height: 18px; /* Ajusta el tamaño de la imagen según sea necesario */
-    margin-right: 10px; /* Espacio entre la imagen y el input */
+    width: 18px; 
+    height: 18px; 
+    margin-right: 10px; 
     margin-top: 10px;
     opacity: 40%;
 }
 
 .password-login {
-    width: 38px; /* Ajusta el tamaño de la imagen según sea necesario */
-    height: 24px; /* Ajusta el tamaño de la imagen según sea necesario */
-    margin-right: 0px; /* Espacio entre la imagen y el input */
+    width: 38px; 
+    height: 24px; 
+    margin-right: 0px; 
     margin-top: 10px;
-
-
 }
 
 .underline-input {
-    border: none; /* Elimina el borde predeterminado */
-    border-bottom: 2px solid #000000; /* Establece el subrayado */
-    outline: none; /* Elimina el contorno al hacer clic */
-    padding: 5px; /* Espaciado interno */
-    font-size: 16px; /* Tamaño de fuente */
+    border: none; 
+    border-bottom: 2px solid #000000; 
+    outline: none; 
+    padding: 5px; 
+    font-size: 16px; 
     background-color: transparent;
-    width: 50%; /* Ancho completo del contenedor */
-    margin-top: 0; /* Elimina el margen superior para evitar separación */
-}
-.underline-input::placeholder {
-    color: #aaa; /* Color del texto del placeholder */
-    opacity: 1; /* Asegura que el placeholder sea visible */
+    width: 50%; 
+    margin-top: 0; 
 }
 
-.Login{
+.underline-input::placeholder {
+    color: #aaa; 
+    opacity: 1; 
+}
+
+.Login {
     margin-top: 30px;
     background-color: rgba(83, 172, 200, 0.75);
     border-radius: 50px;
 }
 
-.register{
+.register {
     margin-top: 15%;
     width: 70%;
     height: 70%;

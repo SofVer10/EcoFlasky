@@ -1,31 +1,34 @@
 .component {
     display: flex;
-    flex-direction: column; /* Permite que los elementos se apilen verticalmente */
-    min-height: 10vh; /* Asegura que el componente ocupe al menos toda la altura de la ventana */
-    background-color: transparent; /* Cambia el fondo a transparente */
+    flex-direction: column; 
+    min-height: 10vh; 
+    background-color: transparent; 
 }
 
 .overlap {
-    flex: 1; /* Permite que este contenedor ocupe el espacio restante */
-    position: relative; /* Cambiado a relative para que los elementos hijos se posicionen en relación a este */
-    background-color: black; /* Aplica el fondo negro solo a esta sección */
+    flex: 1; 
+    position: relative; 
+    width: 158%;
+    background-color: black; 
+    right: 30%;
+    top: 10%;
 }
 
 .header {
-    display: flex; /* Usar flexbox para alinear el logo y los enlaces horizontalmente */
-    align-items: center; /* Centra verticalmente el contenido */
-    padding: 5px 10px; /* Reduce el espaciado alrededor */
+    display: flex; 
+    align-items: center; 
+    padding: 5px 10px; 
 }
 
 .footer {
-    height: 60px; /* Ajusta la altura del footer según sea necesario */
-    width: 100%; /* Asegúrate de que ocupe todo el ancho de la pantalla */
-    background-color: #333; /* Color de fondo del footer */
-    color: white; /* Color del texto en el footer */
+    height: 60px; 
+    width: 100%; 
+    background-color: #333; 
+    color: white; 
     display: flex;
-    align-items: center; /* Centra verticalmente el contenido */
-    justify-content: center; /* Centra horizontalmente el contenido */
-    position: relative; /* Cambiado a relative para que no se superponga al contenido */
+    align-items: center; 
+    justify-content: center; 
+    position: relative; 
 }
 
 .text-wrapper,
@@ -38,7 +41,7 @@
     font-family: "Bellefair-Regular", Helvetica;
     font-size: 13px;
     font-weight: 400;
-    margin: 0 5px; /* Reduce el espaciado entre los enlaces */
+    margin: 0 5px; 
 }
 
 .p {
@@ -46,7 +49,7 @@
     font-family: "Buda-Light", Helvetica;
     font-size: 13px;
     font-weight: 300;
-    margin: 10px 0; /* Reduce el espaciado superior e inferior */
+    margin: 10px 0; 
 }
 
 .text-wrapper-7 {
@@ -54,55 +57,59 @@
     font-family: "Buda-Light", Helvetica;
     font-size: 13px;
     font-weight: 300;
-    margin: 10px 0; /* Reduce el espaciado superior e inferior */
+    margin: 10px 0; 
 }
 
 .group-wrapper {
-    display: flex; /* Cambiado a flex para alinear los elementos horizontalmente */
-    justify-content: space-between; /* Espaciado entre los elementos */
-    margin-top: 10px; /* Reduce el margen superior */
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 10px; 
 }
 
 .social-text-credit {
-    display: flex; /* Usar flexbox para alinear los elementos */
-    justify-content: space-between; /* Espacio entre los elementos */
-    align-items: center; /* Alinear verticalmente al centro */
-    padding: 10px; /* Reduce el espaciado interno */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px; 
 }
 
 .social-media {
-    display: flex; /* Alinear los íconos horizontalmente */
+    display: flex; 
 }
 
 .social-media img {
-    width: 30px; /* Ajustar el tamaño de los íconos */
-    margin-right: 5px; /* Reduce el espaciado entre íconos */
+    width: 30px; 
+    margin-right: 5px; 
 }
 
 .lorem-text {
-    flex: 1; /* Permitir que el texto ocupe el espacio restante */
-    text-align: justify; /* Justificar el texto */
-    padding: 0 10px; /* Reduce el espaciado lateral */
+    flex: 1; 
+    text-align: justify; 
+    padding: 0 10px; 
     color: #ffffff;
 }
 
 .credit-cards {
-    display: flex; /* Alinear las imágenes de las tarjetas horizontalmente */
+    display: flex; 
 }
 
 .credit-cards img {
-    width: 50px; /* Ajustar el tamaño de las imágenes de las tarjetas */
-    margin-left: 5px; /* Reduce el espaciado entre las imágenes */
+    width: 50px; 
+    margin-left: 5px; 
 }
 
 .iconmonstr-instagram,
 .iconmonstr-twitter,
 .iconmonstr-facebook {
-    height: 18px; /* Ajusta la altura según sea necesario */
-    width: 18px; /* Ajusta el ancho según sea necesario */
+    height: 18px; 
+    width: 18px; 
 }
 
-/* Para mover los íconos un poco a la izquierda */
 .social-media {
-    margin-left: -10px; /* Ajusta este valor según sea necesario */
+    margin-left: -10px; 
+}
+
+.logo {
+    width: 15%;
+    height: auto;
 }
