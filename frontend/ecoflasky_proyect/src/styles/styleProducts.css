@@ -1,5 +1,5 @@
 .card-container {
-    margin-top: 50%;
+    margin-top: 55%;
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
     gap: 20px; 
@@ -107,7 +107,7 @@
     border-radius: 40px; 
     padding: 18px; 
     width: 99%; 
-    height: 29%; 
+    height: 25%; 
     position: absolute; 
     bottom: 60%;
     left: 10px;  
