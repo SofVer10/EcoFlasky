@@ -1,13 +1,12 @@
-/* styles/styleNav.css */
 
 .navbar {
-  position: fixed; /* Mantiene la barra de navegación en la parte superior */
+  position: relative; 
   top: 0;
   left: 0;
-  width: 100%; /* Asegúrate de que ocupe todo el ancho */
-  background-color: white; /* Cambia el color de fondo según tu diseño */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
-  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+  width: 100%; 
+  background-color: white; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  z-index: 1000; 
 }
 
 .nav-container {
@@ -20,19 +19,24 @@
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 2rem; /* Espacio entre elementos del menú */
+  gap: 2rem; 
   margin: 0;
   padding: 0;
 }
 
 .nav-item {
-  font-weight: 600; /* Texto en negrita */
+  font-weight: 600; 
 }
 
 .nav-link {
   text-decoration: none;
-  color: #333333; /* Color del texto */
+  color: #333333; 
   font-size: 1rem;
-  text-transform: uppercase; /* Convertir texto a mayúsculas */
+  text-transform: uppercase; 
   transition: color 0.3s;
+}
+
+.logo-nav {
+  width: 50%;
+  height: auto;
 }

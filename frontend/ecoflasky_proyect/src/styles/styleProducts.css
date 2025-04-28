@@ -1,0 +1,168 @@
+.card-container {
+    margin-top: 50%;
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    padding: 20px;
+}
+
+.color-before-menu {
+    background-color: #53ACC8CC;
+    opacity: 80;
+}
+
+.card {
+    border: 1px solid #ccc; 
+    border-radius: 10px; 
+    padding: 15px;
+    margin: 10px; 
+    width: 180px; 
+    position: relative; 
+    background-color: white; 
+}
+
+.card h4 {
+    margin: 0 0 10px;
+}
+
+.card p {
+    margin: 0; 
+}
+
+.regular {
+    background-color: rgba(83, 172, 200, 0.5); 
+    border-radius: 40px; 
+    padding: 0px; 
+    margin: 0; 
+    width: 90px; 
+    height: 20px; 
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+}
+
+.disenado {
+    background-color: rgba(188, 110, 212, 0.5); 
+    border-radius: 40px; 
+    margin: 0; 
+    width: 65px; 
+    height: 20px; 
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+}
+
+.economico {
+    background-color: rgba(2, 195, 154, 0.5); 
+    border-radius: 40px; 
+    width: 75px; 
+    height: 20px; 
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+}
+
+.carritoCompras {
+    position: absolute; 
+    top: 10px; 
+    right: 10px; 
+    width: 20px; 
+    height: auto; 
+}
+
+.botellaGris {
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 100%; 
+    height: auto; 
+    margin-top: 50px;
+}
+
+.favorito {
+    position: absolute; 
+    top: 12px; 
+    right: 30px; 
+    width: 20px; 
+    height: auto; 
+}
+
+.precio {
+    background-color: rgba(46, 192, 249, 0.5); 
+    border-radius: 40px; 
+    padding: 5px 10px; 
+    position: absolute; 
+    bottom: 10px; 
+    right: 10px; 
+    text-align: center; 
+}
+
+.vermas {
+    text-decoration: underline cadetblue;
+    text-align: center;
+}
+
+.parteCeleste {
+    background-color: rgba(83, 172, 200, 0.4); 
+    border-radius: 40px; 
+    padding: 18px; 
+    width: 99%; 
+    height: 29%; 
+    position: absolute; 
+    bottom: 60%;
+    left: 10px;  
+    z-index: 1;
+}
+
+.menu {
+    background-color: rgba(83, 172, 200, 0.4); 
+    padding: 15px; 
+    width: 85%; 
+    height: 15%; 
+    position: absolute; 
+    top: 200px; 
+    left: 70px;  
+    border-radius: 40px; 
+    z-index: 2;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.card-container {
+    margin-top: 18%;
+    margin-left: 5%;
+}
+
+.parteMenu {
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center;  
+    font-family: bellefair;
+    margin-bottom: 5px; 
+    flex-direction: row;
+}
+
+.explora {
+    display: flex;
+    text-align: left;
+    gap: 90px;
+    flex-direction: row;
+    margin-top: 2%;
+    font-family: bellefair;
+}
+
+.explora img {
+    margin: 0; 
+}
+
+.circular {
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+}
+
+.vermas {
+    flex-direction: column;
+    margin-right: 30%;
+}

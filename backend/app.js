@@ -9,9 +9,19 @@ import clientsRoutes from "./src/sources/clients.js"
 import RatingRoutes from "./src/sources/ratings.js"
 import ProductsRoutes from "./src/sources/products.js"
 import FavoriteRoute from "./src/sources/favorites.js"
+import LoginRoutes from "./src/sources/loginRoute.js"
+import cookieParse from "cookie-parser"
+import logoutRoutes from "./src/sources/logoutRoutes.js"
+import registerClientRoute from "./src/sources/registerClientRoute.js"
+import registerEmployeeRoute from "./src/sources/registerEmployeeRoutes.js"
+import speciality from "./src/sources/speciality.js";
+import employeeRoute from "./src/sources/employee.js"
+
 
 const app = express();
 app.use (express.json());
+app.use(cookieParse())
+
 
 app.use("/api/clients", clientsRoutes)
 app.use("/api/ratings", RatingRoutes)
@@ -23,4 +33,13 @@ app.use("/api/shoppingCart", shoppingCartRoutes);
 app.use("/api/supplier", SupplierRoutes)
 app.use("/api/category", CategoryRoutes)
 app.use("/api/desings", desingRouter)
+app.use("/api/login", LoginRoutes)
+app.use("/api/logout", logoutRoutes)
+app.use("/api/registerClient", registerClientRoute)
+app.use("/api/registerEmployee", registerEmployeeRoute)
+app.use("/api/speciality", speciality)
+app.use("/api/employee", employeeRoute)
+
+
 export default app;    
+//Aaron
