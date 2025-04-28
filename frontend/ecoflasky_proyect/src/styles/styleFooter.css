@@ -1,113 +1,152 @@
-/* Estilo para el contenido principal */
-.content {
-    padding-bottom: 100px; /* Añadir espacio para que el footer no se sobreponga */
+/* Estilos del Footer */
+.footer {
+  background-color: #222;
+  color: #fff;
+  padding: 30px 0 10px;
+}
+
+.footer-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Columna izquierda - Logo y redes sociales */
+.footer-left {
+  flex: 1;
+  min-width: 120px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+
+.footer-logo {
+  max-width: 100px;
+  margin-bottom: 15px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #333;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.social-icon img {
+  width: 16px;
+  height: 16px;
+}
+
+.social-icon:hover {
+  background-color: #1da1f2;
+}
+
+/* Columna central - Navegación y texto */
+.footer-center {
+  flex: 2;
+  min-width: 300px;
+  margin-bottom: 20px;
+}
+
+.footer-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+  padding: 0; /* Reset para navegadores */
+}
+
+.footer-nav li {
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+.footer-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.footer-nav a:hover {
+  color: #6ecff6;
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  color: #aaa;
+  line-height: 1.5;
+  max-width: 90%;
+}
+
+/* Columna derecha - Métodos de pago */
+.footer-right {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.payment-methods {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.payment-methods img {
+  height: 30px;
+  width: auto;
+}
+
+/* Parte inferior del footer - Copyright */
+.footer-bottom {
+  text-align: left;
+  border-top: 1px solid #333;
+  padding-top: 10px;
+  margin-top: 10px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+      flex-direction: column;
   }
 
-  .component {
-    display: flex;
-    flex-direction: column; /* Para que los elementos dentro se organicen verticalmente */
-    justify-content: center;
-    align-items: center;
-    height: 380px;
-    width: 100%;
-    background-color: black;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    padding: 20px 0; /* Añadir un poco de espacio en el contenedor */
-  }
-  
-  .component .group {
-    display: flex;
-    justify-content: center; /* Para que los íconos se alineen en una fila */
-    gap: 20px; /* Espacio entre los íconos */
-    margin-bottom: 20px; /* Espacio debajo de los íconos */
+  .footer-left, .footer-center, .footer-right {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 30px;
   }
 
-  
-  
-  /* Estilo para el footer que inicialmente está al final de la página */
-  .footer {
-    position: relative;
-    width: 100%;
-    background-color: black;
-    color: white;
-    padding: 20px 0;
-    transition: opacity 0.3s ease;
-    opacity: 0;  /* Inicialmente el footer está oculto */
-    display: flex;
-    flex-direction: column; /* Asegura que los elementos estén en columna */
-    align-items: center; /* Centra los elementos horizontalmente */
-    justify-content: center; /* Centra los elementos verticalmente */
-  }
-  
-  .footer.show {
-    opacity: 1;  /* Cuando se hace scroll, el footer se muestra */
-  }
-  
-  
-  
-  .footer .group img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer; /* Cambia el cursor para indicar que son clicables */
-  }
-  
-  /* Estilos para el logo y los enlaces de navegación */
-  .footer .copia-de-ECOFLASKY {
-    width: 200px;
-    margin-bottom: 20px; /* Espacio debajo del logo */
-  }
-  
-
-  
-  .footer .div .text-wrapper,
-  .footer .div .text-wrapper-2,
-  .footer .div .text-wrapper-3,
-  .footer .div .text-wrapper-4,
-  .footer .div .text-wrapper-5,
-  .footer .div .text-wrapper-6 {
-    font-size: 14px;
-    margin: 5px 0; /* Espacio entre los enlaces */
-    cursor: pointer;
-  }
-  
-  .footer .p {
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 20px; /* Espacio debajo del párrafo */
-  }
-  
-  .footer .text-wrapper-7 {
-    font-size: 12px;
-    text-align: center;
-  }
-  
-  /* Agrupando las imágenes en una fila */
-  .component .group-2 {
-    display: flex;
-    justify-content: center; /* Centra las imágenes en una fila */
-    gap: 20px; /* Espacio entre las imágenes */
-    margin-top: 20px;
-  }
-  
-  
-  .footer .group-2 img {
-    width: 50px;
-    height: 50px;
+  .footer-right {
+      justify-content: flex-start;
   }
 
-.component .text-wrapper,
-.component .text-wrapper-2,
-.component .text-wrapper-3,
-.component .text-wrapper-4,
-.component .text-wrapper-5,
-.component .text-wrapper-6 {
-  color: #ffffff;
-  font-family: "Bellefair-Regular", Helvetica;
-  font-size: 13px;
-  font-weight: 400;
-  margin: 5px 0; /* Espacio entre los enlaces */
-  text-align: center; /* Centrado de los textos */
+  .payment-methods {
+      justify-content: flex-start;
+  }
+
+  .footer-nav ul {
+      flex-direction: column;
+  }
 }

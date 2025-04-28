@@ -1,116 +1,67 @@
-import React, { useState, useEffect } from "react";
-import copiaDeEcoflasky2 from "../images/Copia de ECOFLASKY 2.png";
-import credomaRemovebgPreview1 from "../images/carta2.png";
-import gtyhRemovebgPreview1 from "../images/carta1.png";
-import iconmonstrFacebook62401 from "../images/facebook.png";
-import iconmonstrInstagram132401 from "../images/insta.png";
-import iconmonstrTwitter32401 from "../images/twitter.png";
-import image25 from "../images/carta4.png";
-import mastr1 from "../images/carta3.png";
-import "../styles/styleFooter.css";
+import React, { useState } from 'react';
+import '../styles/styleFooter.css';
 
-export const Component = () => {
-  const [showFooter, setShowFooter] = useState(false);
+// Importa las imágenes (igual que antes)
+import logo from '../images/ECOFLASKY.png';
+import twitter from '../images/twitter.png';
+import instagram from '../images/insta.png';
+import facebook from '../images/facebook.png';
+// Iconos de métodos de pago
+import visa from '../images/carta1.png';
+import mastercard from '../images/carta3.png';
+import amex from '../images/carta4.png';
+import paypal from '../images/carta2.png';
 
-  useEffect(() => {
-    const handleScroll = () => {
-      // Si el scroll es mayor a 100px, muestra el footer
-      if (window.scrollY > 100) {
-        setShowFooter(true);
-      } else {
-        setShowFooter(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup del evento de scroll al desmontar el componente
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+function Footer() {
+  const currentYear = new Date().getFullYear();
 
   return (
-    <>
-      <div className="content">
-        {/* Aquí va el contenido principal de tu página */}
-        <div style={{ height: "1500px" }}>
-          <h1>Contenido de la página</h1>
-          <p>Desplázate hacia abajo para ver el footer aparecer.</p>
+    <footer className="footer">
+      <div className="footer-container">
+        {/* Columna izquierda - Logo y redes sociales */}
+        <div className="footer-left">
+          <img src={logo} alt="EcoTeamy Logo" className="footer-logo" />
+          <div className="social-icons">
+            <a href="#" className="social-icon"><img src={twitter} alt="Twitter" /></a>
+            <a href="#" className="social-icon"><img src={instagram} alt="Instagram" /></a>
+            <a href="#" className="social-icon"><img src={facebook} alt="Facebook" /></a>
+          </div>
         </div>
-      </div>
-
-      {/* El footer que se muestra o esconde */}
-      <div className={`footer ${showFooter ? "show" : ""}`}>
-        <div className="overlap">
-          <div className="group">
-            <img
-              className="iconmonstr-instagram"
-              alt="Iconmonstr instagram"
-              src={iconmonstrInstagram132401}
-            />
-            <img
-              className="iconmonstr-twitter"
-              alt="Iconmonstr twitter"
-              src={iconmonstrTwitter32401}
-            />
-            <img
-              className="iconmonstr-facebook"
-              alt="Iconmonstr facebook"
-              src={iconmonstrFacebook62401}
-            />
+        
+        {/* Columna central - Navegación y texto */}
+        <div className="footer-center">
+          <nav className="footer-nav">
+            <ul>
+              <li><a href="#">INICIO</a></li>
+              <li><a href="#">SOBRE NOSOTROS</a></li>
+              <li><a href="#">PRODUCTOS</a></li>
+              <li><a href="#">PERSONALIZACIÓN</a></li>
+              <li><a href="#">CONTÁCTANOS</a></li>
+              <li><a href="#">PERFIL</a></li>
+            </ul>
+          </nav>
+          <div className="footer-text">
+            <p>Lorem ipsum dolor sit et amet consectetur. Adipiscing urna interdum mauret consetNulla cursus metus done accumsan viverra. Eu eget viverra nibh blandit eu nascetur. Imperdiet semper pellentesque nisi massa id efficitur convalls nec.</p>
           </div>
-
-          <img
-            className="copia-de-ECOFLASKY"
-            alt="Copia de ECOFLASKY"
-            src={copiaDeEcoflasky2}
-          />
-
-          <div className="div">
-            <div className="overlap-group-wrapper">
-              <div className="overlap-group">
-                <div className="rectangle-2" />
-                <div className="text-wrapper">INICIO</div>
-              </div>
-            </div>
-
-            <div className="text-wrapper-2">SOBRE NOSOTROS</div>
-            <div className="text-wrapper-3">PRODUCTOS</div>
-            <div className="text-wrapper-4">PERSONALIZACIÒN</div>
-            <div className="text-wrapper-5">CONTÁCTANOS</div>
-            <div className="text-wrapper-6">PERFIL</div>
-          </div>
-
-          <p className="p">
-            Lorem ipsum dolor sit amet consectetur. Adipiscing urna interdum
-            euismod congue. Nulla cursus mauris diam accumsan viverra. Fringilla
-            ornare mattis laoreet eu maecenas. Imperdiet semper pellentesque orci
-            mauris id sollicitudin venenatis mus.
-          </p>
-
-          <p className="text-wrapper-7">© Copyright 2025 Derechos Reservador</p>
-
-          <div className="group-wrapper">
-            <div className="group-2">
-              <img className="image" alt="Image" src={image25} />
-              <img className="mastr" alt="Mastr" src={mastr1} />
-              <img
-                className="credoma-removebg"
-                alt="Credoma removebg"
-                src={credomaRemovebgPreview1}
-              />
-              <img
-                className="gtyh-removebg"
-                alt="Gtyh removebg"
-                src={gtyhRemovebgPreview1}
-              />
-            </div>
+        </div>
+        
+        {/* Columna derecha - Métodos de pago */}
+        <div className="footer-right">
+          <div className="payment-methods">
+            <img src={visa} alt="Visa" />
+            <img src={mastercard} alt="Mastercard" />
+            <img src={amex} alt="American Express" />
+            <img src={paypal} alt="PayPal" />
           </div>
         </div>
       </div>
-    </>
+      
+      {/* Parte inferior - Copyright */}
+      <div className="footer-bottom">
+        <p>© Copyright {currentYear}. Derechos Reservados</p>
+      </div>
+    </footer>
   );
-};
+}
 
-export default Component;
+export default Footer;
