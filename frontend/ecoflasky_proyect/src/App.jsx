@@ -7,6 +7,7 @@ import Products from './pages/products'
 import Nav from "./components/Nav"
 import Footer from "./components/Footer"
 import Contactanos from './pages/contacts';
+import AcercaDe from './pages/acercadenosotros'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Products />} />
           <Route path="/contactanos" element={<Contactanos />} />
+          <Route path="/sobrenosotros" element={<AcercaDe />} />
         </Routes>
       </Router>
       <Footer />
