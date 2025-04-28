@@ -14,6 +14,8 @@ import Password from './pages/contrasena'
 import Regular from "./pages/regular"
 import Disenado from "./pages/disenado"
 import Economico from "./pages/economico"
+import Contactanos from './pages/contacts';
+import AcercaDe from './pages/acercadenosotros'
 
 
 function App() {
@@ -34,10 +36,12 @@ function App() {
             <Route path="/regular" element={<Regular/>} />
             <Route path="/economico" element={<Economico/>} />
             <Route path="/disenado" element={<Disenado/>} />
+          <Route path="/" element={<Products />} />
+          <Route path="/contactanos" element={<Contactanos />} />
+          <Route path="/sobrenosotros" element={<AcercaDe />} />
           </Routes>
-<Footer/>
       </Router>
-
+      <Footer />
     </>
   )
 
