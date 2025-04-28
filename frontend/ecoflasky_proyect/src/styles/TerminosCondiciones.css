@@ -1,0 +1,214 @@
+/* Estilos base consistentes con Acerca de Nosotros */
+.terminos-header {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .terminos-header img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    filter: brightness(0.8);
+  }
+  
+  .terminos-header h1 {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    background-color: rgba(0, 172, 193, 0.7);
+    border-radius: 10px;
+  }
+  
+  .terminos-contenido {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: left;
+  }
+  
+  .terminos-seccion {
+    margin-bottom: 40px;
+    animation: fadeIn 1s ease-out forwards;
+    text-align: left;
+  }
+
+  .terminos-seccion p {
+    text-align: justify;
+  }
+.terminos-seccion li{
+    text-align: left;
+}
+  
+  .terminos-seccion:nth-child(1) { animation-delay: 0.1s; }
+  .terminos-seccion:nth-child(2) { animation-delay: 0.2s; }
+  .terminos-seccion:nth-child(3) { animation-delay: 0.3s; }
+  .terminos-seccion:nth-child(4) { animation-delay: 0.4s; }
+  .terminos-seccion:nth-child(5) { animation-delay: 0.5s; }
+  .terminos-seccion:nth-child(6) { animation-delay: 0.6s; }
+  .terminos-seccion:nth-child(7) { animation-delay: 0.7s; }
+  
+  h2 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  h2::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    background: #00acc1;
+    bottom: 0;
+    left: 0;
+  }
+  
+  p {
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #555;
+  }
+  
+  .terminos-lista {
+    padding-left: 20px;
+    margin: 15px 0;
+  }
+  
+  .terminos-lista li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 25px;
+    line-height: 1.6;
+  }
+  
+  .terminos-lista li::before {
+    content: '•';
+    color: #00acc1;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -3px;
+  }
+  
+  .destacado {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border-left: 4px solid #00acc1;
+  }
+  
+  .destacado.verde {
+    background: #e8f5e9;
+    border-left-color: #4caf50;
+  }
+  
+  .destacado p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .destacado i {
+    margin-right: 10px;
+    color: #00acc1;
+  }
+  
+  .destacado.verde i {
+    color: #4caf50;
+  }
+  
+  .contacto-info {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    position: relative;
+  }
+  
+  .contacto-info p {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    color: #2c3e50;
+  }
+  
+  .contacto-info i {
+    width: 25px;
+    color: #00acc1;
+    font-size: 1.1rem;
+  }
+  
+  .btn-contacto {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #00acc1;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 172, 193, 0.2);
+  }
+  
+  .btn-contacto i {
+    color: white;
+    margin-right: 10px;
+    font-size: 1rem;
+  }
+  
+  .btn-contacto:hover {
+    background: #0097a7;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 172, 193, 0.3);
+  }
+  
+  .btn-contacto:active {
+    transform: translateY(0);
+  }
+  
+  .actualizacion {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  /* Animaciones */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .terminos-header h1 {
+      font-size: 1.8rem;
+      width: 90%;
+      left: 5%;
+      transform: none;
+    }
+    
+    .terminos-contenido {
+      padding: 20px 15px;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+  }

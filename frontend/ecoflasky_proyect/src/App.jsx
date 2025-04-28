@@ -15,6 +15,7 @@ import Economico from "./pages/economico"
 import Contactanos from './pages/contacts';
 import Inicio from './pages/inicio';
 import Favoritos from './pages/favoritos';
+import TerminosCondiciones from './pages/terminosycondiciones'
 
 function App() {
 
@@ -37,6 +38,9 @@ function App() {
           <Route path="/" element={<Products />} />
           <Route path="/contactanos" element={<Contactanos />} />
           <Route path="/acercadenosotros" element={<AcercaDe />} />
+          <Route path="/TerminosCondiciones" element={<TerminosCondiciones />} />
+
+
         </Routes>
         <Footer />
       </Router>
