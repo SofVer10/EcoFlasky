@@ -87,8 +87,9 @@
     width: 99%; 
     height: 35%; 
     position: absolute; 
-    top: 10px; 
+    bottom: 60%;
     left: 10px;  
+    z-index: 1;
 }
 
 .menu-disenado {
@@ -96,11 +97,12 @@
     border-radius: 40px; 
     padding: 15px; 
     width: 85%; 
-    height: 40%; 
-    position: relative; 
-    top: 150px; 
+    height: 15%; 
+    position: absolute; 
+    top: 200px; 
     left: 70px;  
     flex-direction: column;
+    z-index: 2;
 }
 
 .card-container {
