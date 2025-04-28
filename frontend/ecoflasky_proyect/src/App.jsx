@@ -25,7 +25,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/contactanos" element={<Contactanos />} />
-          <Route path="/sobrenosotros" element={<AcercaDe />} />
+          <Route path="/acercadenosotros" element={<AcercaDe />} />
             <Route path="/productos" element={<Products/>} />
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} />
@@ -38,8 +38,9 @@ function App() {
           </Routes>
           <Footer/>
 
-      </Router>
+          </Router>
 
+      
     </>
   )
 
