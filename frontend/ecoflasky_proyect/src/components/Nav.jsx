@@ -16,7 +16,7 @@ const Nav = () => {
       {/* Menú de navegación */}
       <ul className="nav-menu">
         <li className="nav-item">
-          <Link to="/" className="nav-link">INICIO</Link>
+          <Link to="/inicio" className="nav-link">INICIO</Link>
         </li>
         <li className="nav-item">
           <Link to="/sobrenosotros" className="nav-link">SOBRE NOSOTROS</Link>

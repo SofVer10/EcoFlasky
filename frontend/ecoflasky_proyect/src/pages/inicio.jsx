@@ -477,7 +477,7 @@ const Inicio = () => {
             elementum tortor lacus. Amet tempor lorem faucibus ut nunc dictum 
             adipiscing. Dictad esce purus pretium praesent augue ori pretia lacus natoquesit. Eget in cursus placerat id.
           </p>
-          <Link to= "/favoritos">
+          <Link to= "/productos">
   <button className="shop-button">PRODUCTOS</button>
 </Link>
         </div>

@@ -1,12 +1,10 @@
 
 import './App.css'
 import { BrowserRouter as Router, Routes, Route }
-  from "react-router"
-
+  from "react-router-dom"
 import Products from './pages/products'
 import Nav from "./components/Nav"
 import Footer from "./components/Footer"
-import Contactanos from './pages/contacts';
 import AcercaDe from './pages/acercadenosotros'
 import Register from './pages/register'
 import Login from './pages/login'
@@ -15,7 +13,6 @@ import Regular from "./pages/regular"
 import Disenado from "./pages/disenado"
 import Economico from "./pages/economico"
 import Contactanos from './pages/contacts';
-import AcercaDe from './pages/acercadenosotros'
 import Inicio from './pages/inicio';
 import Favoritos from './pages/favoritos';
 
@@ -27,7 +24,6 @@ function App() {
       <Router>
         <Nav />
         <Routes>
-          <Route path="/" element={<Products />} />
           <Route path="/contactanos" element={<Contactanos />} />
           <Route path="/sobrenosotros" element={<AcercaDe />} />
             <Route path="/productos" element={<Products/>} />
@@ -37,14 +33,12 @@ function App() {
             <Route path="/regular" element={<Regular/>} />
             <Route path="/economico" element={<Economico/>} />
             <Route path="/disenado" element={<Disenado/>} />
-          <Route path="/" element={<Products />} />
-          <Route path="/contactanos" element={<Contactanos />} />
-          <Route path="/sobrenosotros" element={<AcercaDe />} />
-          <Route path="/" element={<Inicio />} />
-          <Route path="/" element={<Favoritos />} />
+          <Route path="/inicio" element={<Inicio />} />
+          <Route path="/favoritos" element={<Favoritos />} />
           </Routes>
+          <Footer/>
+
       </Router>
-      <Footer/>
 
     </>
   )
