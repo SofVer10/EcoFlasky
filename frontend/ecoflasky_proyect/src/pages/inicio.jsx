@@ -21,14 +21,14 @@ const Inicio = () => {
   const productos = [
     {
       id: 1,
-      titulo: "Termos personalizados",
+      titulo: "Termo personalizado",
       imagen: productoimagen,
       descripcion: "Lorem ipsum dolor sit amet consectetur. Non malesuada tellus suscipit odio volutpat turpii adipiscing. Dictum esce purus pretium praesent iugiet eri prota lacus nulam tisper.",
       precio: 495
     },
     {
       id: 2,
-      titulo: "Termos de 500ml",
+      titulo: "Termo de 500ml",
       imagen: par,
       descripcion: "Lorem ipsum dolor sit amet consectetur. Non malesuada tellus suscipit odio volutpat turpii adipiscing. Dictum esce purus pretium praesent iugiet eri prota lacus nulam tisper.",
       precio: 375
@@ -121,10 +121,24 @@ const Inicio = () => {
   
   // State for showing/hiding cart
   const [showCart, setShowCart] = useState(false);
+  
+  // State for product detail view
+  const [showProductDetail, setShowProductDetail] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  
+  // State for quantity in product detail
+  const [productQuantity, setProductQuantity] = useState(1);
+  
+  // State for selected color
+  const [selectedColor, setSelectedColor] = useState('#FF9898');
 
   // Function to toggle cart visibility
   const toggleCart = () => {
     setShowCart(!showCart);
+    // Reset product detail view when showing cart
+    if (!showCart) {
+      setShowProductDetail(false);
+    }
   };
 
   // Function to calculate total price
@@ -144,6 +158,40 @@ const Inicio = () => {
     setCartItems(cartItems.map(item => 
       item.id === id ? {...item, cantidad: newQuantity} : item
     ));
+  };
+  
+  // Function to show product detail
+  const showProductDetails = (product) => {
+    setSelectedProduct(product);
+    setShowProductDetail(true);
+    setProductQuantity(1); // Reset quantity when viewing a new product
+  };
+  
+  // Function to go back to main view from product detail
+  const closeProductDetail = () => {
+    setShowProductDetail(false);
+    setSelectedProduct(null);
+    setProductQuantity(1);
+  };
+
+  // Function to add product to cart from product detail
+  const addToCartFromDetail = () => {
+    if (!selectedProduct) return;
+    
+    const existingItem = cartItems.find(item => item.id === selectedProduct.id);
+    
+    if (existingItem) {
+      updateQuantity(selectedProduct.id, existingItem.cantidad + productQuantity);
+    } else {
+      setCartItems([...cartItems, {
+        ...selectedProduct,
+        cantidad: productQuantity
+      }]);
+    }
+    
+    // Show cart or return to main view
+    setShowProductDetail(false);
+    setShowCart(true);
   };
 
   // Carousel functions
@@ -184,7 +232,7 @@ const Inicio = () => {
     return stars;
   };
 
-  // Function to add product to cart
+  // Function to add product to cart from main view
   const addToCart = (product) => {
     const existingItem = cartItems.find(item => item.id === product.id);
     
@@ -198,7 +246,113 @@ const Inicio = () => {
     setShowCart(true);
   };
   
-  // Render cart view or main content based on state
+  // Available colors for products
+  const availableColors = ['#FF9898', '#9EFFFF', '#DDB4FF', '#95FF9D', '#FFE897'];
+  
+  // Function to increase product quantity
+  const increaseQuantity = () => {
+    setProductQuantity(productQuantity + 1);
+  };
+  
+  // Function to decrease product quantity
+  const decreaseQuantity = () => {
+    if (productQuantity > 1) {
+      setProductQuantity(productQuantity - 1);
+    }
+  };
+  
+  // Render product detail view
+  if (showProductDetail && selectedProduct) {
+    return (
+      <div className="inicio-container">
+        {/* Navbar */}
+        <nav className="navbar">
+          <div className="logo">Inicio</div>
+          <div className="nav-links">
+            <Link to="/">INICIO</Link>
+            <Link to="/sobre-nosotros">SOBRE NOSOTROS</Link>
+            <Link to="/productos">PRODUCTOS</Link>
+            <Link to="/contactanos">CONTÁCTANOS</Link>
+            <Link to="/terminos">TÉRMINOS Y CONDICIONES</Link>
+          </div>
+          <div className="cart-icon-container">
+            <button className="cart-icon-button" onClick={toggleCart}>
+              🛒 <span className="cart-count">{cartItems.length}</span>
+            </button>
+          </div>
+        </nav>
+        
+        {/* Product Detail Page */}
+        <div className="product-detail-container">
+          <div className="product-detail-back">
+            <button onClick={closeProductDetail} className="back-button">
+              ← Ver todos
+            </button>
+          </div>
+          
+          <div className="product-detail-content">
+            <div className="product-detail-images">
+              <div className="product-detail-tag">Termo</div>
+              <div className="product-detail-main-image">
+                <img src={selectedProduct.imagen} alt={selectedProduct.titulo} />
+              </div>
+              <div className="product-detail-thumbnails">
+                <img src={selectedProduct.imagen} alt={selectedProduct.titulo} className="thumbnail selected" />
+                <img src={selectedProduct.imagen} alt={selectedProduct.titulo} className="thumbnail" />
+                <img src={selectedProduct.imagen} alt={selectedProduct.titulo} className="thumbnail" />
+              </div>
+            </div>
+            
+            <div className="product-detail-info">
+              <h2 className="product-detail-title">{selectedProduct.titulo}</h2>
+              <p className="product-detail-description">{selectedProduct.descripcion}</p>
+              
+              <div className="product-detail-rating">
+                {renderStars(4.5)}
+              </div>
+              
+              <div className="product-detail-colors">
+                {availableColors.map((color, index) => (
+                  <button 
+                    key={index}
+                    className={`color-button ${selectedColor === color ? 'selected-color' : ''}`}
+                    style={{ backgroundColor: color }}
+                    onClick={() => setSelectedColor(color)}
+                  />
+                ))}
+              </div>
+              
+              <div className="product-detail-price">
+                <span className="price-label">Precio:</span>
+                <span className="price-value">${selectedProduct.precio}</span>
+              </div>
+              
+              <div className="product-detail-quantity">
+                <div className="quantity-controls">
+                  <button className="quantity-button" onClick={decreaseQuantity}>-</button>
+                  <span className="quantity-value">{productQuantity}</span>
+                  <button className="quantity-button" onClick={increaseQuantity}>+</button>
+                </div>
+                <button className="add-to-cart-button" onClick={addToCartFromDetail}>
+                  Añadir al carrito
+                </button>
+              </div>
+              
+              <div className="product-detail-suggestion">
+                <h4>Puede que te guste:</h4>
+                <div className="suggestion-item">
+                  <img src={termos} alt="Termo sugerido" className="suggestion-image" />
+                  <span className="suggestion-name">Termo de bambú, 500 ml</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
+  // Render cart view
   if (showCart) {
     return (
       <div className="inicio-container">
@@ -237,12 +391,25 @@ const Inicio = () => {
                   <div className="cart-page-quantity">
                     <label>Cantidad:</label>
                     <div className="cart-page-quantity-input">
+                      <button 
+                        className="quantity-button" 
+                        onClick={() => updateQuantity(item.id, item.cantidad - 1)}
+                        disabled={item.cantidad <= 1}
+                      >
+                        -
+                      </button>
                       <input 
                         type="number" 
                         min="1"
                         value={item.cantidad}
                         onChange={(e) => updateQuantity(item.id, parseInt(e.target.value) || 1)}
                       />
+                      <button 
+                        className="quantity-button" 
+                        onClick={() => updateQuantity(item.id, item.cantidad + 1)}
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                   <div className="cart-page-price">
@@ -327,14 +494,19 @@ const Inicio = () => {
             {visibleProducts.map((producto) => (
               <div key={producto.id} className="product-card">
                 <div className="product-image-container">
-                  <img src={producto.imagen} alt={producto.titulo} className="product-image" />
+                  <img 
+                    src={producto.imagen} 
+                    alt={producto.titulo} 
+                    className="product-image" 
+                    onClick={() => showProductDetails(producto)}
+                  />
                   <button className="cart-button" onClick={() => addToCart(producto)}>
                     <span className="cart-icon">🛒</span>
                   </button>
                 </div>
                 <h3 className="product-title">{producto.titulo}</h3>
                 <p className="product-description">{producto.descripcion}</p>
-                <button className="comprar-button" onClick={() => addToCart(producto)}>COMPRAR</button>
+                <button className="comprar-button" onClick={() => showProductDetails(producto)}>VER DETALLES</button>
               </div>
             ))}
           </div>
