@@ -4,6 +4,7 @@ import { Link } from 'react-router'; // Asumiendo que usas React Router
 import logo from '../images/ECOFLASKY.png';
 import '../styles/styleNav.css'; // Importa los estilos
 
+
 const Nav = () => {
   return (
     <nav className="nav-container">
@@ -15,7 +16,7 @@ const Nav = () => {
       {/* Menú de navegación */}
       <ul className="nav-menu">
         <li className="nav-item">
-          <Link to="/" className="nav-link">INICIO</Link>
+          <Link to="/inicio" className="nav-link">INICIO</Link>
         </li>
         <li className="nav-item">
 
