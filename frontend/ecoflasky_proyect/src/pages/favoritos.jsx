@@ -98,25 +98,6 @@ const Favoritos = () => {
   if (showCart) {
     return (
       <div className="inicio-container">
-        {/* Navbar */}
-        <nav className="navbar">
-          <div className="logo">
-            <img src="/images/logo.png" alt="EcoFlasky Logo" className="logo-img" />
-          </div>
-          <div className="nav-links">
-            <Link to="/">INICIO</Link>
-            <Link to="/sobre-nosotros">SOBRE NOSOTROS</Link>
-            <Link to="/productos">PRODUCTOS</Link>
-            <Link to="/contactanos">CONTÁCTANOS</Link>
-            <Link to="/terminos">TÉRMINOS Y CONDICIONES</Link>
-          </div>
-          <div className="cart-icon-container">
-            <button className="cart-icon-button" onClick={toggleCart}>
-              🛒 <span className="cart-count">{cartItems.length}</span>
-            </button>
-          </div>
-        </nav>
-        
         {/* Shopping Cart Page */}
         <div className="cart-page-container">
           <h1 className="cart-page-title">CARRITO DE COMPRAS.</h1>
@@ -195,25 +176,6 @@ const Favoritos = () => {
   // Main Favoritos view
   return (
     <div className="favoritos-container">
-      {/* Navbar */}
-      <nav className="navbar">
-        <div className="logo">
-          <img src="/images/logo.png" alt="EcoFlasky Logo" className="logo-img" />
-        </div>
-        <div className="nav-links">
-          <Link to="/">INICIO</Link>
-          <Link to="/sobre-nosotros">SOBRE NOSOTROS</Link>
-          <Link to="/productos">PRODUCTOS</Link>
-          <Link to="/contactanos">CONTÁCTANOS</Link>
-          <Link to="/terminos">TÉRMINOS Y CONDICIONES</Link>
-        </div>
-        <div className="cart-icon-container">
-          <button className="cart-icon-button" onClick={toggleCart}>
-            🛒 <span className="cart-count">{cartItems.length}</span>
-          </button>
-        </div>
-      </nav>
-
       {/* Hero Section with curved design */}
       <div className="favoritos-hero">
         <div className="favoritos-hero-content">
@@ -252,7 +214,10 @@ const Favoritos = () => {
         </div>
       </div>
 
-      
+      {/* Floating cart button for main view */}
+      <button className="floating-cart-button" onClick={toggleCart}>
+        🛒 <span className="cart-count">{cartItems.length}</span>
+      </button>
     </div>
   );
 };

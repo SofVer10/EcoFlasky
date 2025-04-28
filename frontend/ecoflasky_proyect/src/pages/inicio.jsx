@@ -11,7 +11,6 @@ import solidos from '../images/solidos.png';
 import resena from '../images/resenas.png';
 import favoritos from '../pages/favoritos';
 
-
 // Import review profile images
 import user1Profile from '../images/user1245.png';
 import fernandoProfile from '../images/fernando_re.png';
@@ -266,23 +265,6 @@ const Inicio = () => {
   if (showProductDetail && selectedProduct) {
     return (
       <div className="inicio-container">
-        {/* Navbar */}
-        <nav className="navbar">
-          <div className="logo">Inicio</div>
-          <div className="nav-links">
-            <Link to="/">INICIO</Link>
-            <Link to="/favoritos">SOBRE NOSOTROS</Link>
-            <Link to="/productos">PRODUCTOS</Link>
-            <Link to="/contactanos">CONTÁCTANOS</Link>
-            <Link to="/terminos">TÉRMINOS Y CONDICIONES</Link>
-          </div>
-          <div className="cart-icon-container">
-            <button className="cart-icon-button" onClick={toggleCart}>
-              🛒 <span className="cart-count">{cartItems.length}</span>
-            </button>
-          </div>
-        </nav>
-        
         {/* Product Detail Page */}
         <div className="product-detail-container">
           <div className="product-detail-back">
@@ -357,23 +339,6 @@ const Inicio = () => {
   if (showCart) {
     return (
       <div className="inicio-container">
-        {/* Navbar */}
-        <nav className="navbar">
-          <div className="logo">Inicio</div>
-          <div className="nav-links">
-            <Link to="/">INICIO</Link>
-            <Link to="/sobre-nosotros">SOBRE NOSOTROS</Link>
-            <Link to="/productos">PRODUCTOS</Link>
-            <Link to="/contactanos">CONTÁCTANOS</Link>
-            <Link to="/terminos">TÉRMINOS Y CONDICIONES</Link>
-          </div>
-          <div className="cart-icon-container">
-            <button className="cart-icon-button" onClick={toggleCart}>
-              🛒 <span className="cart-count">{cartItems.length}</span>
-            </button>
-          </div>
-        </nav>
-        
         {/* Shopping Cart Page */}
         <div className="cart-page-container">
           <h1 className="cart-page-title">CARRITO DE COMPRAS.</h1>
@@ -444,23 +409,6 @@ const Inicio = () => {
   // Main content (only shown when cart is not visible)
   return (
     <div className="inicio-container">
-      {/* Navbar */}
-      <nav className="navbar">
-        <div className="logo">Inicio</div>
-        <div className="nav-links">
-          <Link to="/">INICIO</Link>
-          <Link to="/sobre-nosotros">SOBRE NOSOTROS</Link>
-          <Link to="/productos">PRODUCTOS</Link>
-          <Link to="/contactanos">CONTÁCTANOS</Link>
-          <Link to="/terminos">TÉRMINOS Y CONDICIONES</Link>
-        </div>
-        <div className="cart-icon-container">
-          <button className="cart-icon-button" onClick={toggleCart}>
-            🛒 <span className="cart-count">{cartItems.length}</span>
-          </button>
-        </div>
-      </nav>
-      
       {/* Hero Section with bottles */}
       <div className="hero-section">
         <div className="bottles-container">
@@ -477,9 +425,9 @@ const Inicio = () => {
             elementum tortor lacus. Amet tempor lorem faucibus ut nunc dictum 
             adipiscing. Dictad esce purus pretium praesent augue ori pretia lacus natoquesit. Eget in cursus placerat id.
           </p>
-          <Link to= "/productos">
-  <button className="shop-button">PRODUCTOS</button>
-</Link>
+          <Link to="/productos">
+            <button className="shop-button">PRODUCTOS</button>
+          </Link>
         </div>
       </div>
       
@@ -544,8 +492,10 @@ const Inicio = () => {
         </div>
       </div>
       
-      {/* Footer would go here */}
-      {/* <Footer /> */}
+      {/* Floating cart button for main view */}
+      <button className="floating-cart-button" onClick={toggleCart}>
+        🛒 <span className="cart-count">{cartItems.length}</span>
+      </button>
     </div>
   );
 };
