@@ -4,9 +4,10 @@
     box-sizing: border-box;
 }
 
-.texto-register {
+.p {
     font-family: bellefair;
     margin-top: 2%;
+    color: white;
 }
 
 .container {
@@ -136,4 +137,7 @@
     margin-top: 15%;
     width: 70%;
     height: 70%;
+}
+.image-wrapper-register{
+    top: 15%;
 }

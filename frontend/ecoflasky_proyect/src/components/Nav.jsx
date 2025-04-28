@@ -1,22 +1,22 @@
-// components/Nav.jsx
+
 import React from 'react';
-import { Link } from 'react-router'; // Asumiendo que usas React Router
+import { Link } from 'react-router'; 
 import logo from '../images/ECOFLASKY.png';
-import '../styles/styleNav.css'; // Importa los estilos
+import '../styles/styleNav.css'; 
 
 
 const Nav = () => {
   return (
     <nav className="nav-container">
-      {/* Logo que redirige al inicio */}
-      <Link to="/" className="logo-link">
+      {/* Logo que redirige al registro */}
+      <Link to="/register" className="logo-link">
         <img src={logo} alt="Logo EcoFlaky" className="logo-nav" />
       </Link>
 
       {/* Menú de navegación */}
       <ul className="nav-menu">
         <li className="nav-item">
-          <Link to="/inicio" className="nav-link">INICIO</Link>
+          <Link to="/" className="nav-link">INICIO</Link>
         </li>
         <li className="nav-item">
           <Link to="/sobrenosotros" className="nav-link">SOBRE NOSOTROS</Link>
