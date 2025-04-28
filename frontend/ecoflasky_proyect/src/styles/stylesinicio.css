@@ -1,0 +1,277 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+    background-color: #f9f9f9;
+  }
+  
+  .inicio-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Navbar styles */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #ffe8d6;
+  }
+  
+  .logo {
+    font-size: 18px;
+    font-weight: bold;
+    color: #777;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  /* Hero section styles */
+  .hero-section {
+    display: flex;
+    position: relative;
+    background-color: #ffe8d6;
+    min-height: 500px;
+  }
+  
+  .bottles-container {
+    position: relative;
+    width: 60%;
+    overflow: hidden;
+  }
+  
+  .bottles-row {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 20px;
+  }
+  
+  .bottle {
+    height: 300px;
+    object-fit: contain;
+  }
+  
+  .wave-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 40%;
+    background-color: #ffe8d6;
+    clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+    transform: scaleX(-1);
+  }
+  
+  .content-section {
+    width: 40%;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  .shop-button {
+    background-color: #3d9ca8;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 auto; /* Centra horizontalmente */
+    display: block; /* Necesario para que el margin auto funcione */
+}
+
+  
+  .shop-button:hover {
+    background-color: #328792;
+  }
+  
+  /* MÁS COMPRADOS Section Styles */
+  .productos-populares-container {
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #333;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  .title-underline {
+    height: 1px;
+    background-color: #ddd;
+    width: 300px;
+    margin: 0 auto 40px;
+  }
+  
+  .carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+  }
+  
+  .arrow-button {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #888;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .arrow-button:hover {
+    color: #333;
+  }
+  
+  .products-grid {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+    padding: 0 20px;
+  }
+  
+  .product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    width: calc(33.33% - 20px);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  
+  .product-image {
+    max-width: 100%;
+    height: 200px;
+    object-fit: contain;
+  }
+  
+  .cart-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #3d9ca8;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .product-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .product-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+  
+  .comprar-button {
+    background-color: #3d9ca8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    align-self: center;
+    transition: background-color 0.3s;
+  }
+  
+  .comprar-button:hover {
+    background-color: #328792;
+  }
+  
+  /* Make the design responsive */
+  @media (max-width: 768px) {
+    .hero-section {
+      flex-direction: column;
+    }
+    
+    .bottles-container, .content-section {
+      width: 100%;
+    }
+    
+    .bottles-row {
+      flex-wrap: wrap;
+    }
+    
+    .bottle {
+      height: 200px;
+      margin-bottom: 20px;
+    }
+    
+    .wave-overlay {
+      display: none;
+    }
+    
+    .productos-populares-container {
+      padding: 40px 20px;
+    }
+    
+    .products-grid {
+      flex-direction: column;
+    }
+    
+    .product-card {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }

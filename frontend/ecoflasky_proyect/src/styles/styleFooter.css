@@ -1,88 +1,102 @@
+/* Estilo para el contenido principal */
+.content {
+    padding-bottom: 100px; /* Añadir espacio para que el footer no se sobreponga */
+  }
 
-.component {
-    height: 380px; /* Puedes ajustar la altura según sea necesario */
-    width: 100%; /* Asegúrate de que ocupe todo el ancho de la pantalla */
+  .component {
+    display: flex;
+    flex-direction: column; /* Para que los elementos dentro se organicen verticalmente */
+    justify-content: center;
+    align-items: center;
+    height: 380px;
+    width: 100%;
     background-color: black;
-    position: fixed; /* Cambiado a fixed para que se mantenga en la parte inferior */
-    bottom: 0; /* Asegúrate de que esté en la parte inferior de la página */
-    left: 0; /* Asegúrate de que esté alineado a la izquierda */
-    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
-}
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 20px 0; /* Añadir un poco de espacio en el contenedor */
+  }
+  
+  .component .group {
+    display: flex;
+    justify-content: center; /* Para que los íconos se alineen en una fila */
+    gap: 20px; /* Espacio entre los íconos */
+    margin-bottom: 20px; /* Espacio debajo de los íconos */
+  }
 
-.component .overlap {
-    height: 280px;
+  
+  
+  /* Estilo para el footer que inicialmente está al final de la página */
+  .footer {
     position: relative;
-}
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 20px 0;
+    transition: opacity 0.3s ease;
+    opacity: 0;  /* Inicialmente el footer está oculto */
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos estén en columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+  }
+  
+  .footer.show {
+    opacity: 1;  /* Cuando se hace scroll, el footer se muestra */
+  }
+  
+  
+  
+  .footer .group img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer; /* Cambia el cursor para indicar que son clicables */
+  }
+  
+  /* Estilos para el logo y los enlaces de navegación */
+  .footer .copia-de-ECOFLASKY {
+    width: 200px;
+    margin-bottom: 20px; /* Espacio debajo del logo */
+  }
+  
 
-.component .rectangle {
-    height: 273px;
-    left: 0;
-    width: 100%; /* Cambiado a 100% para que ocupe todo el ancho */
-    position: absolute; /* Cambiado a absolute para que se ajuste al contenedor */
-    top: 7px;
-}
-
-.component .group {
-    height: 18px;
-    left: 57px;
-    position: absolute;
-    top: 155px;
-    width: 82px;
-}
-
-.component .iconmonstr-instagram,
-.component .iconmonstr-twitter,
-.component .iconmonstr-facebook {
-    height: 18px;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 18px;
-}
-
-.component .iconmonstr-instagram { left: 32px; }
-.component .iconmonstr-twitter { left: 0; }
-.component .iconmonstr-facebook { left: 64px; }
-
-.component .copia-de-ECOFLASKY {
-    height: 175px;
-    left: 11px;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 175px;
-}
-
-.component .div {
-    height: 17px;
-    position: absolute;
-    top: 43px;
-    left: 416px;
-    width: 912px; /* Puedes ajustar este ancho según sea necesario */
-}
-
-.component .overlap-group-wrapper {
-    height: 13px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 54px;
-}
-
-.component .overlap-group {
-    height: 13px;
-    position: relative;
-    width: 52px;
-}
-
-.component .rectangle-2 {
-    background-color: #53acc8;
-    height: 1px;
-    left: 0;
-    position: absolute;
-    top: 11px;
-    width: 45px;
-}
+  
+  .footer .div .text-wrapper,
+  .footer .div .text-wrapper-2,
+  .footer .div .text-wrapper-3,
+  .footer .div .text-wrapper-4,
+  .footer .div .text-wrapper-5,
+  .footer .div .text-wrapper-6 {
+    font-size: 14px;
+    margin: 5px 0; /* Espacio entre los enlaces */
+    cursor: pointer;
+  }
+  
+  .footer .p {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px; /* Espacio debajo del párrafo */
+  }
+  
+  .footer .text-wrapper-7 {
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  /* Agrupando las imágenes en una fila */
+  .component .group-2 {
+    display: flex;
+    justify-content: center; /* Centra las imágenes en una fila */
+    gap: 20px; /* Espacio entre las imágenes */
+    margin-top: 20px;
+  }
+  
+  
+  .footer .group-2 img {
+    width: 50px;
+    height: 50px;
+  }
 
 .component .text-wrapper,
 .component .text-wrapper-2,
@@ -90,88 +104,10 @@
 .component .text-wrapper-4,
 .component .text-wrapper-5,
 .component .text-wrapper-6 {
-    color: #ffffff;
-    font-family: "Bellefair-Regular", Helvetica;
-    font-size: 13px;
-    font-weight: 400;
-    position: absolute;
-    white-space: nowrap;
-}
-
-.component .text-wrapper { left: 2px; width: 50px; top: 0; }
-.component .text-wrapper-2 { left: 125px; width: 120px; top: 0; }
-.component .text-wrapper-3 { left: 318px; width: 84px; top: 0; }
-.component .text-wrapper-4 { left: 475px; width: 128px; top: 0; }
-.component .text-wrapper-5 { left: 676px; width: 105px; top: 0; }
-.component .text-wrapper-6 { left: 854px; width: 48px; top: 0; }
-
-.component .p {
-    color: #ffffff;
-    font-family: "Buda-Light", Helvetica;
-    font-size: 13px;
-    font-weight: 300;
-    position: absolute;
-    top: 125px;
-    left: 416px;
-    width: 662px;
-}
-
-.component .text-wrapper-7 {
-    color: #ffffff;
-    font-family: "Buda-Light", Helvetica;
-    font-size: 13px;
-    font-weight: 300;
-    position: absolute;
-    top: 195px;
-    left: 41px;
-    width: 290px;
-}
-
-.component .group-wrapper {
-    height: 28px;
-    position: absolute;
-    top: 214px;
-    left: 1116px;
-    width: 202px;
-}
-
-.component .group-2 {
-    height: 28px;
-    position: relative;
-}
-
-.component .image {
-    height: 23px;
-    left: 164px;
-    object-fit: cover;
-    position: absolute;
-    top: 2px;
-    width: 38px;
-}
-
-.component .mastr {
-    height: 22px;
-    left: 64px;
-    object-fit: cover;
-    position: absolute;
-    top: 2px;
-    width: 32px;
-}
-
-.component .credoma-removebg {
-    height: 24px;
-    left: 111px;
-    object-fit: cover;
-    position: absolute;
-    top: 2px;
-    width: 43px;
-}
-
-.component .gtyh-removebg {
-    height: 28px;
-    left: 0;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 58px;
+  color: #ffffff;
+  font-family: "Bellefair-Regular", Helvetica;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 5px 0; /* Espacio entre los enlaces */
+  text-align: center; /* Centrado de los textos */
 }

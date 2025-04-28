@@ -4,6 +4,7 @@ import { Link } from 'react-router'; // Asumiendo que usas React Router
 import logo from '../images/ECOFLASKY.png';
 import '../styles/styleNav.css'; // Importa los estilos
 
+
 const Nav = () => {
   return (
     <nav className="nav-container">
