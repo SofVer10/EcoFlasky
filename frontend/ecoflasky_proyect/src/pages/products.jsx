@@ -29,6 +29,7 @@ const Products = () => {
     return (
         <>
                 <section className="parteCeleste">
+                    </section>
                 <div className="menu">
                     <div className="parteMenu">
                         <Link to="/regular">
@@ -53,7 +54,6 @@ const Products = () => {
                         <img className="circular" alt="Copia de ECOFLASKY" src={Quinta} />
                     </div>
                 </div>
-            </section>
 
             <div className="card-container">
                 {products.map((product, index) => (
