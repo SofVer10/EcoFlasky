@@ -14,6 +14,7 @@ import Disenado from "./pages/disenado"
 import Economico from "./pages/economico"
 import Contactanos from './pages/contacts';
 import Inicio from './pages/inicio';
+import AgregarEmpleado from './pages/agregarEmpleado';
 import Favoritos from './pages/favoritos';
 import TerminosCondiciones from './pages/terminosycondiciones'
 
@@ -36,7 +37,7 @@ function App() {
             <Route path="/disenado" element={<Disenado/>} />
           <Route path="/TerminosCondiciones" element={<TerminosCondiciones />} />
           <Route path="/" element={<Inicio />} />
-          <Route path="/favoritos" element={<Favoritos />} />
+          <Route path="/favoritos" element={<Favoritos/>} />
 
 
         </Routes>
