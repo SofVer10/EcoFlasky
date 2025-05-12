@@ -1,6 +1,8 @@
 import React from "react";
 import "../styles/styleRegister.css";
 import user from "../images/User.png";
+import { Link } from 'react-router'; 
+
 import register from "../images/registrarse.png";
 import arriba from "../images/arriba.png";
 import abajo from "../images/abajo.png";
@@ -27,8 +29,12 @@ const Register = () => {
                         <img className="password-register" alt="Copia de ECOFLASKY" src={password} />
                         <input type="text" className="underline-input" placeholder="Contraseña" />
                     </div>
+                    <Link to ="/login">
                     <p className="irLogin">¿Ya tienes cuenta? Inicia sesión</p>
+                    </Link>
+                    <Link to ="/">
                     <button className="Registrarse">Registrarse</button>
+                    </Link>
                 </div>
                 <div className="content-register">
                     <div className="image-wrapper-register">
@@ -38,6 +44,7 @@ const Register = () => {
                         <img className="register" alt="Copia de ECOFLASKY" src={register} />
 
                     </div>
+
                 </div>
             </div>
         </>

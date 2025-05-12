@@ -4,6 +4,8 @@ import password from "../images/forgotPassword.png";
 import arriba from "../images/reUp.png";
 import abajo from "../images/reDown.png";
 import gmail from "../images/gmail.png"
+import { Link } from 'react-router'; 
+
 const Password = () => {
     return (
         <>
@@ -17,7 +19,9 @@ const Password = () => {
                         <img className="gmail" alt="Copia de ECOFLASKY" src={gmail} />
                         <input type="text" className="underline-input" placeholder="Correo" />
                     </div>
+                    <Link to="/login">
                     <p className="Volver">Volver</p>
+                    </Link>
                     <button className="RecuperarContra">Recuperar Contraseña</button>
                 </div>
                 <div className="content-password">

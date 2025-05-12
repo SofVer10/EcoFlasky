@@ -10,7 +10,9 @@ import mastr1 from "../images/carta3.png";
 import { Link } from 'react-router-dom'; // Asegúrate de que esto sea correcto
 import "../styles/styleFooter.css";
 
-export const Component = () => {
+
+function Component() {
+
   return (
     <div className="component">
       <div className="overlap">
@@ -21,11 +23,11 @@ export const Component = () => {
             src={copiaDeEcoflasky2}
           />
           <div className="nav-links">
-            <Link to="/" className="text-wrapper">INICIO</Link>
-            <Link to="/sobre-nosotros" className="text-wrapper-2">SOBRE NOSOTROS</Link>
+            <Link to="/inicio" className="text-wrapper">INICIO</Link>
+            <Link to="/sobrenosotros" className="text-wrapper-2">SOBRE NOSOTROS</Link>
             <Link to="/productos" className="text-wrapper-3">PRODUCTOS</Link>
             <Link to="/personalizacion" className="text-wrapper-4">PERSONALIZACIÓN</Link>
-            <Link to="/contacto" className="text-wrapper-5">CONTÁCTANOS</Link>
+            <Link to="/contactanos" className="text-wrapper-5">CONTÁCTANOS</Link>
             <Link to="/perfil" className="text-wrapper-6">PERFIL</Link>
           </div>
         </div>
@@ -52,6 +54,7 @@ export const Component = () => {
             <img className="mastr" alt="Mastr" src={mastr1} />
             <img className="credoma-removebg" alt="Credoma removebg" src={credomaRemovebgPreview1} />
             <img className="gtyh-removebg" alt="Gtyh removebg" src={gtyhRemovebgPreview1} />
+
           </div>
         </div>
 

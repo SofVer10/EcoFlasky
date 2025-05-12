@@ -5,6 +5,8 @@ import arriba from "../images/logUp.png";
 import abajo from "../images/logDown.png";
 import gmail from "../images/gmail.png"
 import password from "../images/Password.png"
+import { Link } from 'react-router'; 
+
 const Login = () => {
     return (
         <>
@@ -22,8 +24,12 @@ const Login = () => {
                         <img className="password-login" alt="Copia de ECOFLASKY" src={password} />
                         <input type="text" className="underline-input" placeholder="Contraseña" />
                     </div>
-                    <p className="irRegistro">¿Eres nuevo? Registrate aquí</p>
+                    <Link to= "/password">
+                    <p className="irRegistro">¿Olvidaste tu contraseña?</p>
+                    </Link>
+                    <Link to= "/">
                     <button className="Login">Inicia Sesión</button>
+                    </Link>
                 </div>
                 <div className="content">
                     <div className="image-wrapper">
