@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.texto {
+    font-family: bellefair;
+    margin-top: 10%;
+    color: #000000;
+    opacity: 50%;
+}
+
+.container {
+    display: flex; 
+    height: 100vh; 
+}
+
+.half-color {
+    background-color: rgba(83, 172, 200, 0.4);
+    width: 50%; 
+    height: 100%;
+    padding: 20px; 
+}
+
+.content {
+    width: 50%; 
+    padding: 20px; 
+    background-color: white; 
+    position: relative; 
+}
+
+.image-wrapper {
+    position: relative; 
+}
+
+.empleadosImagen {
+    margin-top: 10%;
+    width: 80%;
+    height: auto;
+    display: block;
+    margin-left: 15%;
+}
+.logoAdmin {
+    margin-top: 1%;
+    width: 50%;
+    height: auto;
+    display: block;
+    margin-left: 30%;
+
+}
+
+.irRegistro {
+    color: rgb(0, 0, 0);
+    opacity: 50%;
+}
+
+.register {
+    width: 100%; 
+    height: auto; 
+    z-index: 0; 
+}
+
+.input-container-password {
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    margin: 20px; 
+    margin-left: 142px;
+    margin-top: 75px;
+}
+
+.input-container-gmail {
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    margin: 20px; 
+    margin-left: 155px;
+    margin-top: 75px;
+}
+
+.user {
+    width: 24px; 
+    height: 24px; 
+    margin-right: 10px; 
+}
+
+.gmail {
+    width: 18px; 
+    height: 18px; 
+    margin-right: 10px; 
+    margin-top: 10px;
+    opacity: 40%;
+}
+
+.password-login {
+    width: 38px; 
+    height: 24px; 
+    margin-right: 0px; 
+    margin-top: 10px;
+}
+
+.underline-input {
+    border: none; 
+    border-bottom: 2px solid #000000; 
+    outline: none; 
+    padding: 5px; 
+    font-size: 16px; 
+    background-color: transparent;
+    width: 50%; 
+    margin-top: 0; 
+}
+
+.underline-input::placeholder {
+    color: #aaa; 
+    opacity: 1; 
+}
+
+.Login {
+    margin-top: 30px;
+    background-color: rgba(83, 172, 200, 0.75);
+    border-radius: 50px;
+}
+

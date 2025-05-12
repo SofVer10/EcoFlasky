@@ -15,7 +15,7 @@ const Nav = () => {
       {/* Menú de navegación */}
       <ul className="nav-menu">
         <li className="nav-item">
-          <Link to="/" className="nav-link">INICIO</Link>
+          <Link to="/primerUso" className="nav-link">INICIO</Link>
         </li>
         <li className="nav-item">
           <Link to="/password" className="nav-link">SOBRE NOSOTROS</Link>
@@ -24,7 +24,7 @@ const Nav = () => {
         <Link to="/productos" className="nav-link">PRODUCTOS</Link>
         </li>
         <li className="nav-item">
-          <Link to="/login" className="nav-link">CONTACTANOS</Link>
+          <Link to="/loginAdmin" className="nav-link">CONTACTANOS</Link>
         </li>
         <li className="nav-item">
           <Link to="/register" className="nav-link">TERMINOS Y CONDICIONES</Link>
