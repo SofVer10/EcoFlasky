@@ -17,28 +17,30 @@ import registerEmployeeRoute from "./src/sources/registerEmployeeRoutes.js"
 import speciality from "./src/sources/speciality.js";
 import employeeRoute from "./src/sources/employee.js"
 
+import { validateAuthToken } from "./src/middleware/validateAuthToken.js";
+
 
 const app = express();
 app.use (express.json());
 app.use(cookieParse())
 
 
-app.use("/api/clients", clientsRoutes)
+app.use("/api/clients",clientsRoutes)
 app.use("/api/ratings", RatingRoutes)
 app.use("/api/products", ProductsRoutes)
 app.use("/api/favorites", FavoriteRoute)
-app.use("/api/distributors", distributorRoute);
+app.use("/api/distributors", validateAuthToken(["Admin"]), distributorRoute);
 app.use("/api/movements", movementsRoutes);
 app.use("/api/shoppingCart", shoppingCartRoutes);
 app.use("/api/supplier", SupplierRoutes)
 app.use("/api/category", CategoryRoutes)
-app.use("/api/desings", desingRouter)
+app.use("/api/desings", validateAuthToken(["Employee", "Admin"]), desingRouter)
 app.use("/api/login", LoginRoutes)
 app.use("/api/logout", logoutRoutes)
 app.use("/api/registerClient", registerClientRoute)
-app.use("/api/registerEmployee", registerEmployeeRoute)
+app.use("/api/registerEmployee", validateAuthToken([ "Admin"]),registerEmployeeRoute)
 app.use("/api/speciality", speciality)
-app.use("/api/employee", employeeRoute)
+app.use("/api/employee", validateAuthToken(["Employee", "Admin"]), employeeRoute)
 
 
 export default app;    
