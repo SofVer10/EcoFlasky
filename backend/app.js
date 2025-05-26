@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors"
 import distributorRoute from "./src/sources/distributor.js"
 import movementsRoutes from "./src/sources/movemnts.js"
 import shoppingCartRoutes from "./src/sources/shoppingCart.js"
@@ -23,13 +24,12 @@ import { validateAuthToken } from "./src/middleware/validateAuthToken.js";
 const app = express();
 app.use (express.json());
 app.use(cookieParse())
-
-
+app.use(cors());
 app.use("/api/clients",clientsRoutes)
 app.use("/api/ratings", RatingRoutes)
 app.use("/api/products", ProductsRoutes)
 app.use("/api/favorites", FavoriteRoute)
-app.use("/api/distributors", validateAuthToken(["Admin"]), distributorRoute);
+app.use("/api/distributors", distributorRoute);
 app.use("/api/movements", movementsRoutes);
 app.use("/api/shoppingCart", shoppingCartRoutes);
 app.use("/api/supplier", SupplierRoutes)

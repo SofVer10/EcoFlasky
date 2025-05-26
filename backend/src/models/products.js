@@ -31,36 +31,24 @@ min:0
 
 },
 distributorId:{
-    type: Schema.Types.ObjectId,
-        ref: "Distributor",
-        require:true
+    type:String,
+ require:true,
+ maxLength:100
 },
 
 suplierId:{
-    type: Schema.Types.ObjectId,
-    ref: "Supplier",
-    require:true
+    type: String,
 },
 categoryId:{
-    type: Schema.Types.ObjectId,
-    ref: "Category",
-    require:true
+    type: String,
 
 },
 stock:{
     type:Number,
-    require:true,
 min:0
-},
-image:{
-    type:String,
-    require:true,
-    maxLenght:10
-
 },
 isVerified:{
 type:Boolean,
-require:true
 
 } }, 
 {

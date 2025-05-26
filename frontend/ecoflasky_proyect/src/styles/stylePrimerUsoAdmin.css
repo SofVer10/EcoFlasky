@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-color: #E6EEF2;
+}
+
+.half-color-register {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    background-color: rgba(0, 126, 142, 0.5)
+    ;
+}
+
+.textoeinputs {
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.texto-register {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.texto-register h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #007E8E;
+}
+
+.texto-register h2 {
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: normal;
+}
+
+.content-register {
+    width: 50%;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.image-wrapper-register {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.left, .downRight, .upRight {
+    position: absolute;
+    object-fit: contain;
+    z-index: 1;
+}
+
+.left {
+    top: 0%;
+    left: 0%;
+    width: 50%;
+    transform: rotate(-10deg);
+}
+
+.downRight {
+    bottom: -10%;
+    right: -5%;
+    width: 50%;
+    transform: rotate(20deg);
+}
+
+.upRight {
+    top: 0%;
+    right: 10%;
+    width: 40%;
+    transform: rotate(-15deg);
+}
+
+.input-container,
+.input-container-password {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    justify-content: center;
+}
+
+.user, .password-register {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+    opacity: 0.6;
+}
+
+.underline-input {
+    border: none;
+    border-bottom: 2px solid #007E8E;
+    outline: none;
+    padding: 5px;
+    font-size: 16px;
+    background-color: transparent;
+    width: 100%;
+    color: #333;
+}
+
+.underline-input::placeholder {
+    color: #3c3b3b;
+    opacity: 1;
+}
+
+.input-container-password {
+    position: relative;
+}
+
+.input-container-password:last-of-type {
+    margin-bottom: 30px;
+}
+
+.irLogin {
+    color: rgba(0, 0, 0, 1);
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+.logoAdmin{
+    width: 100%;
+    padding-right: 180px;
+    height: auto;
+}
+
+.Registrarse {
+    margin-top: 20px;
+    background-color: rgba(83, 172, 200, 0.75);
+    border-radius: 50px;
+    padding: 12px 30px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 350px;
+    transition: background-color 0.3s ease;
+}

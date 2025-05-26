@@ -6,6 +6,10 @@ const supplierSchema = new Schema({
         require: true,
         maxLength: 100
     },
+    supply: {
+        type: String,
+        require: true,
+    },
     cellphone: {
         type: Number,
         require: true,
@@ -24,6 +28,14 @@ const supplierSchema = new Schema({
     usualShipDate:{
         type: String,
         require: true
+    },
+    price: {
+        type: Number,
+        require: true,
+    },
+    amount: {
+        type: Number,
+        require: true,
     }
 })
 
