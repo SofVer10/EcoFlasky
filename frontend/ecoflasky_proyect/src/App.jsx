@@ -14,13 +14,15 @@ import Economico from "./pages/economico"
 import Contactanos from './pages/contacts';
 import Inicio from './pages/inicio';
 import AgregarEmpleado from './pages/agregarEmpleado';
+import RecuperarContrasena from './pages/recuperarContrasenaCorreo';
 import Favoritos from './pages/favoritos';
 import TerminosCondiciones from './pages/terminosycondiciones'
 import LoginAdmin from "./pages/loginAdmin";
 import PrimerUsoAdmin from "./pages/primerUsoAdmin";
 import AgregarDistruibidor from './pages/agregarDistruibidor'
 import AgregarProducto from './pages/registrarProductos'
-
+import DistributorPage from './pages/verDistruibidor'
+import ProductsPage from './pages/verProducts'
 function App() {
 
   return (
@@ -48,12 +50,16 @@ function Content() {
             <Route path="/disenado" element={<Disenado/>} />
           <Route path="/TerminosCondiciones" element={<TerminosCondiciones />} />
           <Route path="/" element={<Inicio />} />
+          <Route path="/favoritos" element={<RecuperarContrasena/>} />
           <Route path="/favoritos" element={<Favoritos/>} />
           <Route path="/primerUso" element={<PrimerUsoAdmin/>} />
           <Route path="/loginAdmin" element={<LoginAdmin/>} />
           <Route path="/agregarEmpleado" element={<AgregarEmpleado/>} />
           <Route path="/agregarDistruibidor" element={<AgregarDistruibidor />} />
           <Route path="/agregarProducto" element={<AgregarProducto />} />
+          <Route path="/verDistruibidor" element={<DistributorPage />} />
+          <Route path="/verProducto" element={<ProductsPage />} />
+
 
 
 
@@ -68,8 +74,6 @@ function Content() {
       
     </>
   )
-
-
 }
 
 export default App;

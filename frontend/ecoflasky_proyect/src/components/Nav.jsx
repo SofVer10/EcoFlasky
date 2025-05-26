@@ -9,7 +9,7 @@ const Nav = () => {
   return (
     <nav className="nav-container">
       {/* Logo que redirige al registro */}
-      <Link to="/agregarProducto
+      <Link to="/verProducto
       " className="logo-link">
         <img src={logo} alt="Logo EcoFlaky" className="logo-nav" />
       </Link>
@@ -17,7 +17,7 @@ const Nav = () => {
       {/* Menú de navegación */}
       <ul className="nav-menu">
         <li className="nav-item">
-          <Link to="/agregarDistruibidor" className="nav-link">INICIO</Link>
+          <Link to="/verDistruibidor" className="nav-link">INICIO</Link>
         </li>
         <li className="nav-item">
 
