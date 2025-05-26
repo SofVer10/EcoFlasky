@@ -18,6 +18,8 @@ import Favoritos from './pages/favoritos';
 import TerminosCondiciones from './pages/terminosycondiciones'
 import LoginAdmin from "./pages/loginAdmin";
 import PrimerUsoAdmin from "./pages/primerUsoAdmin";
+import AgregarDistruibidor from './pages/agregarDistruibidor'
+import AgregarProducto from './pages/registrarProductos'
 
 function App() {
 
@@ -47,6 +49,16 @@ function Content() {
           <Route path="/TerminosCondiciones" element={<TerminosCondiciones />} />
           <Route path="/" element={<Inicio />} />
           <Route path="/favoritos" element={<Favoritos/>} />
+          <Route path="/primerUso" element={<PrimerUsoAdmin/>} />
+          <Route path="/loginAdmin" element={<LoginAdmin/>} />
+          <Route path="/agregarEmpleado" element={<AgregarEmpleado/>} />
+          <Route path="/agregarDistruibidor" element={<AgregarDistruibidor />} />
+          <Route path="/agregarProducto" element={<AgregarProducto />} />
+
+
+
+
+
       </Routes>
       {location.pathname !== "/primerUso" && <Footer />}
  

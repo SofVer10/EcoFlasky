@@ -9,7 +9,8 @@ const Nav = () => {
   return (
     <nav className="nav-container">
       {/* Logo que redirige al registro */}
-      <Link to="/register" className="logo-link">
+      <Link to="/agregarProducto
+      " className="logo-link">
         <img src={logo} alt="Logo EcoFlaky" className="logo-nav" />
       </Link>
 
