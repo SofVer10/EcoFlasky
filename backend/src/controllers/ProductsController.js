@@ -22,15 +22,15 @@ productsController.getProducts = async (req,res) => {
 
 productsController.insertProduct = async (req,res) => {
 
-    const {name, description, price, distributorId, suplierId, categoryId, stock, image,isVerified } = req.body;
-    const newProduct = new ProductsModel({name, description, price, distributorId, suplierId, categoryId, stock, image,isVerified })
+    const {name, description, price, distributorId, suplierId, categoryId, stock,isVerified } = req.body;
+    const newProduct = new ProductsModel({name, description, price, distributorId, suplierId, categoryId, stock,isVerified })
     await newProduct.save();
     res.json ({message: "product saved"});
 }
 
 productsController.updateProduct = async (req,res) => {
-    const {name, description, price, distributorId, suplierId, categoryId, stock, image,isVerified } = req.body;
-     const updatedProduct = await ProductsModel.findByIdAndUpdate(req.params.id,{name, description, price, distributorId, suplierId, categoryId, stock, image,isVerified } , {new:true})
+    const {name, description, price, distributorId, suplierId, categoryId, stock,isVerified } = req.body;
+     const updatedProduct = await ProductsModel.findByIdAndUpdate(req.params.id,{name, description, price, distributorId, suplierId, categoryId, stock,isVerified } , {new:true})
      res.json ({message: "product upsdated"});
 
 }
