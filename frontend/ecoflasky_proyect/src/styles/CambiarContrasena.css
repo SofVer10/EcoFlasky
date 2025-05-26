@@ -1,0 +1,54 @@
+.cambiar-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+}
+
+.cambiar-left {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cambiar-left h2 {
+  font-size: 26px;
+  color: #2b2b2b;
+}
+
+.cambiar-left input {
+  padding: 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  outline: none;
+}
+
+.cambiar-left button {
+  padding: 12px;
+  font-size: 16px;
+  background-color: #3caab7;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 180px;
+}
+
+.cambiar-right {
+  flex: 1;
+  background-color: #2ba3a5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 100% 100%;
+  border-bottom-left-radius: 100% 100%;
+}
+
+.cambiar-right img {
+  max-width: 80%;
+  height: auto;
+}
