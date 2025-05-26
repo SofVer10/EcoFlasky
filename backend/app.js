@@ -29,7 +29,7 @@ app.use("/api/clients",clientsRoutes)
 app.use("/api/ratings", RatingRoutes)
 app.use("/api/products", ProductsRoutes)
 app.use("/api/favorites", FavoriteRoute)
-app.use("/api/distributors", validateAuthToken(["Admin"]), distributorRoute);
+app.use("/api/distributors", distributorRoute);
 app.use("/api/movements", movementsRoutes);
 app.use("/api/shoppingCart", shoppingCartRoutes);
 app.use("/api/supplier", SupplierRoutes)

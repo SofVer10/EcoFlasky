@@ -1,12 +1,8 @@
 /* name
 password
-speciality*/
-
-/*
-name
-password
 email
 cellphone
+isVerified
 */
 
 import { Schema, model  } from "mongoose"; 
