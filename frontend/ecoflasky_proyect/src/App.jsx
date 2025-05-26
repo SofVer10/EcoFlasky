@@ -14,6 +14,7 @@ import Economico from "./pages/economico"
 import Contactanos from './pages/contacts';
 import Inicio from './pages/inicio';
 import AgregarEmpleado from './pages/agregarEmpleado';
+import AgregarProveedor from './pages/agergarProveedor';
 import RecuperarContrasena from './pages/recuperarContrasenaCorreo';
 import Favoritos from './pages/favoritos';
 import TerminosCondiciones from './pages/terminosycondiciones'
@@ -48,7 +49,7 @@ function Content() {
             <Route path="/regular" element={<Regular/>} />
             <Route path="/economico" element={<Economico/>} />
             <Route path="/disenado" element={<Disenado/>} />
-          <Route path="/TerminosCondiciones" element={<TerminosCondiciones />} />
+          <Route path="/TerminosCondiciones" element={<AgregarEmpleado />} />
           <Route path="/" element={<Inicio />} />
           <Route path="/favoritos" element={<RecuperarContrasena/>} />
           <Route path="/favoritos" element={<Favoritos/>} />
@@ -59,6 +60,7 @@ function Content() {
           <Route path="/agregarProducto" element={<AgregarProducto />} />
           <Route path="/verDistruibidor" element={<DistributorPage />} />
           <Route path="/verProducto" element={<ProductsPage />} />
+          <Route path="/favoritos" element={<AgregarProveedor/>} />
 
 
 
