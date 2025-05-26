@@ -40,7 +40,7 @@ app.use("/api/logout", logoutRoutes)
 app.use("/api/registerClient", registerClientRoute)
 app.use("/api/registerEmployee", validateAuthToken([ "Admin"]),registerEmployeeRoute)
 app.use("/api/speciality", speciality)
-app.use("/api/employee", validateAuthToken(["Employee", "Admin"]), employeeRoute)
+app.use("/api/employee", employeeRoute)
 
 
 export default app;    
