@@ -1,0 +1,64 @@
+.recuperar-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+}
+
+.recuperar-left {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.recuperar-left h2 {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+
+.recuperar-left input {
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid #dcdcdc;
+  border-radius: 25px;
+  margin-bottom: 25px;
+  outline: none;
+  width: 80%;
+  max-width: 350px;
+}
+.recuperar-left button {
+  padding: 14px 24px;
+  font-size: 16px;
+  color: white;
+  background-color: #66c2e9;
+  border: none;
+  border-radius: 25px;
+  width: 150px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.recuperar-left button:hover {
+  background-color: #4eaed6;
+}
+
+.recuperar-right {
+  flex: 1;
+  background-color: #2ba3a5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 100% 100%;
+  border-bottom-left-radius: 100% 100%;
+}
+
+.recuperar-right img {
+  max-width: 100%;
+  height: auto;
+}
