@@ -20,6 +20,8 @@ import RecuperarContrasena from './pages/recuperarContrasenaCorreo';
 import Favoritos from './pages/favoritos';
 import TerminosCondiciones from './pages/terminosycondiciones'
 
+
+
 function App() {
 
 

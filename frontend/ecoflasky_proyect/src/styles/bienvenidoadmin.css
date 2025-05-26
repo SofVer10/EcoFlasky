@@ -1,0 +1,64 @@
+.bienvenido-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bienvenido-left {
+  flex: 1;
+  padding: 60px 40px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.titulo {
+  font-size: 36px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.descripcion {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 40px;
+  max-width: 500px;
+}
+
+.botones .btn {
+  background-color: #b3e0e7; /* tono celeste */
+  border: none;
+  padding: 14px 24px;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 30px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #006a75;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botones .btn:hover {
+  background-color: #a2d4dc;
+}
+
+.bienvenido-right {
+  flex: 1;
+  background-color: #cceff5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.imagen-termo {
+  max-width: 90%;
+  height: auto;
+  clip-path: ellipse(50% 70% at 50% 50%);
+}
