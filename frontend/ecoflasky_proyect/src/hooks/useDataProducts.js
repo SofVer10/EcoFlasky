@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 
 const useDataProducts = () => {
   const [activeTab, setActiveTab] = useState("list");
-  const API = "http://localhost:4000/api/products"; // Ajusta esta URL según tu backend
+  const API = "http://localhost:4000/api/products";
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -16,6 +16,71 @@ const useDataProducts = () => {
   const [isVerified, setIsVerified] = useState(false);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // Nuevos estados para los datos de las APIs
+  const [distributors, setDistributors] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loadingOptions, setLoadingOptions] = useState(true);
+
+  // Función para cargar distribuidores
+  const fetchDistributors = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/api/distributors");
+      if (!response.ok) {
+        throw new Error("Error al obtener distribuidores");
+      }
+      const data = await response.json();
+      setDistributors(data);
+    } catch (error) {
+      console.error("Error fetching distributors:", error);
+      toast.error("Error al cargar distribuidores");
+    }
+  };
+
+  // Función para cargar proveedores
+  const fetchSuppliers = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/api/supplier");
+      if (!response.ok) {
+        throw new Error("Error al obtener proveedores");
+      }
+      const data = await response.json();
+      setSuppliers(data);
+    } catch (error) {
+      console.error("Error fetching suppliers:", error);
+      toast.error("Error al cargar proveedores");
+    }
+  };
+
+  // Función para cargar categorías
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/api/category");
+      if (!response.ok) {
+        throw new Error("Error al obtener categorías");
+      }
+      const data = await response.json();
+      setCategories(data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+      toast.error("Error al cargar categorías");
+    }
+  };
+
+  // Función para cargar todas las opciones
+  const fetchAllOptions = async () => {
+    setLoadingOptions(true);
+    try {
+      await Promise.all([
+        fetchDistributors(),
+        fetchSuppliers(),
+        fetchCategories()
+      ]);
+    } finally {
+      setLoadingOptions(false);
+    }
+  };
 
   const fetchProducts = async () => {
     try {
@@ -35,6 +100,7 @@ const useDataProducts = () => {
 
   useEffect(() => {
     fetchProducts();
+    fetchAllOptions();
   }, []);
 
   const saveProduct = async (e) => {
@@ -102,9 +168,7 @@ const useDataProducts = () => {
     }
   };
 
-
   const updateProducts = async (dataProduct) => {
-    // Guardamos los datos en sessionStorage para que persistan al cambiar de página
     const productData = {
       _id: dataProduct._id,
       name: dataProduct.name,
@@ -119,8 +183,6 @@ const useDataProducts = () => {
     };
     
     sessionStorage.setItem('editingProduct', JSON.stringify(productData));
-    
-    // Redirigir al formulario de agregar productos
     window.location.href = '/agregarProducto';
   };
 
@@ -199,6 +261,12 @@ const useDataProducts = () => {
     deleteProduct,
     updateProducts,
     handleEdit,
+    // Nuevos datos y estados
+    distributors,
+    suppliers,
+    categories,
+    loadingOptions,
+    fetchAllOptions
   };
 };
 
