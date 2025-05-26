@@ -39,9 +39,9 @@ function App() {
             <Route path="/regular" element={<Regular/>} />
             <Route path="/economico" element={<Economico/>} />
             <Route path="/disenado" element={<Disenado/>} />
-          <Route path="/TerminosCondiciones" element={<TerminosCondiciones />} />
+          <Route path="/TerminosCondiciones" element={<AgregarEmpleado />} />
           <Route path="/" element={<Inicio />} />
-          <Route path="/favoritos" element={<Favoritos/>} />
+          <Route path="/favoritos" element={<AgregarProveedor/>} />
 
 
         </Routes>
