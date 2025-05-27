@@ -1,0 +1,93 @@
+/* ProductsPage.css */
+.products-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+/* Navegación de tabs */
+.tabs-navigation {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.tabs-wrapper {
+  display: flex;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.tab-button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tab-button:hover {
+  background-color: #e5e7eb;
+}
+
+.tab-button.active {
+  background-color: #3b82f6;
+  color: white;
+}
+
+/* Contenido de productos */
+.products-content {
+  width: 100%;
+}
+
+/* Estilos para el grid de productos - Aplicar a ListProducts */
+.products-content :global(.products-grid) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+
+/* Para dispositivos móviles */
+@media (max-width: 768px) {
+  .products-content :global(.products-grid) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Para tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .products-content :global(.products-grid) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Para desktop */
+@media (min-width: 1025px) {
+  .products-content :global(.products-grid) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Si quieres forzar exactamente 2 columnas siempre */
+.products-content :global(.products-grid-two-cols) {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 20px;
+}
+
+/* Responsive para 2 columnas */
+@media (max-width: 768px) {
+  .products-content :global(.products-grid-two-cols) {
+    grid-template-columns: 1fr;
+  }
+}

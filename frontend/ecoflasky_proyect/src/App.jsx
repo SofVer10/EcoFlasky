@@ -1,11 +1,11 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"
 import Products from './pages/products'
-import FooterAdmin from './components/FooterAdmin.jsx'
 import Nav from "./components/Nav"
 import NavAdmin from "./components/NavAdmin"
 import Footer from "./components/Footer"
 import AcercaDe from './pages/acercadenosotros'
+import CambiarContrasena from './pages/cambiarContrasena'
 import Register from './pages/register'
 import Login from './pages/login'
 import Password from './pages/contrasena'
@@ -16,10 +16,10 @@ import Contactanos from './pages/contacts';
 import Inicio from './pages/inicio';
 import AgregarEmpleado from './pages/agregarEmpleado';
 import AgregarProveedor from './pages/agergarProveedor';
+import IngresarCodigo from './pages/ingresarCodigo';
 import RecuperarContrasena from './pages/recuperarContrasenaCorreo';
 import Favoritos from './pages/favoritos';
 import TerminosCondiciones from './pages/terminosycondiciones'
-import LoginAdmin from "./pages/loginAdmin";
 import PrimerUsoAdmin from "./pages/primerUsoAdmin";
 import AgregarDistruibidor from './pages/agregarDistruibidor'
 import AgregarProducto from './pages/registrarProductos'
@@ -116,17 +116,16 @@ function Content() {
         <Route path="/acercadenosotros" element={<AcercaDe />} />
         <Route path="/productos" element={<Products/>} />
         <Route path="/register" element={<Register/>} />
-        <Route path="/login" element={<Login/>} />
+        <Route path="/inicio" element={<Inicio/>} />
         <Route path="/password" element={<Password/>} />
         <Route path="/regular" element={<Regular/>} />
         <Route path="/economico" element={<Economico/>} />
         <Route path="/disenado" element={<Disenado/>} />
         <Route path="/TerminosCondiciones" element={<TerminosCondiciones />} />
-        <Route path="/" element={<Inicio />} />
+        <Route path="/" element={<Login />} />
         <Route path="/recuperarContrasena" element={<RecuperarContrasena/>} />
         <Route path="/favoritos" element={<Favoritos/>} />
         <Route path="/primerUso" element={<PrimerUsoAdmin/>} />
-        <Route path="/loginAdmin" element={<LoginAdmin/>} />
         <Route path="/agregarEmpleado" element={<AgregarEmpleado/>} />
         <Route path="/agregarDistruibidor" element={<AgregarDistruibidor />} />
         <Route path="/agregarProducto" element={<AgregarProducto />} />
@@ -134,9 +133,11 @@ function Content() {
         <Route path="/verProducto" element={<ProductsPage />} />
         <Route path="/agregarProveedor" element={<AgregarProveedor/>} />
         <Route path="/bienvenidaAdmin" element={<BienvenidoAdmin/>} />
+        <Route path="/ingresarCodigo" element={<IngresarCodigo />} /> 
+        <Route path="/cambiarContrasena" element={<CambiarContrasena />} />
       </Routes>
       
-      {shouldShowFooter && <Footer />}
+
     </>
   )
 }

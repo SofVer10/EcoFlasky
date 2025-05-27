@@ -1,7 +1,7 @@
 import React from "react";
 import useDataDistributors from "../hooks/useDataDistributors.js";
 import ListDistributors from "../components/listDistributors";
-import AgregarDistruibidor from "./agregarDistruibidor"; // Tu formulario existente
+import AgregarDistruibidor from "./agregarDistruibidor.jsx"; // Tu formulario existente
  
 const DistributorsPage = () => {
   const {

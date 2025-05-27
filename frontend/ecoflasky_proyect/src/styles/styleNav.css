@@ -1,4 +1,3 @@
-/* ======= NAVBAR GENERAL ======= */
 .navbar {
   position: sticky;
   top: 0;
@@ -16,6 +15,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 2rem;
+  position: relative;
+}
+
+.logo-nav {
+  width: 120px;
+  height: auto;
+  max-width: 100%;
 }
 
 /* ======= LOGO ======= */
@@ -36,7 +43,7 @@
   gap: 2rem;
   margin: 0;
   padding: 0;
-  transition: max-height 0.3s ease-in-out;
+  transition: all 0.3s ease;
 }
 
 .nav-item {
@@ -47,54 +54,166 @@
   text-decoration: none;
   color: #333333;
   font-size: 1rem;
-  text-transform: uppercase;
-  transition: color 0.3s ease;
+  text-transform: uppercase; 
+  transition: color 0.3s;
+  padding: 0.5rem 0;
+  display: block;
 }
 
 .nav-link:hover {
-  color: #00acc1;
+  color: #007bff;
 }
 
-/* ======= MENÚ HAMBURGUESA ======= */
-.nav-toggle {
+/* Botón hamburguesa */
+.hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  background: none;
+  border: none;
   cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+  outline: none; /* Quita el borde al hacer focus */
+  margin-right: 1rem; /* Añade espacio del borde derecho */
 }
 
-.nav-toggle span {
+/* Quita el outline al hacer focus en el botón */
+.hamburger:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.hamburger-line {
   width: 25px;
   height: 3px;
-  background-color: #333;
-  border-radius: 3px;
+  background-color: #333333;
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 2px;
 }
 
-/* ======= RESPONSIVE ======= */
-@media (max-width: 768px) {
-  .nav-toggle {
+/* Animación del botón hamburguesa */
+.hamburger-active .hamburger-line:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-active .hamburger-line:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Overlay para móviles */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  display: none;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .nav-container {
+    padding: 1rem;
+    padding-right: 1.5rem; /* Más espacio en el lado derecho en móviles */
+  }
+
+  .logo-nav {
+    width: 100px;
+  }
+
+  .hamburger {
     display: flex;
+    margin-right: 0.5rem; /* Espacio adicional del borde derecho */
   }
 
   .nav-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: #fff;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: white;
     flex-direction: column;
-    align-items: center;
-    max-height: 0;
-    overflow: hidden;
-    border-top: 1px solid #eaeaea;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 5rem 2rem 2rem 2rem;
+    gap: 1rem;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 999;
   }
 
-  .nav-menu.active {
-    max-height: 500px; /* Suficiente para mostrar todos los elementos */
-    padding: 1rem 0;
+  .nav-menu-open {
+    right: 0;
   }
 
   .nav-item {
-    margin: 10px 0;
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 1rem;
+  }
+
+  .nav-item:last-child {
+    border-bottom: none;
+  }
+
+  .nav-link {
+    font-size: 1.1rem;
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  .menu-overlay {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .nav-container {
+    padding: 0.8rem;
+    padding-right: 1.2rem; /* Espacio del borde derecho en pantallas muy pequeñas */
+  }
+
+  .logo-nav {
+    width: 80px;
+  }
+
+  .hamburger {
+    margin-right: 0.3rem; /* Ajuste para pantallas muy pequeñas */
+  }
+
+  .nav-menu {
+    width: 250px;
+    padding: 4rem 1.5rem 2rem 1.5rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+}
+
+/* Tablet */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .nav-container {
+    padding: 1rem 1.5rem;
+  }
+
+  .logo-nav {
+    width: 110px;
+  }
+
+  .nav-menu {
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
   }
 }

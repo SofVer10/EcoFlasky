@@ -19,10 +19,14 @@ const Password = () => {
                         <img className="gmail" alt="Copia de ECOFLASKY" src={gmail} />
                         <input type="text" className="underline-input" placeholder="Correo" />
                     </div>
-                    <Link to="/login">
+                    <Link to="/">
                     <p className="Volver">Volver</p>
                     </Link>
+                                        <Link to="/">
+
                     <button className="RecuperarContra">Recuperar Contraseña</button>
+                                        </Link>
+
                 </div>
                 <div className="content-password">
                     <div className="image-wrapper-password">
