@@ -5,7 +5,7 @@ import Nav from "./components/Nav"
 import NavAdmin from "./components/NavAdmin"
 import Footer from "./components/Footer"
 import AcercaDe from './pages/acercadenosotros'
-import CambiarContrasena from './pages/cambiarContrasena'
+import CambiarContrasena from './pages/CambiarContrasena.jsx'
 import Register from './pages/register'
 import Login from './pages/login'
 import Password from './pages/contrasena'
