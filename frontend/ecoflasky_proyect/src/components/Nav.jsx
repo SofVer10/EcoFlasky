@@ -47,7 +47,7 @@ const Nav = () => {
           <Link to="/agregarEmpleado" className="nav-link" onClick={closeMenu}>EMPLEADO</Link>
         </li>
         <li className="nav-item">
-          <Link to="/agregarProducto" className="nav-link" onClick={closeMenu}>PRODUCTOS</Link>
+          <Link to="/verProducto" className="nav-link" onClick={closeMenu}>PRODUCTOS</Link>
         </li>
       </ul>
 

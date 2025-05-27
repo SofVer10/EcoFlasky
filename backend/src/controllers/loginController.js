@@ -77,7 +77,7 @@ loginController.login = async (req,res) => {
                 message: "Login successful", 
                 success: true,
                 userType: userType,
-                redirectTo: userType === "Customer" ? "/" : "/bienvenidaAdmin"
+                redirectTo: userType === "Customer" ? "/inicio" : "/bienvenidaAdmin"
             })
         }
      )

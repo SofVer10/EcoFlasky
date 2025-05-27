@@ -2,6 +2,7 @@ import React from "react";
 import useDataDistributors from "../hooks/useDataDistributors.js";
 import ListDistributors from "../components/listDistributors";
 import AgregarDistruibidor from "./agregarDistruibidor.jsx"; // Tu formulario existente
+import Button from "../components/Button.jsx";
  
 const DistributorsPage = () => {
   const {
@@ -28,21 +29,18 @@ const DistributorsPage = () => {
       {/* Navegación entre pestañas si tienes formulario */}
       <div className="flex justify-center mb-6">
         <div className="flex bg-gray-100 rounded-lg p-1">
-          <button
-            onClick={() => setActiveTab("list")}
-            className={`px-4 py-2 rounded-md transition-colors ${
-              activeTab === "list"
-                ? "bg-blue-500 text-white"
-                : "text-gray-700 hover:bg-gray-200"
-            }`}
-          >
-            Ver Distribuidores
-          </button>
+          
+          <Button 
+          label="ver distribuidores"
+          actionButton={() => setActiveTab("list")}
+          activeTab={activeTab}
+          />
+       
           <button
             onClick={() => setActiveTab("form")}
-            className={`px-4 py-2 rounded-md transition-colors ${
+            className={`px-4 py-2  transition-colors bg-green-400 ${
               activeTab === "form"
-                ? "bg-blue-500 text-white"
+                ? "bg-green-500 text-white"
                 : "text-gray-700 hover:bg-gray-200"
             }`}
           >
