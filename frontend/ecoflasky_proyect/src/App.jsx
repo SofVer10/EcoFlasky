@@ -16,7 +16,6 @@ import Contactanos from './pages/contacts';
 import Inicio from './pages/inicio';
 import AgregarEmpleado from './pages/agregarEmpleado';
 import AgregarProveedor from './pages/agergarProveedor';
-import IngresarCodigo from './pages/IngresarCodigo';
 import RecuperarContrasena from './pages/recuperarContrasenaCorreo';
 import Favoritos from './pages/favoritos';
 import TerminosCondiciones from './pages/terminosycondiciones'
@@ -134,7 +133,6 @@ function Content() {
         <Route path="/verProducto" element={<ProductsPage />} />
         <Route path="/agregarProveedor" element={<AgregarProveedor/>} />
         <Route path="/bienvenidaAdmin" element={<BienvenidoAdmin/>} />
-        <Route path="/ingresarCodigo" element={<IngresarCodigo />} /> 
         <Route path="/cambiarContrasena" element={<CambiarContrasena />} />
       </Routes>
       
