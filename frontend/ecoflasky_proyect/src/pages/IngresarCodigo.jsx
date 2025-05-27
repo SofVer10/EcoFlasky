@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/IngresarCodigo.css';
 import recu2 from "../images/recu2.png";
+import { Link } from 'react-router-dom';
 
 const IngresarCodigo = () => {
   return (
@@ -18,7 +19,11 @@ const IngresarCodigo = () => {
         <div className="codigo-texto">
           <p>¿No has recibido el código? <a href="#">Volver a enviar código</a></p>
         </div>
+                            <Link to="/cambiarContrasena">
+
         <button>Enviar</button>
+                            </Link>
+
       </div>
       <div className="codigo-right">
         <img src={recu2} alt="Código" />

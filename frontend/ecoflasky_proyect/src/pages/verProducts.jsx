@@ -1,6 +1,7 @@
 import React from "react";
 import useDataProducts from "../hooks/useDataProducts";
 import ListProducts from "../components/listProducts.jsx";
+import "../styles/verProducts.css"; // Importar CSS externo
 
 const ProductsPage = () => {
   const {
@@ -13,23 +14,19 @@ const ProductsPage = () => {
   } = useDataProducts();
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="products-page-container">
       {/* Navegación entre pestañas */}
-      <div className="flex justify-center mb-6">
-        <div className="flex bg-gray-100 rounded-lg p-1">
+      <div className="tabs-navigation">
+        <div className="tabs-wrapper">
           <button
             onClick={() => setActiveTab("list")}
-            className={`px-4 py-2 rounded-md transition-colors ${
-              activeTab === "list"
-                ? "bg-blue-500 text-white"
-                : "text-gray-700 hover:bg-gray-200"
-            }`}
+            className={`tab-button ${activeTab === "list" ? "active" : ""}`}
           >
             Ver Productos
           </button>
           <button
             onClick={() => window.location.href = '/agregarProducto'}
-            className={`px-4 py-2 rounded-md transition-colors text-gray-700 hover:bg-gray-200`}
+            className="tab-button"
           >
             Agregar Producto
           </button>
@@ -37,12 +34,14 @@ const ProductsPage = () => {
       </div>
 
       {/* Contenido - Solo mostrar la lista */}
-      <ListProducts
-        products={products}
-        loading={loading}
-        deleteProduct={deleteProduct}
-        updateProducts={updateProducts}
-      />
+      <div className="products-content">
+        <ListProducts
+          products={products}
+          loading={loading}
+          deleteProduct={deleteProduct}
+          updateProducts={updateProducts}
+        />
+      </div>
     </div>
   );
 };

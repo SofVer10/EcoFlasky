@@ -30,7 +30,7 @@ const Nav = () => {
           <Link to="/agregarEmpleado" className="nav-link">EMPLEADO</Link>
         </li>
          <li className="nav-item">
-          <Link to="/agregarProducto" className="nav-link">PRODUCTOS</Link>
+          <Link to="/verProducto" className="nav-link">PRODUCTOS</Link>
         </li>
       </ul>
 

@@ -86,7 +86,7 @@ const Register = () => {
                             />
                         </div>
                         
-                        <Link to="/login">
+                        <Link to="/">
                             <p className="irLogin">¿Ya tienes cuenta? Inicia sesión</p>
                         </Link>
                         

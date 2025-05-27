@@ -97,6 +97,9 @@ const Login = () => {
                         <Link to="/password">
                             <p className="irRegistro">¿Olvidaste tu contraseña?</p>
                         </Link>
+                          <Link to="/register">
+                            <p className="irRegistro">¿No tienes cuenta?, Registrate</p>
+                        </Link>
                         
                         <button 
                             type="submit" 
