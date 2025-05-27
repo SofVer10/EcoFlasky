@@ -185,7 +185,7 @@ const AgregarProveedor = () => {
         <p>Gestiona y administra todos tus proveedores en un solo lugar</p>
       </motion.header>
 
-      <motion.section variants={itemVariants} className="form-section">
+      <motion.section variants={itemVariants} className="form-section11">
         <h2>{editingId ? "Editar Proveedor" : "Nuevo Proveedor"}</h2>
         <form onSubmit={handleSubmit} className="supplier-form">
           {Object.entries(form).map(([key, value]) => (

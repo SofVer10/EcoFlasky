@@ -10,10 +10,7 @@
     color: white;
 }
 
-.container {
-    display: flex; 
-    height: 100vh; 
-}
+
 
 .half-color-register {
     background-color: #0C648A; 

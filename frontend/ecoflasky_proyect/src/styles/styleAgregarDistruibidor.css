@@ -1,140 +1,151 @@
-/* Estilos generales */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  body {
-    background-color: #f5f5f5;
-  }
-  
-  .registro-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-  }
-  
-  /* Contenedor principal con la curva */
+/* Variables CSS */
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2980b9;
+  --accent-color: #e74c3c;
+  --light-color: #ecf0f1;
+  --dark-color: #2c3e50;
+  --gray-color: #95a5a6;
+  --success-color: #27ae60;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+/* Estructura Principal */
+.registro-container {
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.registro-form-container {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+}
+
+/* Sección del Formulario */
+.form-section2 {
+  padding: 2rem;
+}
+
+.form-section h2 {
+  font-size: 1.8rem;
+  color: var(--dark-color);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.registro-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.form-group h1 {
+  font-size: 1rem;
+  color: var(--gray-color);
+  font-weight: 500;
+}
+
+.form-control {
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.form-control::placeholder {
+  color: var(--gray-color);
+  opacity: 0.7;
+}
+
+/* Botón de Agregar */
+.agregar-btn {
+  padding: 0.8rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 1rem;
+}
+
+.agregar-btn:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(41, 128, 185, 0.3);
+}
+
+/* Sección de Imagen */
+.image-section {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  padding: 2rem;
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: var(--border-radius);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .registro-form-container {
-    display: flex;
-    width: 100%;
-    max-width: 1000px;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    position: relative;
-  }
-  
-  /* Curva decorativa */
-  .registro-form-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-  
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: 0;
-  }
-  
-  /* Sección del formulario */
-  .form-section {
-    flex: 1;
-    padding: 40px;
-  }
-  
-  .form-section h2 {
-    color: #333;
-    margin-bottom: 30px;
-    font-weight: 600;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-control {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: border-color 0.3s;
-  }
-  
-  .form-control:focus {
-    border-color: #45B5C4;
-    outline: none;
-  }
-  
-  .form-control::placeholder {
-    color: #aaa;
-  }
-  
-  /* Botón de agregar */
-  .agregar-btn {
-    background-color: #45B5C4;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.3s;
-    margin-top: 10px;
-  }
-  
-  .agregar-btn:hover {
-    background-color: #3a9aa8;
-  }
-  
-  .container {
-    display: flex;
-    max-width: 1000px;
-    margin: 0 auto;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #fff;
+    grid-template-columns: 1fr;
   }
   
   .image-section {
-    flex: 1;
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
+    order: -1;
+    padding: 1rem;
   }
   
-  .product-image {
-    width: 100%;
-    max-width: 350px;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
+  .form-section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .registro-container {
+    padding: 0 0.5rem;
   }
   
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .registro-form-container {
-      flex-direction: column;
-    }
-    
-    .form-section {
-      order: 2;
-    }
-    
-    .image-section {
-      order: 1;
-      height: 300px;
-    }
+  .form-section h2 {
+    font-size: 1.5rem;
   }
+  
+  .form-control {
+    padding: 0.7rem 0.9rem;
+  }
+  
+  .agregar-btn {
+    padding: 0.7rem 1.2rem;
+  }
+} 

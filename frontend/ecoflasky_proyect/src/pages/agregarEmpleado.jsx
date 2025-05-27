@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
+import "../styles/styleAgregarEmpleado.css";
 
 const AgregarEmpleado = () => {
   const [employees, setEmployees] = useState([]);
   const [specialities, setSpecialities] = useState([]);
-
   const [form, setForm] = useState({
     name: "",
     password: "",
@@ -11,7 +11,6 @@ const AgregarEmpleado = () => {
     speciality: "",
     isVerified: false
   });
-
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
@@ -41,8 +40,8 @@ const AgregarEmpleado = () => {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setForm((prevState) => ({ 
-      ...prevState, 
+    setForm(prev => ({ 
+      ...prev, 
       [name]: type === 'checkbox' ? checked : value 
     }));
   };
@@ -55,28 +54,18 @@ const AgregarEmpleado = () => {
         isVerified: Boolean(form.isVerified)
       };
 
-      if (editingId) {
-        await fetch(`/api/registerEmployee/${editingId}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        });
-        setEditingId(null);
-      } else {
-        await fetch("/api/registerEmployee", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        });
-      }
+      const url = editingId 
+        ? `/api/registerEmployee/${editingId}`
+        : "/api/registerEmployee";
+      const method = editingId ? "PUT" : "POST";
 
-      setForm({
-        name: "",
-        password: "",
-        email: "",
-        speciality: "",
-        isVerified: false
+      await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
+
+      resetForm();
       getEmployees();
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
@@ -84,10 +73,10 @@ const AgregarEmpleado = () => {
   };
 
   const handleDelete = async (id) => {
+    if (!window.confirm("¿Estás seguro de eliminar este empleado?")) return;
+    
     try {
-      await fetch(`/api/employee/${id}`, {
-        method: "DELETE",
-      });
+      await fetch(`/api/employee/${id}`, { method: "DELETE" });
       getEmployees();
     } catch (error) {
       console.error("Error al eliminar el empleado:", error);
@@ -98,11 +87,22 @@ const AgregarEmpleado = () => {
     setEditingId(employee._id);
     setForm({
       name: employee.name || "",
-      password: "", // Por seguridad, no mostramos la contraseña
+      password: "",
       email: employee.email || "",
       speciality: employee.speciality?._id || employee.speciality || "",
       isVerified: employee.isVerified || false
     });
+  };
+
+  const resetForm = () => {
+    setForm({
+      name: "",
+      password: "",
+      email: "",
+      speciality: "",
+      isVerified: false
+    });
+    setEditingId(null);
   };
 
   const formatDate = (dateString) => {
@@ -112,93 +112,77 @@ const AgregarEmpleado = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="empleado-container">
+      <div className="empleado-wrapper">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">
-            Administración de Empleados
-          </h1>
-          <p className="text-gray-600">Gestiona y administra todos tus empleados en un solo lugar</p>
+        <div className="empleado-header">
+          <h1>Administración de Empleados</h1>
+          <p>Gestiona y administra todos tus empleados en un solo lugar</p>
         </div>
         
         {/* Form Section */}
-        <div className="bg-white rounded-xl shadow-xl p-8 mb-8 border border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-            <div className="w-1 h-6 bg-blue-500 rounded-full mr-3"></div>
+        <div className="empleado-form-section">
+          <h2 className="empleado-form-title">
+            <span className="empleado-form-title-decorator"></span>
             {editingId ? "Editar Empleado" : "Nuevo Empleado"}
           </h2>
           
-          <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="space-y-2">
-                <label htmlFor="name" className="block text-sm font-semibold text-gray-700">
-                  Nombre del Empleado *
-                </label>
+          <form className="empleado-form" onSubmit={handleSubmit}>
+            <div className="empleado-form-grid">
+              <div className="empleado-form-group">
+                <label htmlFor="name">Nombre del Empleado *</label>
                 <input
                   type="text"
-                  name="name"
                   id="name"
+                  name="name"
                   value={form.name}
                   onChange={handleInputChange}
                   required
                   maxLength={100}
-                  className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
                   placeholder="Ingresa el nombre completo"
                 />
               </div>
               
-              <div className="space-y-2">
-                <label htmlFor="password" className="block text-sm font-semibold text-gray-700">
-                  Contraseña *
-                </label>
+              <div className="empleado-form-group">
+                <label htmlFor="password">Contraseña *</label>
                 <input
                   type="password"
-                  name="password"
                   id="password"
+                  name="password"
                   value={form.password}
                   onChange={handleInputChange}
                   required={!editingId}
                   maxLength={100}
-                  className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
                   placeholder={editingId ? "Dejar vacío para mantener actual" : "Ingresa una contraseña"}
                 />
-                {editingId && (
-                  <p className="text-xs text-gray-500">Deja vacío para mantener la contraseña actual</p>
-                )}
+                {editingId && <span className="empleado-form-hint">Deja vacío para mantener la contraseña actual</span>}
               </div>
               
-              <div className="space-y-2">
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-700">
-                  Correo Electrónico *
-                </label>
+              <div className="empleado-form-group">
+                <label htmlFor="email">Correo Electrónico *</label>
                 <input
                   type="email"
-                  name="email"
                   id="email"
+                  name="email"
                   value={form.email}
                   onChange={handleInputChange}
                   required
                   maxLength={100}
-                  className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
                   placeholder="correo@ejemplo.com"
                 />
               </div>
               
-              <div className="space-y-2">
-                <label htmlFor="speciality" className="block text-sm font-semibold text-gray-700">
-                  Especialidad *
-                </label>
+              <div className="empleado-form-group">
+                <label htmlFor="speciality">Especialidad *</label>
                 <select
-                  name="speciality"
                   id="speciality"
+                  name="speciality"
                   value={form.speciality}
                   onChange={handleInputChange}
                   required
-                  className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
                 >
                   <option value="">Selecciona una especialidad</option>
-                  {specialities.map((speciality) => (
+                  {specialities.map(speciality => (
                     <option key={speciality._id} value={speciality._id}>
                       {speciality.name}
                     </option>
@@ -206,114 +190,86 @@ const AgregarEmpleado = () => {
                 </select>
               </div>
               
-              <div className="space-y-2 flex items-center">
-                <div className="flex items-center h-12">
-                  <input
-                    type="checkbox"
-                    name="isVerified"
-                    id="isVerified"
-                    checked={form.isVerified}
-                    onChange={handleInputChange}
-                    className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-                  />
-                  <label htmlFor="isVerified" className="ml-3 text-sm font-semibold text-gray-700">
-                    Empleado Verificado
-                  </label>
-                </div>
+              <div className="empleado-form-checkbox">
+                <input
+                  type="checkbox"
+                  id="isVerified"
+                  name="isVerified"
+                  checked={form.isVerified}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="isVerified">Empleado Verificado</label>
               </div>
             </div>
             
-            <div className="flex justify-end mt-8">
-              <button
+            <div className="empleado-form-actions">
+              {editingId && (
+                <button 
+                  type="button" 
+                  onClick={resetForm}
+                  className="empleado-btn-cancel"
+                >
+                  Cancelar
+                </button>
+              )}
+              <button 
                 type="submit"
-                className={`px-8 py-3 rounded-lg font-semibold text-white transition-all duration-200 transform hover:scale-105 shadow-lg ${
-                  editingId 
-                    ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700' 
-                    : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700'
-                }`}
+                className={`empleado-btn-submit ${editingId ? 'empleado-btn-edit' : ''}`}
               >
-                {editingId ? "✓ Actualizar Empleado" : "+ Crear Empleado"}
+                {editingId ? "Actualizar Empleado" : "Crear Empleado"}
               </button>
             </div>
           </form>
         </div>
 
         {/* Table Section */}
-        <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100">
-          <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-6 border-b border-gray-200">
-            <h2 className="text-2xl font-semibold text-gray-800 flex items-center">
-              <div className="w-1 h-6 bg-green-500 rounded-full mr-3"></div>
+        <div className="empleado-table-section">
+          <div className="empleado-table-header">
+            <h2 className="empleado-table-title">
+              <span className="empleado-table-title-decorator"></span>
               Lista de Empleados
-              <span className="ml-3 bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
-                {employees.length} registros
-              </span>
+              <span className="empleado-record-count">{employees.length} registros</span>
             </h2>
           </div>
           
-          <div className="overflow-x-auto">
-            <table className="min-w-full">
-              <thead className="bg-gray-50">
+          <div className="empleado-table-container">
+            <table className="empleado-table">
+              <thead>
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Nombre
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Email
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Especialidad
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Estado
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Fecha de Registro
-                  </th>
-                  <th className="px-6 py-4 text-center text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Acciones
-                  </th>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Especialidad</th>
+                  <th>Estado</th>
+                  <th>Fecha de Registro</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-100">
+              <tbody>
                 {employees.length > 0 ? (
-                  employees.map((employee, index) => (
-                    <tr key={employee._id} className={`hover:bg-gray-50 transition-colors duration-150 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-25'}`}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="font-semibold text-gray-900">{employee.name}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-gray-700">{employee.email}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-gray-700">
-                          {employee.speciality?.name || 'Sin especialidad'}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full ${
-                          employee.isVerified 
-                            ? 'bg-green-100 text-green-800' 
-                            : 'bg-yellow-100 text-yellow-800'
-                        }`}>
+                  employees.map(employee => (
+                    <tr key={employee._id}>
+                      <td>{employee.name}</td>
+                      <td>{employee.email}</td>
+                      <td>{employee.speciality?.name || 'Sin especialidad'}</td>
+                      <td>
+                        <span className={`empleado-status ${employee.isVerified ? 'empleado-status-verified' : 'empleado-status-pending'}`}>
                           {employee.isVerified ? '✓ Verificado' : '⏳ Pendiente'}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-gray-700">{formatDate(employee.createdAt)}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-center">
-                        <div className="flex justify-center space-x-2">
-                          <button
+                      <td>{formatDate(employee.createdAt)}</td>
+                      <td>
+                        <div className="empleado-actions">
+                          <button 
                             onClick={() => handleEdit(employee)}
-                            className="bg-gradient-to-r from-amber-400 to-orange-500 text-white px-4 py-2 rounded-lg hover:from-amber-500 hover:to-orange-600 transition-all duration-200 transform hover:scale-105 shadow-md text-sm font-medium"
+                            className="empleado-btn-edit-action"
                           >
-                            ✏️ Editar
+                            Editar
                           </button>
-                          <button
+                          <button 
                             onClick={() => handleDelete(employee._id)}
-                            className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-200 transform hover:scale-105 shadow-md text-sm font-medium"
+                            className="empleado-btn-delete-action"
                           >
-                            🗑️ Eliminar
+                            Eliminar
                           </button>
                         </div>
                       </td>
@@ -321,11 +277,11 @@ const AgregarEmpleado = () => {
                   ))
                 ) : (
                   <tr>
-                    <td className="px-6 py-12 text-center text-gray-500" colSpan="6">
-                      <div className="flex flex-col items-center">
-                        <div className="text-6xl mb-4">👥</div>
-                        <div className="text-lg font-medium">No hay empleados registrados</div>
-                        <div className="text-sm text-gray-400 mt-1">Comienza agregando tu primer empleado</div>
+                    <td colSpan="6" className="empleado-no-results">
+                      <div className="empleado-no-results-content">
+                        <span className="empleado-no-results-icon">👥</span>
+                        <p>No hay empleados registrados</p>
+                        <small>Comienza agregando tu primer empleado</small>
                       </div>
                     </td>
                   </tr>
