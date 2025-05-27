@@ -1,68 +1,84 @@
+/* Variables globales */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #2c3e50;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Añade colores personalizados si quieres usar variables */
+  --primary-color: #00acc1;
+  --text-muted: #7f8c8d;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Reset y ajustes globales */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--background-color, #ffffff);
+  color: var(--text-color, #2c3e50);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: #00acc1;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #007c91;
 }
 
+/* Titulares */
+h1, h2, h3, h4, h5 {
+  margin: 0 0 1em 0;
+  font-weight: 600;
+}
+
+/* Botones */
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: none;
   padding: 0.6em 1.2em;
   font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #00acc1;
+  color: #fff;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.25s ease;
 }
 button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background-color: #007c91;
 }
 
-@media (prefers-color-scheme: light) {
+/* Modo claro/oscuro opcional */
+@media (prefers-color-scheme: dark) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    background-color: #1a1a1a;
+    color: rgba(255, 255, 255, 0.87);
   }
-  a:hover {
-    color: #747bff;
+
+  a {
+    color: #91e0ef;
   }
+
   button {
-    background-color: #f9f9f9;
+    background-color: #333;
+    color: white;
+  }
+
+  button:hover {
+    background-color: #444;
   }
 }

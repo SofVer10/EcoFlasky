@@ -1,41 +1,50 @@
-
-import React from 'react';
-import { Link } from 'react-router'; 
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../images/ECOFLASKY.png';
-import '../styles/styleNav.css'; 
-
+import '../styles/styleNav.css';
 
 const Nav = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
-    <nav className="nav-container">
-      {/* Logo que redirige al registro */}
-      <Link to="/verProducto
-      " className="logo-link">
-        <img src={logo} alt="Logo EcoFlaky" className="logo-nav" />
-      </Link>
+    <nav className="navbar">
+      <div className="nav-container">
 
-      {/* Menú de navegación */}
-      <ul className="nav-menu">
-        <li className="nav-item">
-          <Link to="/verDistruibidor" className="nav-link">INICIO</Link>
-        </li>
-        <li className="nav-item">
+        {/* Logo */}
+        <Link to="/verProducto" className="logo-link">
+          <img src={logo} alt="Logo EcoFlasky" className="logo-nav" />
+        </Link>
 
-          <Link to="/login" className="nav-link">SOBRE NOSOTROS</Link>
-        </li>
-        <li>
-        <Link to="/bienvenidaAdmin" className="nav-link">PRODUCTOS</Link>
-        </li>
-  
-        <li className="nav-item">
-          <Link to="/agregarEmpleado" className="nav-link">CONTACTANOS</Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/register" className="nav-link">TERMINOS Y CONDICIONES</Link>
-        </li>
-      </ul>
+        {/* Botón hamburguesa para móviles */}
+        <div className="nav-toggle" onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
 
-      
+        {/* Menú de navegación */}
+        <ul className={`nav-menu ${menuOpen ? 'active' : ''}`}>
+          <li className="nav-item">
+            <Link to="/verDistruibidor" className="nav-link">INICIO</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/acercadenosotros" className="nav-link">SOBRE NOSOTROS</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/bienvenidaAdmin" className="nav-link">PRODUCTOS</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/contactanos" className="nav-link">CONTACTANOS</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/TerminosCondiciones" className="nav-link">TÉRMINOS Y CONDICIONES</Link>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 };
