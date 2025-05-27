@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/styleLogin.css";
 import login from "../images/login.png";
 import arriba from "../images/logUp.png";
 import abajo from "../images/logDown.png";
-import gmail from "../images/gmail.png"
-import password from "../images/Password.png"
+import gmail from "../images/gmail.png";
+import password from "../images/Password.png";
 import { Link, useNavigate } from 'react-router-dom'; 
 
 const Login = () => {
@@ -14,6 +14,7 @@ const Login = () => {
     });
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
+    const [isSubmitted, setIsSubmitted] = useState(false);
     
     const navigate = useNavigate();
 
@@ -31,20 +32,22 @@ const Login = () => {
         setError('');
 
         try {
-            const response = await fetch('/api/login', { // Ajusta la URL según tu configuración
+            const response = await fetch('/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData),
-                credentials: 'include' // Para incluir cookies
+                credentials: 'include'
             });
 
             const data = await response.json();
 
             if (data.success) {
-                // Redirigir según el tipo de usuario
-                navigate(data.redirectTo);
+                setIsSubmitted(true);
+                setTimeout(() => {
+                    navigate(data.redirectTo);
+                }, 1500);
             } else {
                 setError(data.message || 'Error en el login');
             }
@@ -57,69 +60,81 @@ const Login = () => {
     };
 
     return (
-        <>
-            <div className="container">
-                <div className="half-color">
-                    <div className="texto">
+        <div className={`login-container ${isSubmitted ? 'success-animation' : ''}`}>
+            <div className="login-content">
+                <div className="login-form-container">
+                    <div className={`login-text ${isSubmitted ? 'fade-out' : ''}`}>
                         <h1>INICIA SESIÓN</h1>
                         <p>Lorem ipsum dolor sit amet consectetur. Non maecenas tortor suscipit odio volutpat turpis adipiscing.</p>
                     </div>
                     
-                    <form onSubmit={handleSubmit}>
-                        <div className="input-container-gmail">
-                            <img className="gmail" alt="Gmail icon" src={gmail} />
-                            <input 
-                                type="email" 
-                                name="email"
-                                className="underline-input" 
-                                placeholder="Correo" 
-                                value={formData.email}
-                                onChange={handleInputChange}
-                                required
-                            />
+                    <form onSubmit={handleSubmit} className={`login-form ${isSubmitted ? 'fade-out' : ''}`}>
+                        <div className="input-field1">
+                            <div className="input-container">
+                                <input 
+                                    type="email" 
+                                    name="email"
+                                    className="underline-input" 
+                                    placeholder="Correo" 
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            </div>
                         </div>
                         
-                        <div className="input-container-password">
-                            <img className="password-login" alt="Password icon" src={password} />
-                            <input 
-                                type="password" 
-                                name="password"
-                                className="underline-input" 
-                                placeholder="Contraseña" 
-                                value={formData.password}
-                                onChange={handleInputChange}
-                                required
-                            />
+                        <div className="input-field1">
+                            <div className="input-container">
+                                <input 
+                                    type="password" 
+                                    name="password"
+                                    className="underline-input" 
+                                    placeholder="Contraseña" 
+                                    value={formData.password}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            </div>
                         </div>
                         
-                        {error && <p className="error-message" style={{color: 'red'}}>{error}</p>}
+                        {error && <p className="error-message">{error}</p>}
                         
-                        <Link to="/password">
-                            <p className="irRegistro">¿Olvidaste tu contraseña?</p>
-                        </Link>
-                          <Link to="/register">
-                            <p className="irRegistro">¿No tienes cuenta?, Registrate</p>
-                        </Link>
+                        <div className="login-links">
+                            <Link to="/password">
+                                <p className="link-text">¿Olvidaste tu contraseña?</p>
+                            </Link>
+                            <Link to="/register">
+                                <p className="link-text">¿No tienes cuenta?, Registrate</p>
+                            </Link>
+                        </div>
                         
                         <button 
                             type="submit" 
-                            className="Login"
+                            className="login-button"
                             disabled={isLoading}
                         >
                             {isLoading ? 'Iniciando...' : 'Inicia Sesión'}
                         </button>
                     </form>
+
+                    {isSubmitted && (
+                        <div className="success-message">
+                            <div className="checkmark">✓</div>
+                            <h2>¡Bienvenido!</h2>
+                            <p>Redirigiendo...</p>
+                        </div>
+                    )}
                 </div>
                 
-                <div className="content">
+                <div className="login-image-container">
                     <div className="image-wrapper">
-                        <img className="elipse1" alt="Decoration" src={arriba} />
-                        <img className="elipse2" alt="Decoration" src={abajo} />
-                        <img className="register" alt="Login illustration" src={login} />
+                        <img className="decoration top" alt="Decoration" src={arriba} />
+                        <img className="decoration bottom" alt="Decoration" src={abajo} />
+                        <img className="main-image" alt="Login illustration" src={login} />
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

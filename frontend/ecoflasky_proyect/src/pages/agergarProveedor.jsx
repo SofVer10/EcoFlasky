@@ -1,88 +1,116 @@
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import "../styles/styleAgregarProveedor.css";
+
+const labels = {
+  name: "Nombre del Proveedor",
+  supply: "Suministro",
+  cellphone: "Teléfono",
+  lastShipDate: "Fecha del Último Envío",
+  usualShipDate: "Frecuencia de Envío",
+  price: "Precio ($)",
+  amount: "Cantidad",
+};
+
+const placeholders = {
+  name: "Ingresa el nombre",
+  supply: "¿Qué suministra?",
+  cellphone: "1234567890",
+  lastShipDate: "",
+  usualShipDate: "Ej: Cada lunes, Quincenalmente",
+  price: "0.00",
+  amount: "0",
+};
 
 const AgregarProveedor = () => {
   const [suppliers, setSuppliers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const [form, setForm] = useState({
+  const initialForm = {
     name: "",
     supply: "",
     cellphone: "",
     lastShipDate: "",
     usualShipDate: "",
     price: "",
-    amount: ""
-  });
+    amount: "",
+  };
 
+  const [form, setForm] = useState(initialForm);
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
-    getSuppliers();
+    fetchSuppliers();
   }, []);
 
-  const getSuppliers = async () => {
+  const fetchSuppliers = async () => {
+    setIsLoading(true);
     try {
-      const response = await fetch("/api/supplier");
-      const data = await response.json();
+      const res = await fetch("/api/supplier");
+      const data = await res.json();
       setSuppliers(data);
     } catch (error) {
       console.error("Error al obtener proveedores:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setForm((prevState) => ({ ...prevState, [name]: value }));
+    setForm((f) => ({ ...f, [name]: value }));
+  };
+
+  const resetForm = () => {
+    setForm(initialForm);
+    setEditingId(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formData = {
+      ...form,
+      cellphone: Number(form.cellphone),
+      price: Number(form.price),
+      amount: Number(form.amount),
+    };
+
     try {
-      // Convertir los campos numéricos antes de enviar
-      const formData = {
-        ...form,
-        cellphone: Number(form.cellphone),
-        price: Number(form.price),
-        amount: Number(form.amount)
-      };
+      const method = editingId ? "PUT" : "POST";
+      const url = editingId ? `/api/supplier/${editingId}` : "/api/supplier";
 
-      if (editingId) {
-        await fetch(`/api/supplier/${editingId}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        });
-        setEditingId(null);
-      } else {
-        await fetch("/api/supplier", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        });
-      }
-
-      setForm({
-        name: "",
-        supply: "",
-        cellphone: "",
-        lastShipDate: "",
-        usualShipDate: "",
-        price: "",
-        amount: ""
+      await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
-      getSuppliers();
+
+      setSuccessMessage(
+        editingId ? "Proveedor actualizado exitosamente" : "Proveedor creado exitosamente"
+      );
+      resetForm();
+      fetchSuppliers();
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
+    } finally {
+      setTimeout(() => setSuccessMessage(""), 3000);
     }
   };
 
   const handleDelete = async (id) => {
+    if (!window.confirm("¿Estás seguro de eliminar este proveedor?")) return;
+
     try {
-      await fetch(`/api/supplier/${id}`, {
-        method: "DELETE",
-      });
-      getSuppliers();
+      await fetch(`/api/supplier/${id}`, { method: "DELETE" });
+      setSuccessMessage("Proveedor eliminado exitosamente");
+      fetchSuppliers();
     } catch (error) {
       console.error("Error al eliminar el proveedor:", error);
+    } finally {
+      setTimeout(() => setSuccessMessage(""), 3000);
     }
   };
 
@@ -91,274 +119,206 @@ const AgregarProveedor = () => {
     setForm({
       name: supplier.name || "",
       supply: supplier.supply || "",
-      cellphone: supplier.cellphone !== undefined && supplier.cellphone !== null ? supplier.cellphone.toString() : "",
-      lastShipDate: supplier.lastShipDate ? supplier.lastShipDate.split('T')[0] : "",
+      cellphone: supplier.cellphone?.toString() || "",
+      lastShipDate: supplier.lastShipDate ? supplier.lastShipDate.split("T")[0] : "",
       usualShipDate: supplier.usualShipDate || "",
-      price: supplier.price !== undefined && supplier.price !== null ? supplier.price.toString() : "",
-      amount: supplier.amount !== undefined && supplier.amount !== null ? supplier.amount.toString() : ""
+      price: supplier.price?.toString() || "",
+      amount: supplier.amount?.toString() || "",
     });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const formatDate = (dateString) => {
-    if (!dateString) return "";
-    const date = new Date(dateString);
-    return date.toLocaleDateString('es-ES');
+  const formatDate = (dateStr) => {
+    if (!dateStr) return "";
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("es-ES");
+  };
+
+  const filteredSuppliers = suppliers.filter(
+    (s) =>
+      s.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      s.supply.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { when: "beforeChildren", staggerChildren: 0.1 } },
+  };
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.4 } },
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">
-            Administración de Proveedores
-          </h1>
-          <p className="text-gray-600">Gestiona y administra todos tus proveedores en un solo lugar</p>
-        </div>
-        
-        {/* Form Section */}
-        <div className="bg-white rounded-xl shadow-xl p-8 mb-8 border border-gray-100">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-            <div className="w-1 h-6 bg-blue-500 rounded-full mr-3"></div>
-            {editingId ? "Editar Proveedor" : "Nuevo Proveedor"}
-          </h2>
-          
-          <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="space-y-2">
-                <label htmlFor="name" className="block text-sm font-semibold text-gray-700">
-                  Nombre del Proveedor
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  value={form.name}
-                  onChange={handleInputChange}
-                  required
-                  maxLength={100}
-                  className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
-                  placeholder="Ingresa el nombre"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="supply" className="block text-sm font-semibold text-gray-700">
-                  Suministro
-                </label>
-                <input
-                  type="text"
-                  name="supply"
-                  id="supply"
-                  value={form.supply}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
-                  placeholder="¿Qué suministra?"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="cellphone" className="block text-sm font-semibold text-gray-700">
-                  Teléfono
-                </label>
-                <input
-                  type="tel"
-                  name="cellphone"
-                  id="cellphone"
-                  value={form.cellphone}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="1234567890"
-                  className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="lastShipDate" className="block text-sm font-semibold text-gray-700">
-                  Fecha del Último Envío
-                </label>
-                <input
-                  type="date"
-                  name="lastShipDate"
-                  id="lastShipDate"
-                  value={form.lastShipDate}
-                  onChange={handleInputChange}
-                  required
-                  max={new Date().toISOString().split('T')[0]}
-                  className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="usualShipDate" className="block text-sm font-semibold text-gray-700">
-                  Frecuencia de Envío
-                </label>
-                <input
-                  type="text"
-                  name="usualShipDate"
-                  id="usualShipDate"
-                  value={form.usualShipDate}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="Ej: Cada lunes, Quincenalmente"
-                  className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="price" className="block text-sm font-semibold text-gray-700">
-                  Precio ($)
-                </label>
-                <input
-                  type="number"
-                  name="price"
-                  id="price"
-                  value={form.price}
-                  onChange={handleInputChange}
-                  required
-                  min="0"
-                  step="0.01"
-                  className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
-                  placeholder="0.00"
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="amount" className="block text-sm font-semibold text-gray-700">
-                  Cantidad
-                </label>
-                <input
-                  type="number"
-                  name="amount"
-                  id="amount"
-                  value={form.amount}
-                  onChange={handleInputChange}
-                  required
-                  min="0"
-                  className="w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
-                  placeholder="0"
-                />
-              </div>
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      variants={containerVariants}
+      className="container1"
+    >
+      <AnimatePresence>
+        {successMessage && (
+          <motion.div
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -50, opacity: 0 }}
+            className="success-message"
+          >
+            <svg
+              className="success-icon"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            {successMessage}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.header variants={itemVariants} className="header">
+        <h1>Administración de Proveedores</h1>
+        <p>Gestiona y administra todos tus proveedores en un solo lugar</p>
+      </motion.header>
+
+      <motion.section variants={itemVariants} className="form-section">
+        <h2>{editingId ? "Editar Proveedor" : "Nuevo Proveedor"}</h2>
+        <form onSubmit={handleSubmit} className="supplier-form">
+          {Object.entries(form).map(([key, value]) => (
+            <div key={key} className="form-group">
+              <label htmlFor={key}>{labels[key]}</label>
+              <input
+                type={
+                  key === "lastShipDate"
+                    ? "date"
+                    : key === "price" || key === "amount" || key === "cellphone"
+                    ? "number"
+                    : "text"
+                }
+                id={key}
+                name={key}
+                value={value}
+                onChange={handleInputChange}
+                required
+                placeholder={placeholders[key]}
+                min={key === "price" || key === "amount" || key === "cellphone" ? "0" : undefined}
+                step={key === "price" ? "0.01" : undefined}
+                max={key === "lastShipDate" ? new Date().toISOString().split("T")[0] : undefined}
+                className="input-field"
+              />
             </div>
-            
-            <div className="flex justify-end mt-8">
-              <button
-                onClick={handleSubmit}
-                className={`px-8 py-3 rounded-lg font-semibold text-white transition-all duration-200 transform hover:scale-105 shadow-lg ${
-                  editingId 
-                    ? 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700' 
-                    : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700'
-                }`}
-              >
-                {editingId ? "✓ Actualizar Proveedor" : "+ Crear Proveedor"}
+          ))}
+
+          <div className="form-actions">
+            {editingId && (
+              <button type="button" onClick={resetForm} className="btn cancel-btn">
+                Cancelar
               </button>
-            </div>
+            )}
+            <button
+              type="submit"
+              className={`btn submit-btn ${editingId ? "edit" : "create"}`}
+            >
+              {editingId ? "Actualizar" : "Crear Proveedor"}
+            </button>
           </div>
+        </form>
+      </motion.section>
+
+      <motion.section variants={itemVariants} className="table-section">
+        <div className="table-header">
+          <h2>
+            Lista de Proveedores{" "}
+            <span className="record-count">{suppliers.length} registros</span>
+          </h2>
+          <input
+            type="text"
+            placeholder="Buscar proveedor..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+            aria-label="Buscar proveedor"
+          />
         </div>
 
-        {/* Table Section */}
-        <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100">
-          <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-6 border-b border-gray-200">
-            <h2 className="text-2xl font-semibold text-gray-800 flex items-center">
-              <div className="w-1 h-6 bg-green-500 rounded-full mr-3"></div>
-              Lista de Proveedores
-              <span className="ml-3 bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
-                {suppliers.length} registros
-              </span>
-            </h2>
+        {isLoading ? (
+          <div className="loading">
+            <div className="spinner" aria-label="Cargando proveedores"></div>
+            <p>Cargando proveedores...</p>
           </div>
-          
-          <div className="overflow-x-auto">
-            <table className="min-w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Nombre
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Suministro
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Teléfono
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Último Envío
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Frecuencia
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Precio
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Cantidad
-                  </th>
-                  <th className="px-6 py-4 text-center text-xs font-bold text-gray-600 uppercase tracking-wider">
-                    Acciones
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-100">
-                {suppliers.length > 0 ? (
-                  suppliers.map((supplier, index) => (
-                    <tr key={supplier._id} className={`hover:bg-gray-50 transition-colors duration-150 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-25'}`}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="font-semibold text-gray-900">{supplier.name}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-gray-700">{supplier.supply}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-gray-700 font-mono">{supplier.cellphone}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-gray-700">{formatDate(supplier.lastShipDate)}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-gray-700">{supplier.usualShipDate}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="font-semibold text-green-600">${supplier.price}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-gray-700">{supplier.amount}</div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-center">
-                        <div className="flex justify-center space-x-2">
-                          <button
-                            onClick={() => handleEdit(supplier)}
-                            className="bg-gradient-to-r from-amber-400 to-orange-500 text-white px-4 py-2 rounded-lg hover:from-amber-500 hover:to-orange-600 transition-all duration-200 transform hover:scale-105 shadow-md text-sm font-medium"
-                          >
-                            ✏️ Editar
-                          </button>
-                          <button
-                            onClick={() => handleDelete(supplier._id)}
-                            className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-200 transform hover:scale-105 shadow-md text-sm font-medium"
-                          >
-                            🗑️ Eliminar
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td className="px-6 py-12 text-center text-gray-500" colSpan="8">
-                      <div className="flex flex-col items-center">
-                        <div className="text-6xl mb-4">📦</div>
-                        <div className="text-lg font-medium">No hay proveedores registrados</div>
-                        <div className="text-sm text-gray-400 mt-1">Comienza agregando tu primer proveedor</div>
+        ) : (
+          <table className="supplier-table">
+            <thead>
+              <tr>
+                {[
+                  "Nombre",
+                  "Suministro",
+                  "Teléfono",
+                  "Último Envío",
+                  "Frecuencia",
+                  "Precio",
+                  "Cantidad",
+                  "Acciones",
+                ].map((header) => (
+                  <th key={header}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {filteredSuppliers.length > 0 ? (
+                filteredSuppliers.map((supplier) => (
+                  <tr key={supplier._id}>
+                    <td>{supplier.name}</td>
+                    <td>{supplier.supply}</td>
+                    <td className="mono">{supplier.cellphone}</td>
+                    <td>{formatDate(supplier.lastShipDate)}</td>
+                    <td>{supplier.usualShipDate}</td>
+                    <td className="price">${parseFloat(supplier.price).toFixed(2)}</td>
+                    <td>{supplier.amount}</td>
+                    <td>
+                      <div className="actions">
+                        <button
+                          onClick={() => handleEdit(supplier)}
+                          className="btn action-btn edit-btn"
+                          aria-label={`Editar ${supplier.name}`}
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          onClick={() => handleDelete(supplier._id)}
+                          className="btn action-btn delete-btn"
+                          aria-label={`Eliminar ${supplier.name}`}
+                        >
+                          🗑️
+                        </button>
                       </div>
                     </td>
                   </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="8" className="no-results">
+                    <div>
+                      <div className="emoji">📦</div>
+                      <p>No se encontraron proveedores</p>
+                      <small>
+                        {searchTerm
+                          ? "Intenta con otro término de búsqueda"
+                          : "Comienza agregando tu primer proveedor"}
+                      </small>
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        )}
+      </motion.section>
+    </motion.div>
   );
 };
 
