@@ -16,7 +16,7 @@ import Contactanos from './pages/contacts';
 import Inicio from './pages/inicio';
 import AgregarEmpleado from './pages/agregarEmpleado';
 import AgregarProveedor from './pages/agergarProveedor';
-import IngresarCodigo from './pages/ingresarCodigo';
+import IngresarCodigo from './pages/IngresarCodigo';
 import RecuperarContrasena from './pages/recuperarContrasenaCorreo';
 import Favoritos from './pages/favoritos';
 import TerminosCondiciones from './pages/terminosycondiciones'
@@ -27,6 +27,7 @@ import DistributorPage from './pages/verDistruibidor'
 import ProductsPage from './pages/verProducts'
 import BienvenidoAdmin from './pages/bienvenidaadmin.jsx'
 import { AuthProvider, useAuth } from './context/AuthContext.jsx'
+import 
 
 function App() {
   return (
