@@ -2,6 +2,7 @@ import React from 'react';
 import { toast } from 'react-hot-toast';
 import useDataDistributors from '../hooks/useDataDistributors';
 import DistruibidorImg from '../images/Distruibidor.png';
+import "../styles/styleAgregarDistruibidor.css"
  
 const AgregarDistruibidor = ({ name,
     setName,
@@ -14,13 +15,12 @@ const AgregarDistruibidor = ({ name,
     saveDistributor,}) => {
  
   return (
-    <div className="registro-container">
+    <div className="registro-container1">
       <div className="registro-form-container">
-        <div className="form-section">
+        <div className="form-section2">
           <h2>Registrar nuevo proveedor</h2>
           <form className="registro-form" onSubmit={saveDistributor}>
             <div className="form-group">
-              <h1>valores {service}</h1>
               <input
                 type="text"
                 placeholder="Ingrese su nombre"
