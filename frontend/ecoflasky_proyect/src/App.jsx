@@ -136,7 +136,7 @@ function Content() {
         <Route path="/bienvenidaAdmin" element={<BienvenidoAdmin/>} />
       </Routes>
       
-      {shouldShowFooter && <Footer />}
+
     </>
   )
 }
