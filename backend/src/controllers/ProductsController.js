@@ -11,7 +11,7 @@ image
 */
 const productsController = {};
 
-import ProductsModel from "../models/Products.js";
+import ProductsModel from "../models/products.js";
 
 productsController.getProducts = async (req,res) => {
 

@@ -1,6 +1,6 @@
 import DistributorCard from "./distributorCard";
 import React from "react";
-
+ 
 const ListDistributors = ({ distributors, loading, deleteDistributor, updateDistributors }) => {
   return (
     <div className="">
@@ -9,13 +9,13 @@ const ListDistributors = ({ distributors, loading, deleteDistributor, updateDist
       </h1>
       <div className="flex flex-wrap gap-4 justify-center mt-5">
         {loading && <div className="text-center text-gray-500">Cargando distribuidores...</div>}
-
+ 
         {!loading && distributors?.length === 0 && (
           <div className="text-center text-gray-500">
             No hay distribuidores registrados
           </div>
         )}
-
+ 
         {distributors?.map((distributor) => (
           <DistributorCard
             key={distributor._id}
@@ -28,5 +28,5 @@ const ListDistributors = ({ distributors, loading, deleteDistributor, updateDist
     </div>
   );
 };
-
+ 
 export default ListDistributors;

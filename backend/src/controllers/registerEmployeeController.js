@@ -1,66 +1,49 @@
-//Importamos el modelo de la base dre datos
-import EmployeeModel from "../models/employee.js"
-import bcryptjs from "bcrypt"; //Encriptar contraseña o correos
-import jsonwebtoken from "jsonwebtoken" //Generar tokens
-//cookie-parse sirve para generar cookies
-import {config} from "../config.js" //Se importa la configuración del proyecto
-//creamos un array de funciones
-const registerEmployessController = {}
+import EmployeeModel from "../models/employee.js";
+import bcrypt from "bcrypt"; // Encriptar contraseña
+import jsonwebtoken from "jsonwebtoken"; // Generar tokens
+import { config } from "../config.js"; // Se importa la configuración del proyecto
 
+const registerEmployeesController = {};
 
-registerEmployessController.register = async (req, res) => {
+registerEmployeesController.register = async (req, res) => {
+    const { name, password, email, speciality, isVerified } = req.body;
 
-    //Pedimos todos los datos
-    const {name,password, email, speciality, isVerified} = req.body;
-
-    try{
-//Verificamos si el empleado ya existe
-        const doesEmployeeExist = await EmployeeModel.findOne({email}); //Se busca el empleado por el email
+    try {
+        // Verificamos si el empleado ya existe
+        const doesEmployeeExist = await EmployeeModel.findOne({ email });
 
         if (doesEmployeeExist) {
-
-            return res.json({message : "Employee already exists"})
+            return res.status(400).json({ message: "Employee already exists" });
         }
-        //Encriptar o Hashear la contraseña
 
-        const passwordHash = await bcryptjs.hash(password, 10); //este 10 significa cuantas veces se va a encriptar
+        // Encriptar la contraseña
+        const passwordHash = await bcrypt.hash(password, 10);
 
-        //Guardar el empleado en la base de datos
- const newEmployee = new EmployeeModel({name,  
-    password: passwordHash,
-    email, //Se cambia  la contraseña a que se guarde la contraseña encriptada
-    speciality,
-      isVerified});
+        // Guardar el empleado en la base de datos
+        const newEmployee = new EmployeeModel({
+            name,
+            password: passwordHash,
+            email,
+            speciality,
+            isVerified
+        });
 
-    await newEmployee.save();
-    res.json ({message: "Employee saved in Register withoutcookie"});
+        await newEmployee.save();
 
-   
-    jsonwebtoken.sign(
-{id: newEmployee._id},
+        // Generar el token
+        const token = jsonwebtoken.sign(
+            { id: newEmployee._id },
+            config.JWT.secret,
+            { expiresIn: "30d" } // Asegúrate de que esto esté correcto
+        );
 
- config.JWT.secret,
-
- { expiresIn: 
-    config.JWT.expiresIN},
-    
-(error, token) => {
-    if(error) console.log(error);
-    res.cookie("authToken", token);
-    res.json ({message: "Empleado registrado"})
-
-}
-
-    )
+        // Establecer la cookie con el token
+        res.cookie("authToken", token, { httpOnly: true }); // Asegúrate de que la cookie sea segura
+        res.status(201).json({ message: "Empleado registrado", token }); // Enviar el token en la respuesta si es necesario
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error al registrar empleado" });
     }
+};
 
-catch (error) {
-console.log(error);
-res.json ({message: "Error al registrar empleado"})
-
-}
-
-
-}
-
-export default registerEmployessController
+export default registerEmployeesController;

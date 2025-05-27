@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/bienvenidoadmin.css'; 
 import termo from "../images/termooo.png"
+import { Link } from 'react-router-dom'; 
 
 const BienvenidoAdmin = () => {
   return (
@@ -12,10 +13,18 @@ const BienvenidoAdmin = () => {
           Lorem ipsum dolor sit amet consectetur. Non maecenas tortor suscipit odio volutpat turpis adipiscing.
         </p>
         <div className="botones">
-          <button className="btn">AGREGAR UN NUEVO PRODUCTO</button>
-          <button className="btn">AGREGAR UN NUEVO PROVEEDOR</button>
-          <button className="btn">AGREGAR UN NUEVO DISTRIBUIDOR</button>
-          <button className="btn">AGREGAR UN NUEVO EMPLEADO</button>
+       <Link to="/agregarProveedor">
+                            <p className="btn">AGREGAR NUEVO PROVEEDOR</p>
+                        </Link>
+                           <Link to="/verDistruibidor">
+                                                    <p className="btn">AGREGAR NUEVO DISTRUIBIDOR</p>
+                                                </Link>
+                                                   <Link to="/agregarEmpleado">
+                            <p className="btn">AGREGAR NUEVO EMPLEADO</p>
+                        </Link>
+                           <Link to="/agregarProducto">
+                            <p className="btn">AGREGAR NUEVO PRODUCTO</p>
+                        </Link>
         </div>
       </div>
       <div className="bienvenido-right">

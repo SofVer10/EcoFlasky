@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
-
+ 
 const useDataDistributors = () => {
   const [activeTab, setActiveTab] = useState("list");
   const API = "http://localhost:4000/api/distributors"; // Ajusta esta URL según tu backend
@@ -11,7 +11,7 @@ const useDataDistributors = () => {
   const [affiliationDate, setAffiliationDate] = useState("");
   const [distributors, setDistributors] = useState([]);
   const [loading, setLoading] = useState(true);
-
+ 
   const fetchDistributors = async () => {
     try {
       const response = await fetch(API);
@@ -27,11 +27,11 @@ const useDataDistributors = () => {
       setLoading(false);
     }
   };
-
+ 
   useEffect(() => {
     fetchDistributors();
   }, []);
-
+ 
   const saveDistributor = async (e) => {
     e.preventDefault();
     try {
@@ -41,7 +41,7 @@ const useDataDistributors = () => {
         locals,
         affiliationDate,
       };
-
+ 
       const response = await fetch(API, {
         method: "POST",
         headers: {
@@ -49,11 +49,11 @@ const useDataDistributors = () => {
         },
         body: JSON.stringify(newDistributor),
       });
-
+ 
       if (!response.ok) {
         throw new Error("Hubo un error al registrar el distribuidor");
       }
-
+ 
       toast.success('Distribuidor registrado');
       fetchDistributors();
       setName("");
@@ -65,7 +65,7 @@ const useDataDistributors = () => {
       toast.error("Error al guardar el distribuidor");
     }
   };
-
+ 
   const deleteDistributor = async (id) => {
     try {
       const response = await fetch(`${API}/${id}`, {
@@ -74,11 +74,11 @@ const useDataDistributors = () => {
           "Content-Type": "application/json",
         },
       });
-
+ 
       if (!response.ok) {
         throw new Error("Hubo un error al eliminar el distribuidor");
       }
-
+ 
       toast.success('Distribuidor eliminado');
       fetchDistributors();
     } catch (error) {
@@ -86,7 +86,7 @@ const useDataDistributors = () => {
       toast.error("Error al eliminar el distribuidor");
     }
   };
-
+ 
   const updateDistributors = async (dataDistributor) => {
     setId(dataDistributor._id);
     setName(dataDistributor.name);
@@ -95,10 +95,10 @@ const useDataDistributors = () => {
     setAffiliationDate(dataDistributor.affiliationDate);
     setActiveTab("form");
   };
-
+ 
   const handleEdit = async (e) => {
     e.preventDefault();
-
+ 
     try {
       const editDistributor = {
         name,
@@ -106,7 +106,7 @@ const useDataDistributors = () => {
         locals,
         affiliationDate,
       };
-      
+     
       const response = await fetch(`${API}/${id}`, {
         method: "PUT",
         headers: {
@@ -114,11 +114,11 @@ const useDataDistributors = () => {
         },
         body: JSON.stringify(editDistributor),
       });
-
+ 
       if (!response.ok) {
         throw new Error("Error al actualizar el distribuidor");
       }
-
+ 
       toast.success('Distribuidor actualizado');
       setId("");
       setName("");
@@ -132,7 +132,7 @@ const useDataDistributors = () => {
       toast.error("Error al actualizar el distribuidor");
     }
   };
-
+ 
   return {
     activeTab,
     setActiveTab,
@@ -153,5 +153,6 @@ const useDataDistributors = () => {
     handleEdit,
   };
 };
-
+ 
 export default useDataDistributors;
+ 

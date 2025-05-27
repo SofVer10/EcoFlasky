@@ -2,10 +2,8 @@ import React from 'react';
 import { toast } from 'react-hot-toast';
 import useDataDistributors from '../hooks/useDataDistributors';
 import DistruibidorImg from '../images/Distruibidor.png';
-
-const AgregarDistruibidor = () => {
-  const {
-    name,
+ 
+const AgregarDistruibidor = ({ name,
     setName,
     service,
     setService,
@@ -13,9 +11,8 @@ const AgregarDistruibidor = () => {
     setLocals,
     affiliationDate,
     setAffiliationDate,
-    saveDistributor,
-  } = useDataDistributors();
-
+    saveDistributor,}) => {
+ 
   return (
     <div className="registro-container">
       <div className="registro-form-container">
@@ -23,6 +20,7 @@ const AgregarDistruibidor = () => {
           <h2>Registrar nuevo proveedor</h2>
           <form className="registro-form" onSubmit={saveDistributor}>
             <div className="form-group">
+              <h1>valores {service}</h1>
               <input
                 type="text"
                 placeholder="Ingrese su nombre"
@@ -70,5 +68,5 @@ const AgregarDistruibidor = () => {
     </div>
   );
 };
-
+ 
 export default AgregarDistruibidor;

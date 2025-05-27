@@ -9,29 +9,28 @@ const Nav = () => {
   return (
     <nav className="nav-container">
       {/* Logo que redirige al registro */}
-      <Link to="/verProducto
-      " className="logo-link">
+      <Link to="/" className="logo-link">
         <img src={logo} alt="Logo EcoFlaky" className="logo-nav" />
       </Link>
 
       {/* Menú de navegación */}
       <ul className="nav-menu">
         <li className="nav-item">
-          <Link to="/verDistruibidor" className="nav-link">INICIO</Link>
+          <Link to="/bienvenidaAdmin" className="nav-link">INICIO</Link>
         </li>
         <li className="nav-item">
 
-          <Link to="/login" className="nav-link">SOBRE NOSOTROS</Link>
+          <Link to="/agregarProveedor" className="nav-link">PROVEEDOR</Link>
         </li>
         <li>
-        <Link to="/bienvenidaAdmin" className="nav-link">PRODUCTOS</Link>
+        <Link to="/verDistruibidor" className="nav-link">DISTRUIBIDOR</Link>
         </li>
   
         <li className="nav-item">
-          <Link to="/agregarEmpleado" className="nav-link">CONTACTANOS</Link>
+          <Link to="/agregarEmpleado" className="nav-link">EMPLEADO</Link>
         </li>
-        <li className="nav-item">
-          <Link to="/register" className="nav-link">TERMINOS Y CONDICIONES</Link>
+         <li className="nav-item">
+          <Link to="/agregarProducto" className="nav-link">PRODUCTOS</Link>
         </li>
       </ul>
 

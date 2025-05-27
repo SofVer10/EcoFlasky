@@ -2,7 +2,7 @@ import React from "react";
 import useDataDistributors from "../hooks/useDataDistributors.js";
 import ListDistributors from "../components/listDistributors";
 import AgregarDistruibidor from "./agregarDistruibidor"; // Tu formulario existente
-
+ 
 const DistributorsPage = () => {
   const {
     activeTab,
@@ -11,9 +11,18 @@ const DistributorsPage = () => {
     loading,
     deleteDistributor,
     updateDistributors,
+     name,
+    setName,
+    service,
+    setService,
+    locals,
+    setLocals,
+    affiliationDate,
+    setAffiliationDate,
+    saveDistributor,
     // Otras funciones del hook si las necesitas
   } = useDataDistributors();
-
+ 
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Navegación entre pestañas si tienes formulario */}
@@ -41,7 +50,7 @@ const DistributorsPage = () => {
           </button>
         </div>
       </div>
-
+ 
       {/* Contenido según la pestaña activa */}
       {activeTab === "list" && (
         <ListDistributors
@@ -51,12 +60,22 @@ const DistributorsPage = () => {
           updateDistributors={updateDistributors}
         />
       )}
-
+ 
       {activeTab === "form" && (
-        <AgregarDistruibidor />
+        <AgregarDistruibidor
+         name={name}
+    setName={setName}
+    service={service}
+    setService={setService}
+    locals={locals}
+    setLocals={setLocals}
+    affiliationDate={affiliationDate}
+    setAffiliationDate={setAffiliationDate}
+    saveDistributor={saveDistributor}
+        />
       )}
     </div>
   );
 };
-
+ 
 export default DistributorsPage;

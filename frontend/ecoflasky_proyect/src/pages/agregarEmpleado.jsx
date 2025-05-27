@@ -56,14 +56,14 @@ const AgregarEmpleado = () => {
       };
 
       if (editingId) {
-        await fetch(`/api/employee/${editingId}`, {
+        await fetch(`/api/registerEmployee/${editingId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         });
         setEditingId(null);
       } else {
-        await fetch("/api/employee", {
+        await fetch("/api/registerEmployee", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
