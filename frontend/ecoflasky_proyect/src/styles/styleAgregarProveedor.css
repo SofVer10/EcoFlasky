@@ -82,7 +82,7 @@
 /* Formulario */
 .form-section11 {
   background: var(--white);
-  width: 1000px;
+  width: 1500px;
   padding: 2rem;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
@@ -192,7 +192,7 @@
 .table-section {
   background: var(--white);
   padding: 2rem;
-  width: 1000px;
+  width: 1500px;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   margin-top: 1rem;
