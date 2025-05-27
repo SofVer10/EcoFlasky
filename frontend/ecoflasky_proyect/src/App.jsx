@@ -137,7 +137,7 @@ function Content() {
         <Route path="/cambiarContrasena" element={<CambiarContrasena />} />
       </Routes>
       
-      {shouldShowFooter && <Footer />}
+
     </>
   )
 }
