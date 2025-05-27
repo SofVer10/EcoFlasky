@@ -16,7 +16,7 @@ import Contactanos from './pages/contacts';
 import Inicio from './pages/inicio';
 import AgregarEmpleado from './pages/agregarEmpleado';
 import AgregarProveedor from './pages/agergarProveedor';
-import IngresarCodigo from './pages/IngresarCodigo.jsx';
+import IngresarCodigo from './pages/IngresarCodigo';
 import RecuperarContrasena from './pages/recuperarContrasenaCorreo';
 import Favoritos from './pages/favoritos';
 import TerminosCondiciones from './pages/terminosycondiciones'
