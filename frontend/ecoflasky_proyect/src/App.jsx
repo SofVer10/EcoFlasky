@@ -26,7 +26,6 @@ import DistributorPage from './pages/verDistruibidor'
 import ProductsPage from './pages/verProducts'
 import BienvenidoAdmin from './pages/bienvenidaadmin.jsx'
 import { AuthProvider, useAuth } from './context/AuthContext.jsx'
-import 
 
 function App() {
   return (

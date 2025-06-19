@@ -55,6 +55,19 @@ const ProductRegistration = () => {
     setShowDistributorDropdown(false);
   };
 
+  const [previewImage, setPreviewImage] = useState(null);
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   // Funciones para seleccionar opciones
   const selectCategory = (category) => {
     setSelectedCategory(category.name); // Mostrar el nombre
@@ -92,7 +105,7 @@ const ProductRegistration = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Validar que todos los campos requeridos estén llenos
     if (!name || !description || !price || !stock || !categoryId || !distributorId || !suplierId) {
       toast.error('Por favor complete todos los campos requeridos');
@@ -105,10 +118,10 @@ const ProductRegistration = () => {
   return (
     <div className="product-registration-container">
       <div className="product-registration-image-container">
-        <img 
+        <img
           src={imageProducts}
-          alt="Reusable water bottles" 
-          className="product-image" 
+          alt="Reusable water bottles"
+          className="product-image"
         />
       </div>
 
@@ -178,7 +191,7 @@ const ProductRegistration = () => {
                 <span className="dropdown-arrow">▼</span>
               </div>
               <span className="required-mark dropdown-required">*</span>
-              
+
               {showCategoryDropdown && (
                 <div className="dropdown-menu">
                   {loadingOptions ? (
@@ -203,7 +216,7 @@ const ProductRegistration = () => {
                 <span className="dropdown-arrow">▼</span>
               </div>
               <span className="required-mark dropdown-required">*</span>
-              
+
               {showDistributorDropdown && (
                 <div className="dropdown-menu">
                   {loadingOptions ? (
@@ -228,7 +241,7 @@ const ProductRegistration = () => {
                 <span className="dropdown-arrow">▼</span>
               </div>
               <span className="required-mark dropdown-required">*</span>
-              
+
               {showSupplierDropdown && (
                 <div className="dropdown-menu">
                   {loadingOptions ? (
@@ -249,14 +262,26 @@ const ProductRegistration = () => {
 
           <div className="product-photo-container">
             <div className="photo-upload-box">
-              <Plus size={24} color="black" />
+              {previewImage ? (
+                <img src={previewImage} alt="Preview" className="photo-preview" />
+              ) : (
+                <Plus size={24} color="black" />
+              )}
+              <input
+                type="file"
+                style={{ display: 'none' }}
+                onChange={handleImageUpload}
+                accept="image/*"
+                id="product-image-upload"
+              />
+              <label htmlFor="product-image-upload" style={{ position: 'absolute', width: '100%', height: '100%', cursor: 'pointer' }} />
             </div>
             <p className="photo-text">Añadir foto de producto</p>
             <span className="required-mark photo-required">*</span>
           </div>
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="add-product-button"
             disabled={loadingOptions}
           >
