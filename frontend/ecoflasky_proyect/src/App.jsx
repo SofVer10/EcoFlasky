@@ -40,16 +40,18 @@ function App() {
 
 function Content() {
   const location = useLocation();
-  const { isAdmin } = useAuth(); // Usar el contexto de autenticación
+  const { isAdmin, user } = useAuth(); // Obtener más información del contexto
+
+  // Debug: Agregar console.log para verificar el estado
+  console.log('isAdmin:', isAdmin, 'user:', user, 'pathname:', location.pathname);
 
   // Configuración más detallada de rutas
   const routeConfig = {
     // Rutas que no deben mostrar navegación
-    noNav: ['/primerUso'],
+    noNav: ['/primerUso', '/', '/register', '/password', '/recuperarContrasena', '/ingresarCodigo', '/cambiarContrasena'],
     
-    // Rutas de administrador (siempre muestran NavAdmin)
-    adminRoutes: [
-      '/loginAdmin',
+    // Rutas EXCLUSIVAS de administrador (solo admin puede acceder)
+    adminOnlyRoutes: [
       '/agregarEmpleado',
       '/agregarDistruibidor',
       '/agregarProveedor', 
@@ -59,11 +61,17 @@ function Content() {
       '/bienvenidaAdmin'
     ],
     
-    // Rutas que pueden variar según el usuario (admin o normal)
-    dynamicRoutes: [
+    // Rutas públicas o de cliente (siempre Nav normal a menos que sea admin)
+    publicRoutes: [
       '/productos',
-      '/favoritos'
-      // Agregar más rutas que cambien según el tipo de usuario
+      '/favoritos',
+      '/contactanos',
+      '/acercadenosotros',
+      '/inicio',
+      '/regular',
+      '/economico',
+      '/disenado',
+      '/TerminosCondiciones'
     ]
   };
 
@@ -71,19 +79,23 @@ function Content() {
   const getNavigationType = () => {
     const currentPath = location.pathname;
     
-    // No mostrar navegación
+    // No mostrar navegación en rutas específicas
     if (routeConfig.noNav.includes(currentPath)) {
       return 'none';
     }
     
-    // Rutas específicas de admin
-    if (routeConfig.adminRoutes.includes(currentPath)) {
+    // Rutas exclusivas de admin - siempre NavAdmin
+    if (routeConfig.adminOnlyRoutes.includes(currentPath)) {
       return 'admin';
     }
     
-    // Rutas dinámicas que dependen del contexto del usuario
-    if (routeConfig.dynamicRoutes.includes(currentPath) && isAdmin) {
-      return 'admin';
+    // Para rutas públicas, verificar si el usuario es admin Y está autenticado
+    if (routeConfig.publicRoutes.includes(currentPath)) {
+      // Solo mostrar NavAdmin si realmente es admin y está autenticado
+      if (isAdmin === true && user && user.role === 'admin') {
+        return 'admin';
+      }
+      return 'normal';
     }
     
     // Por defecto, navegación normal
@@ -137,7 +149,7 @@ function Content() {
         <Route path="/cambiarContrasena" element={<CambiarContrasena />} />
       </Routes>
       
-
+      {shouldShowFooter && <Footer />}
     </>
   )
 }

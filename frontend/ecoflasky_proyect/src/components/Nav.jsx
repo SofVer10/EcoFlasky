@@ -35,19 +35,19 @@ const Nav = () => {
       {/* Menú de navegación */}
       <ul className={`nav-menu ${isMenuOpen ? 'nav-menu-open' : ''}`}>
         <li className="nav-item">
-          <Link to="/bienvenidaAdmin" className="nav-link" onClick={closeMenu}>INICIO</Link>
+          <Link to="/inicio" className="nav-link" onClick={closeMenu}>INICIO</Link>
         </li>
         <li className="nav-item">
-          <Link to="/agregarProveedor" className="nav-link" onClick={closeMenu}>PROVEEDOR</Link>
+          <Link to="/contactanos" className="nav-link" onClick={closeMenu}>CONTACTANOS</Link>
         </li>
         <li className="nav-item">
-          <Link to="/verDistruibidor" className="nav-link" onClick={closeMenu}>DISTRIBUIDOR</Link>
+          <Link to="/acercadenosotros" className="nav-link" onClick={closeMenu}>ACERCA DE NOSOTROS</Link>
         </li>
         <li className="nav-item">
-          <Link to="/agregarEmpleado" className="nav-link" onClick={closeMenu}>EMPLEADO</Link>
+          <Link to="/resenas" className="nav-link" onClick={closeMenu}>RESEÑAS</Link>
         </li>
         <li className="nav-item">
-          <Link to="/verProducto" className="nav-link" onClick={closeMenu}>PRODUCTOS</Link>
+          <Link to="/productos" className="nav-link" onClick={closeMenu}>PRODUCTOS</Link>
         </li>
       </ul>
 
