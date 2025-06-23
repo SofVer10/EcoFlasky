@@ -20,6 +20,7 @@ import employeeRoute from "./src/sources/employee.js"
 import authStatusRoute from "./src/sources/authStatus.js" // Nueva ruta
 import passwordRecoveryRoute from "./src/sources/passwordRecovery.js";
 import { validateAuthToken } from "./src/middleware/ValidateAuthToken.js";
+import paymentRoutes from "./src/sources/paymentRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -34,7 +35,7 @@ app.use(
     allowedHeaders: ['Content-Type', 'Authorization'], 
   })
 );
-
+app.use("/api/payment", paymentRoutes);
 app.use("/api/clients", clientsRoutes)
 app.use("/api/ratings", RatingRoutes)
 app.use("/api/products", ProductsRoutes)

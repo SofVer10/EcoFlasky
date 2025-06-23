@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useCart } from '../context/CartContext'; // Import the shared cart context
+import { Link, useNavigate } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import '../styles/stylesinicio.css';
 import botellaRosa from '../images/vector-1.png';
 import productoimagen from '../images/termonegro.png';
@@ -11,23 +11,21 @@ import personalizados from '../images/personalizados.png';
 import solidos from '../images/solidos.png';
 import resena from '../images/resenas.png';
 
-// Import review profile images
 import user1Profile from '../images/user1245.png';
 import fernandoProfile from '../images/fernando_re.png';
 import rosaProfile from '../images/rosa567.png';
 
 const Inicio = () => {
-  // Use the shared cart context instead of local state
-  const { 
-    cartItems, 
-    addToCart, 
-    removeFromCart, 
-    updateQuantity, 
-    getCartTotal, 
-    getCartItemsCount 
+  const navigate = useNavigate();
+  const {
+    cartItems,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    getCartTotal,
+    getCartItemsCount,
   } = useCart();
 
-  // Existing products data
   const productos = [
     {
       id: 1,
@@ -72,8 +70,7 @@ const Inicio = () => {
       precio: 425
     },
   ];
-  
-  // Reseñas data
+
   const resenas = [
     {
       id: 1,
@@ -98,64 +95,44 @@ const Inicio = () => {
     }
   ];
 
-  // State for carousel
   const [currentSlide, setCurrentSlide] = useState(0);
-  
-  // State for showing/hiding cart
   const [showCart, setShowCart] = useState(false);
-  
-  // State for product detail view
   const [showProductDetail, setShowProductDetail] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  
-  // State for quantity in product detail
   const [productQuantity, setProductQuantity] = useState(1);
-  
-  // State for selected color
   const [selectedColor, setSelectedColor] = useState('#FF9898');
 
-  // Function to toggle cart visibility
   const toggleCart = () => {
     setShowCart(!showCart);
-    // Reset product detail view when showing cart
     if (!showCart) {
       setShowProductDetail(false);
     }
   };
 
-  // Function to show product detail
   const showProductDetails = (product) => {
     setSelectedProduct(product);
     setShowProductDetail(true);
-    setProductQuantity(1); // Reset quantity when viewing a new product
+    setProductQuantity(1);
   };
-  
-  // Function to go back to main view from product detail
+
   const closeProductDetail = () => {
     setShowProductDetail(false);
     setSelectedProduct(null);
     setProductQuantity(1);
   };
 
-  // Function to add product to cart from product detail
   const addToCartFromDetail = () => {
     if (!selectedProduct) return;
-    
     addToCart(selectedProduct, productQuantity);
-    
-    // Show cart or return to main view
     setShowProductDetail(false);
     setShowCart(true);
   };
 
-  // Function to add product to cart from main view
   const handleAddToCart = (product) => {
     addToCart(product, 1);
-    // Show cart after adding item
     setShowCart(true);
   };
 
-  // Carousel functions
   const nextSlide = () => {
     setCurrentSlide((prevSlide) => (prevSlide + 1) % Math.ceil(productos.length / 3));
   };
@@ -164,62 +141,48 @@ const Inicio = () => {
     setCurrentSlide((prevSlide) => (prevSlide - 1 + Math.ceil(productos.length / 3)) % Math.ceil(productos.length / 3));
   };
 
-  // Determine which products to show based on current slide
   const startIndex = currentSlide * 3;
   const visibleProducts = productos.slice(startIndex, startIndex + 3);
 
-  // Function to render stars based on rating
   const renderStars = (rating) => {
     const stars = [];
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
-    
-    // Add full stars
     for (let i = 0; i < fullStars; i++) {
       stars.push(<span key={`star-${i}`} className="star filled">★</span>);
     }
-    
-    // Add half star if needed
     if (hasHalfStar) {
       stars.push(<span key="half-star" className="star half-filled">★</span>);
     }
-    
-    // Add empty stars
     const emptyStars = 5 - stars.length;
     for (let i = 0; i < emptyStars; i++) {
       stars.push(<span key={`empty-star-${i}`} className="star empty">☆</span>);
     }
-    
     return stars;
   };
-  
-  // Available colors for products
+
   const availableColors = ['#FF9898', '#9EFFFF', '#DDB4FF', '#95FF9D', '#FFE897'];
-  
-  // Function to increase product quantity
+
   const increaseQuantity = () => {
     setProductQuantity(productQuantity + 1);
   };
-  
-  // Function to decrease product quantity
+
   const decreaseQuantity = () => {
     if (productQuantity > 1) {
       setProductQuantity(productQuantity - 1);
     }
   };
-  
+
   // Render product detail view
   if (showProductDetail && selectedProduct) {
     return (
       <div className="inicio-container">
-        {/* Product Detail Page */}
         <div className="product-detail-container">
           <div className="product-detail-back">
             <button onClick={closeProductDetail} className="back-button">
               ← Ver todos
             </button>
           </div>
-          
           <div className="product-detail-content">
             <div className="product-detail-images">
               <div className="product-detail-tag">Termo</div>
@@ -232,18 +195,15 @@ const Inicio = () => {
                 <img src={selectedProduct.imagen} alt={selectedProduct.titulo} className="thumbnail" />
               </div>
             </div>
-            
             <div className="product-detail-info">
               <h2 className="product-detail-title">{selectedProduct.titulo}</h2>
               <p className="product-detail-description">{selectedProduct.descripcion}</p>
-              
               <div className="product-detail-rating">
                 {renderStars(4.5)}
               </div>
-              
               <div className="product-detail-colors">
                 {availableColors.map((color, index) => (
-                  <button 
+                  <button
                     key={index}
                     className={`color-button ${selectedColor === color ? 'selected-color' : ''}`}
                     style={{ backgroundColor: color }}
@@ -251,12 +211,10 @@ const Inicio = () => {
                   />
                 ))}
               </div>
-              
               <div className="product-detail-price">
                 <span className="price-label">Precio:</span>
                 <span className="price-value">${selectedProduct.precio}</span>
               </div>
-              
               <div className="product-detail-quantity">
                 <div className="quantity-controls">
                   <button className="quantity-button" onClick={decreaseQuantity}>-</button>
@@ -267,7 +225,6 @@ const Inicio = () => {
                   Añadir al carrito
                 </button>
               </div>
-              
               <div className="product-detail-suggestion">
                 <h4>Puede que te guste:</h4>
                 <div className="suggestion-item">
@@ -281,15 +238,13 @@ const Inicio = () => {
       </div>
     );
   }
-  
+
   // Render cart view
   if (showCart) {
     return (
       <div className="inicio-container">
-        {/* Shopping Cart Page */}
         <div className="cart-page-container">
           <h1 className="cart-page-title">CARRITO DE COMPRAS.</h1>
-          
           <div className="cart-page-content">
             {cartItems.length > 0 ? (
               <>
@@ -306,21 +261,21 @@ const Inicio = () => {
                       <div className="cart-page-quantity">
                         <label>Cantidad:</label>
                         <div className="cart-page-quantity-input">
-                          <button 
-                            className="quantity-button" 
+                          <button
+                            className="quantity-button"
                             onClick={() => updateQuantity(item.id, item.cantidad - 1)}
                             disabled={item.cantidad <= 1}
                           >
                             -
                           </button>
-                          <input 
-                            type="number" 
+                          <input
+                            type="number"
                             min="1"
                             value={item.cantidad}
                             onChange={(e) => updateQuantity(item.id, parseInt(e.target.value) || 1)}
                           />
-                          <button 
-                            className="quantity-button" 
+                          <button
+                            className="quantity-button"
                             onClick={() => updateQuantity(item.id, item.cantidad + 1)}
                           >
                             +
@@ -337,7 +292,6 @@ const Inicio = () => {
                     </div>
                   </div>
                 ))}
-                
                 <div className="cart-page-total">
                   <span>Cantidad total a pagar:</span>
                   <span className="cart-page-total-price">${getCartTotal()}</span>
@@ -348,10 +302,17 @@ const Inicio = () => {
                 <p>Tu carrito está vacío</p>
               </div>
             )}
-            
             <div className="cart-page-actions">
               {cartItems.length > 0 && (
-                <button className="cart-page-pay-button">PAGAR</button>
+                <button
+                  className="cart-page-pay-button"
+                  onClick={() => {
+                    setShowCart(false);
+                    navigate('/pay');
+                  }}
+                >
+                  PAGAR
+                </button>
               )}
               <button className="cart-page-continue-button" onClick={toggleCart}>
                 Continuar comprando
@@ -363,7 +324,7 @@ const Inicio = () => {
     );
   }
 
-  // Main content (only shown when cart is not visible)
+  // Main content
   return (
     <div className="inicio-container">
       {/* Hero Section with bottles */}
@@ -374,12 +335,11 @@ const Inicio = () => {
           </div>
           <div className="wave-overlay"></div>
         </div>
-        
         <div className="content-section">
           <h1>ECOFLASKY</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur. Non pulvinar maecenas sed 
-            elementum tortor lacus. Amet tempor lorem faucibus ut nunc dictum 
+            Lorem ipsum dolor sit amet consectetur. Non pulvinar maecenas sed
+            elementum tortor lacus. Amet tempor lorem faucibus ut nunc dictum
             adipiscing. Dictad esce purus pretium praesent augue ori pretia lacus natoquesit. Eget in cursus placerat id.
           </p>
           <Link to="/productos">
@@ -387,25 +347,22 @@ const Inicio = () => {
           </Link>
         </div>
       </div>
-      
       {/* MÁS COMPRADOS Section */}
       <div className="productos-populares-container">
         <h2 className="section-title">MÁS COMPRADOS</h2>
         <div className="title-underline"></div>
-        
         <div className="carousel-container">
           <button className="arrow-button prev" onClick={prevSlide}>
             &#10094;&#10094;
           </button>
-          
           <div className="products-grid">
             {visibleProducts.map((producto) => (
               <div key={producto.id} className="product-card">
                 <div className="product-image-container">
-                  <img 
-                    src={producto.imagen} 
-                    alt={producto.titulo} 
-                    className="product-image" 
+                  <img
+                    src={producto.imagen}
+                    alt={producto.titulo}
+                    className="product-image"
                     onClick={() => showProductDetails(producto)}
                   />
                   <button className="cart-button" onClick={() => handleAddToCart(producto)}>
@@ -418,18 +375,15 @@ const Inicio = () => {
               </div>
             ))}
           </div>
-          
           <button className="arrow-button next" onClick={nextSlide}>
             &#10095;&#10095;
           </button>
         </div>
       </div>
-
       {/* Reseñas Section */}
       <div className="resenas-container">
         <h2 className="section-title">RESEÑAS</h2>
         <div className="title-underline"></div>
-        
         <div className="resenas-background" style={{ backgroundImage: `url(${resena})` }}>
           <div className="resenas-overlay"></div>
           <div className="resenas-grid">
@@ -448,8 +402,7 @@ const Inicio = () => {
           </div>
         </div>
       </div>
-      
-      {/* Floating cart button for main view */}
+      {/* Floating cart button */}
       <button className="floating-cart-button" onClick={toggleCart}>
         🛒 <span className="cart-count">{getCartItemsCount()}</span>
       </button>
