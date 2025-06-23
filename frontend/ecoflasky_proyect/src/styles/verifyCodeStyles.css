@@ -1,3 +1,4 @@
+/* Reutilizamos los estilos base del registro */
 * {
     margin: 0;
     padding: 0;
@@ -15,9 +16,9 @@ body {
     width: 100%;
 }
 
-/* Mitad izquierda - Formulario */
-.half-color-register {
-    background-color: #7FB3D3; /* Color más suave que el azul muy oscuro */
+/* Mitad izquierda - Formulario de verificación */
+.half-color-verify {
+    background-color: #7FB3D3; /* Mismo color que registro */
     width: 50%; 
     padding: 40px;
     display: flex;
@@ -26,24 +27,24 @@ body {
     align-items: center;
 }
 
-/* Texto de bienvenida */
-.texto-register {
+/* Texto de verificación */
+.texto-verify {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
-.texto-register h1 {
+.texto-verify h1 {
     color: rgba(0, 0, 0, 0.7) !important;
     font-size: 2.5rem;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-weight: bold;
 }
 
-.texto-register p {
+.texto-verify p {
     color: rgba(0, 0, 0, 0.6);
     font-size: 1rem;
-    line-height: 1.4;
-    max-width: 350px;
+    line-height: 1.5;
+    max-width: 400px;
 }
 
 /* Formulario */
@@ -52,106 +53,106 @@ form {
     max-width: 400px;
 }
 
-/* Contenedores de input unificados */
-.input-container,
-.input-container-gmail,
-.input-container-password {
+/* Contenedor del input de código - más destacado */
+.input-container-code {
     display: flex;
     align-items: center;
-    margin: 25px 0;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 15px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    margin: 40px 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    border-radius: 15px;
+    padding: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.input-container-code:focus-within {
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Icono de email */
+.gmail {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    opacity: 0.8;
+}
+
+/* Input del código - más llamativo */
+.code-input {
+    border: none;
+    outline: none;
+    padding: 12px 0;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-align: center;
+    background-color: transparent;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.9);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
     transition: border-color 0.3s ease;
 }
 
-.input-container:focus-within,
-.input-container-gmail:focus-within,
-.input-container-password:focus-within {
-    border-color: rgba(255, 255, 255, 0.5);
-}
-
-/* Iconos */
-.user,
-.gmail {
-    width: 20px;
-    height: 20px;
-    margin-right: 15px;
-    opacity: 0.7;
-}
-
-.password-register {
-    width: 20px;
-    height: 20px;
-    margin-right: 15px;
-    opacity: 0.7;
-}
-
-/* Inputs */
-.underline-input {
-    border: none;
-    outline: none;
-    padding: 8px 0;
-    font-size: 16px;
-    background-color: transparent;
-    width: 100%;
-    color: rgba(0, 0, 0, 0.8);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-}
-
-.underline-input::placeholder {
+.code-input::placeholder {
     color: rgba(0, 0, 0, 0.5);
     opacity: 1;
+    letter-spacing: 1px;
+    font-weight: normal;
 }
 
-.underline-input:focus {
-    border-bottom-color: rgba(0, 0, 0, 0.6);
+.code-input:focus {
+    border-bottom-color: rgba(0, 0, 0, 0.7);
 }
 
-/* Link de login */
-.irLogin {
+/* Link de registro */
+.irRegister {
     color: rgba(0, 0, 0, 0.6);
     text-align: center;
-    margin: 20px 0;
+    margin: 25px 0;
     font-size: 14px;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.irLogin:hover {
+.irRegister:hover {
     color: rgba(0, 0, 0, 0.8);
 }
 
-/* Botón de registro */
-.Registrarse {
+/* Botón de verificación */
+.Verificar {
     width: 100%;
-    padding: 15px;
-    margin-top: 20px;
+    padding: 18px;
+    margin-top: 30px;
     background: linear-gradient(135deg, #4A90A4, #5BA7C2);
     color: white;
     border: none;
     border-radius: 25px;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.Registrarse:hover:not(:disabled) {
+.Verificar:hover:not(:disabled) {
     background: linear-gradient(135deg, #5BA7C2, #4A90A4);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
-.Registrarse:disabled {
+.Verificar:disabled {
     opacity: 0.7;
     cursor: not-allowed;
+    transform: none;
 }
 
 /* Mitad derecha - Imagen */
-.content-register {
+.content-verify {
     width: 50%;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     position: relative;
@@ -162,7 +163,7 @@ form {
 }
 
 /* Wrapper de imagen */
-.image-wrapper-register {
+.image-wrapper-verify {
     position: relative;
     width: 80%;
     height: 80%;
@@ -172,7 +173,7 @@ form {
 }
 
 /* Imagen principal */
-.register {
+.verify-image {
     width: 70%;
     height: auto;
     z-index: 2;
@@ -180,7 +181,7 @@ form {
 }
 
 /* Elementos decorativos */
-.elipse1-register {
+.elipse1-verify {
     position: absolute;
     top: 20%;
     right: 10%;
@@ -190,7 +191,7 @@ form {
     opacity: 0.6;
 }
 
-.elipse2-register {
+.elipse2-verify {
     position: absolute;
     bottom: 20%;
     left: 10%;
@@ -206,21 +207,30 @@ form {
         flex-direction: column;
     }
     
-    .half-color-register,
-    .content-register {
+    .half-color-verify,
+    .content-verify {
         width: 100%;
         min-height: 50vh;
     }
     
-    .half-color-register {
+    .half-color-verify {
         padding: 20px;
     }
     
-    .texto-register h1 {
+    .texto-verify h1 {
         font-size: 2rem;
     }
     
-    .register {
+    .texto-verify p {
+        font-size: 0.9rem;
+    }
+    
+    .verify-image {
         width: 60%;
+    }
+    
+    .code-input {
+        font-size: 18px;
+        letter-spacing: 2px;
     }
 }

@@ -7,7 +7,7 @@ import arriba from "../images/arriba.png";
 import abajo from "../images/abajo.png";
 import gmail from "../images/gmail.png";
 import password from "../images/Password.png";
-import useRegister from "../hooks/useDataRegister.js";
+import useRegisterClient from "../hooks/useDataRegisterClient.js";
 
 const Register = () => {
     const {
@@ -17,11 +17,11 @@ const Register = () => {
         setEmail,
         password: userPassword,
         setPassword,
-        speciality,
-        setSpeciality,
+        cellphone,
+        setCellphone,
         handleRegister,
         loading,
-    } = useRegister();
+    } = useRegisterClient();
 
     return (
         <>
@@ -43,6 +43,7 @@ const Register = () => {
                                 onChange={(e) => setName(e.target.value)}
                                 required
                                 disabled={loading}
+                                autoComplete="name"
                             />
                         </div>
                         
@@ -56,6 +57,7 @@ const Register = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
                                 disabled={loading}
+                                autoComplete="email"
                             />
                         </div>
                         
@@ -69,24 +71,26 @@ const Register = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
                                 disabled={loading}
+                                autoComplete="new-password"
+                                minLength="6"
                             />
                         </div>
                         
-                        {/* Nuevo campo para especialidad */}
                         <div className="input-container">
-                            <img className="user" alt="Speciality icon" src={user} />
+                            <img className="user" alt="Phone icon" src={user} />
                             <input 
-                                type="text" 
+                                type="tel" 
                                 className="underline-input" 
-                                placeholder="Especialidad"
-                                value={speciality}
-                                onChange={(e) => setSpeciality(e.target.value)}
+                                placeholder="Teléfono"
+                                value={cellphone}
+                                onChange={(e) => setCellphone(e.target.value)}
                                 required
                                 disabled={loading}
+                                autoComplete="tel"
                             />
                         </div>
                         
-                        <Link to="/">
+                        <Link to="/login">
                             <p className="irLogin">¿Ya tienes cuenta? Inicia sesión</p>
                         </Link>
                         

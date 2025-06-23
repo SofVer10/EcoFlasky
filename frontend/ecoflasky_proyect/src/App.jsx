@@ -13,6 +13,7 @@ import Regular from "./pages/regular"
 import Disenado from "./pages/disenado"
 import Economico from "./pages/economico"
 import Contactanos from './pages/contacts';
+import VerifyCode from './pages/verifyCode.jsx'
 import Inicio from './pages/inicio';
 import AgregarEmpleado from './pages/agregarEmpleado';
 import AgregarProveedor from './pages/agergarProveedor';
@@ -145,6 +146,8 @@ function Content() {
         <Route path="/agregarProveedor" element={<AgregarProveedor/>} />
         <Route path="/bienvenidaAdmin" element={<BienvenidoAdmin/>} />
         <Route path="/cambiarContrasena" element={<CambiarContrasena />} />
+        <Route path="/verifyCode" element={<VerifyCode />} />
+
       </Routes>
       
       {shouldShowFooter && <Footer />}

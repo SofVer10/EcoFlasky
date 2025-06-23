@@ -1,6 +1,5 @@
 import React from 'react';
 import { toast } from 'react-hot-toast';
-import useDataDistributors from '../hooks/useDataDistributors';
 import DistruibidorImg from '../images/Distruibidor.png';
 import "../styles/styleAgregarDistruibidor.css";
 
@@ -15,10 +14,22 @@ const AgregarDistribuidor = ({
   setAffiliationDate,
   saveDistributor
 }) => {
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    saveDistributor();
-    toast.success('Distribuidor agregado correctamente');
+    
+    // Validar que todos los campos estén llenos
+    if (!name || !service || !locals || !affiliationDate) {
+      toast.error('Por favor, complete todos los campos');
+      return;
+    }
+
+    try {
+      await saveDistributor(e); // Pasar el evento
+      // El toast de éxito ya se maneja en el hook
+    } catch (error) {
+      console.error('Error al agregar distribuidor:', error);
+      toast.error('Error al agregar el distribuidor');
+    }
   };
 
   return (
@@ -37,7 +48,7 @@ const AgregarDistribuidor = ({
                 id="name"
                 type="text"
                 className="form-input"
-                value={name}
+                value={name || ''} // Prevenir valor undefined
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Ej: Distribuidora XYZ"
                 required
@@ -50,7 +61,7 @@ const AgregarDistribuidor = ({
                 id="service"
                 type="text"
                 className="form-input"
-                value={service}
+                value={service || ''} // Prevenir valor undefined
                 onChange={(e) => setService(e.target.value)}
                 placeholder="Ej: Suministro de materiales"
                 required
@@ -63,7 +74,7 @@ const AgregarDistribuidor = ({
                 id="locals"
                 type="text"
                 className="form-input"
-                value={locals}
+                value={locals || ''} // Prevenir valor undefined
                 onChange={(e) => setLocals(e.target.value)}
                 placeholder="Ej: Av. Principal 123"
                 required
@@ -76,7 +87,7 @@ const AgregarDistribuidor = ({
                 id="date"
                 type="date"
                 className="form-input"
-                value={affiliationDate}
+                value={affiliationDate || ''} // Prevenir valor undefined
                 onChange={(e) => setAffiliationDate(e.target.value)}
                 required
               />

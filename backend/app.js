@@ -20,16 +20,21 @@ import employeeRoute from "./src/sources/employee.js"
 
 import { validateAuthToken } from "./src/middleware/validateAuthToken.js";
 
-
 const app = express();
-app.use (express.json());
+app.use(express.json());
 app.use(cookieParse())
+
+// ✅ CORS CORREGIDO
 app.use(
   cors({
-    origin: "*", // Dominio del cliente
-    credentials: true, // Permitir envío de cookies y credenciales
+    origin: "http://localhost:5173", 
+    credentials: true, 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'], 
   })
-);app.use("/api/clients",clientsRoutes)
+);
+
+app.use("/api/clients", clientsRoutes)
 app.use("/api/ratings", RatingRoutes)
 app.use("/api/products", ProductsRoutes)
 app.use("/api/favorites", FavoriteRoute)
@@ -46,6 +51,4 @@ app.use("/api/registerEmployee", registerEmployeeRoute)
 app.use("/api/speciality", speciality)
 app.use("/api/employee", employeeRoute)
 
-
-export default app;    
-//Aaron
+export default app;

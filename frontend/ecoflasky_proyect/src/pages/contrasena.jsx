@@ -22,7 +22,7 @@ const Password = () => {
                     <Link to="/">
                     <p className="Volver">Volver</p>
                     </Link>
-                                        <Link to="/">
+                                        <Link to="/recuperarContrasena">
 
                     <button className="RecuperarContra">Recuperar Contraseña</button>
                                         </Link>
