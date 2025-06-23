@@ -8,24 +8,24 @@ import AcercaDe from './pages/Acercadenosotros.jsx'
 import CambiarContrasena from './pages/CambiarContrasena.jsx'
 import Register from './pages/register'
 import Login from './pages/login'
-import Password from './pages/contrasena'
+import Password from './pages/Contrasena.jsx'
 import Regular from "./pages/regular"
-import Disenado from "./pages/disenado"
-import Economico from "./pages/economico"
-import Contactanos from './pages/contacts';
+import Disenado from "./pages/Disenado.jsx"
+import Economico from "./pages/Economico.jsx"
+import Contactanos from './pages/Contacts.jsx';
 import VerifyCode from './pages/verifyCode.jsx'
 import Inicio from './pages/inicio';
-import AgregarEmpleado from './pages/agregarEmpleado';
+import AgregarEmpleado from './pages/AgregarEmpleado.jsx';
 import AgregarProveedor from './pages/AgergarProveedor.jsx';
 import RecuperarContrasena from './pages/recuperarContrasenaCorreo';
-import Favoritos from './pages/favoritos';
+import Favoritos from './pages/Favoritos.jsx';
 import TerminosCondiciones from './pages/terminosycondiciones'
 import PrimerUsoAdmin from "./pages/primerUsoAdmin";
 import AgregarDistruibidor from './pages/AgregarDistruibidor.jsx'
 import AgregarProducto from './pages/registrarProductos'
 import DistributorPage from './pages/verDistruibidor'
 import ProductsPage from './pages/verProducts'
-import BienvenidoAdmin from './pages/bienvenidaadmin.jsx'
+import BienvenidoAdmin from './pages/Bienvenidaadmin.jsx'
 import IngresarCodigo from './pages/IngresarCodigo.jsx'
 import { CartProvider } from './context/CartContext.jsx'
 import { AuthProvider, ProtectedRoute, PublicRoute, useAuth } from './context/AuthContext.jsx'

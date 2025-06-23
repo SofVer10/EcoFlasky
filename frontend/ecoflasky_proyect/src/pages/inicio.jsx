@@ -9,7 +9,7 @@ import ofertas from '../images/ofertas.png';
 import personalizados from '../images/personalizados.png';
 import solidos from '../images/solidos.png';
 import resena from '../images/resenas.png';
-import favoritos from '../pages/favoritos';
+import favoritos from './Favoritos';
 
 // Import review profile images
 import user1Profile from '../images/user1245.png';

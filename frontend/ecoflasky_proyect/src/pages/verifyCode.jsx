@@ -4,7 +4,7 @@ import register from "../images/registrarse.png";
 import arriba from "../images/arriba.png";
 import abajo from "../images/abajo.png";
 import gmail from "../images/gmail.png";
-import useVerifyCode from "../hooks/useVerifyCode.js";
+import useVerifyCode from "../hooks/UseVerifyCode.js";
 import "../styles/verifyCodeStyles.css";
 
 const VerifyCode = () => {
