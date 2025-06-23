@@ -1,4 +1,4 @@
-import DistributorCard from "./distributorCard";
+import DistributorCard from "./DistributorCard";
 import React from "react";
  
 const ListDistributors = ({ distributors, loading, deleteDistributor, updateDistributors }) => {

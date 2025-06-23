@@ -19,7 +19,7 @@ import speciality from "./src/sources/speciality.js";
 import employeeRoute from "./src/sources/employee.js"
 import authStatusRoute from "./src/sources/authStatus.js" // Nueva ruta
 import passwordRecoveryRoute from "./src/sources/passwordRecovery.js";
-import { validateAuthToken } from "./src/middleware/validateAuthToken.js";
+import { validateAuthToken } from "./src/middleware/ValidateAuthToken.js";
 
 const app = express();
 app.use(express.json());

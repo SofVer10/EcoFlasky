@@ -1,4 +1,4 @@
-import EmployeeModel from "../models/employee.js";
+import EmployeeModel from "../models/Employee.js";
 import bcrypt from "bcrypt"; // Encriptar contraseña
 import jsonwebtoken from "jsonwebtoken"; // Generar tokens
 import { config } from "../config.js"; // Se importa la configuración del proyecto

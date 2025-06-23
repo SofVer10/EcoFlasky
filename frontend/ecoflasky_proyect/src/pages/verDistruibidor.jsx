@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import useDataDistributors from "../hooks/useDataDistributors.js";
-import ListDistributors from "../components/listDistributors";
-import AgregarDistribuidor from "./agregarDistruibidor.jsx";
+import useDataDistributors from "../hooks/UseDataDistributors.js";
+import ListDistributors from "../components/ListDistributors.jsx";
+import AgregarDistribuidor from "./AgregarDistruibidor.jsx";
 import Button from "../components/Button.jsx";
 
 const DistributorsPage = () => {

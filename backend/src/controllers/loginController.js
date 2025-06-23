@@ -1,5 +1,5 @@
 import CustomersModel from "../models/Clients.js"
-import EmployeesModel from "../models/employee.js"
+import EmployeesModel from "../models/Employee.js"
 import bcrypt from "bcrypt"
 import jsonwebtoken from "jsonwebtoken" // Corregido: era "jswonwebtoken"
 import {config} from "../config.js"

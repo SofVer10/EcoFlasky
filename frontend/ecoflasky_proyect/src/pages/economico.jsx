@@ -15,7 +15,7 @@ import Celeste from "../images/celeste.png";
 import Varias from "../images/varias.png";
 import { Link } from 'react-router-dom';
 
-import ProductCard from "../components/cardProducts"; // Asegúrate de que la ruta sea correcta
+import ProductCard from "../components/CardProducts"; // Asegúrate de que la ruta sea correcta
 
 const Economico = () => {
   const products = [

@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../components/Button";
+import Button from "./Button";
 
 const DistributorCard = ({ distributor, deleteDistributor, updateDistributors }) => {
   // Función para formatear la fecha
