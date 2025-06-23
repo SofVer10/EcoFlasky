@@ -18,7 +18,7 @@ import registerEmployeeRoute from "./src/sources/registerEmployeeRoutes.js"
 import speciality from "./src/sources/speciality.js";
 import employeeRoute from "./src/sources/employee.js"
 import authStatusRoute from "./src/sources/authStatus.js" // Nueva ruta
-
+import passwordRecoveryRoute from "./src/sources/passwordRecovery.js";
 import { validateAuthToken } from "./src/middleware/validateAuthToken.js";
 
 const app = express();
@@ -52,6 +52,7 @@ app.use("/api/registerEmployee", registerEmployeeRoute)
 app.use("/api/speciality", speciality)
 app.use("/api/employee", employeeRoute)
 app.use("/api/auth", authStatusRoute) // Nueva ruta para verificar autenticación
+app.use("/api/passwordRecovery", passwordRecoveryRoute);
 
 export default app;    
 //Aaron

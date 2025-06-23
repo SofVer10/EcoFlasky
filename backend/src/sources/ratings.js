@@ -6,11 +6,11 @@ const router = express.Router();
 
 
 router.route("/")
-.get(RatingsController.getRating)
-.post(RatingsController.insertRating)
+.get(RatingsController.get)
+.post(RatingsController.post)
 
 router.route("/:id")
-.put(RatingsController.updateRating)
-.delete(RatingsController.deleteRating)
+.put(RatingsController.put)
+.delete(RatingsController.delete)
 
 export default router

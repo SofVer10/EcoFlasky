@@ -44,7 +44,7 @@ const Nav = () => {
           <Link to="/verDistruibidor" className="nav-link" onClick={closeMenu}>DISTRIBUIDOR</Link>
         </li>
         <li className="nav-item">
-          <Link to="/verProductos" className="nav-link" onClick={closeMenu}>EMPLEADO</Link>
+          <Link to="/agregarEmpleado" className="nav-link" onClick={closeMenu}>EMPLEADO</Link>
         </li>
         <li className="nav-item">
           <Link to="/verProducto" className="nav-link" onClick={closeMenu}>PRODUCTOS</Link>

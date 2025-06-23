@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/styleLogin.css";
 import login from "../images/login.png";
 import arriba from "../images/logUp.png";
 import abajo from "../images/logDown.png";
-import gmail from "../images/gmail.png";
-import password from "../images/Password.png";
-import { Link, useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/authContext'; // Asegúrate de que la ruta sea correcta
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -17,6 +16,7 @@ const Login = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     
     const navigate = useNavigate();
+    const { Login: authLogin } = useAuth(); // Usamos el Login del contexto
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -24,6 +24,8 @@ const Login = () => {
             ...prev,
             [name]: value
         }));
+        // Limpiar error cuando el usuario empieza a escribir
+        if (error) setError('');
     };
 
     const handleSubmit = async (e) => {
@@ -32,24 +34,16 @@ const Login = () => {
         setError('');
 
         try {
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-                credentials: 'include'
-            });
+            // Usar la función Login del contexto
+            const result = await authLogin(formData.email, formData.password);
 
-            const data = await response.json();
-
-            if (data.success) {
+            if (result.success) {
                 setIsSubmitted(true);
                 setTimeout(() => {
-                    navigate(data.redirectTo);
+                    navigate(result.redirectTo);
                 }, 1500);
             } else {
-                setError(data.message || 'Error en el login');
+                setError(result.message || 'Error en el login');
             }
         } catch (error) {
             console.error('Error:', error);
@@ -79,6 +73,7 @@ const Login = () => {
                                     value={formData.email}
                                     onChange={handleInputChange}
                                     required
+                                    disabled={isLoading}
                                 />
                             </div>
                         </div>
@@ -93,6 +88,7 @@ const Login = () => {
                                     value={formData.password}
                                     onChange={handleInputChange}
                                     required
+                                    disabled={isLoading}
                                 />
                             </div>
                         </div>

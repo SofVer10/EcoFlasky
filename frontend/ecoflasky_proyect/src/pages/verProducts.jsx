@@ -2,6 +2,7 @@ import React from "react";
 import useDataProducts from "../hooks/useDataProducts";
 import ListProducts from "../components/listProducts.jsx";
 import "../styles/verProducts.css"; // Importar CSS externo
+import { Link } from "react-router";
 
 const ProductsPage = () => {
   const {
@@ -24,12 +25,12 @@ const ProductsPage = () => {
           >
             Ver Productos
           </button>
-          <button
-            onClick={() => window.location.href = '/agregarProducto'}
-            className="tab-button"
-          >
+            <Link to="/agregarProducto">           
+
+          <button >
             Agregar Producto
           </button>
+          </Link>
         </div>
       </div>
 

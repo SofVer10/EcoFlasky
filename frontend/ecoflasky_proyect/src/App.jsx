@@ -25,9 +25,10 @@ import AgregarDistruibidor from './pages/agregarDistruibidor'
 import AgregarProducto from './pages/registrarProductos'
 import DistributorPage from './pages/verDistruibidor'
 import ProductsPage from './pages/verProducts'
-import ProductReviews from './components/ProductReviews.jsx';
 import BienvenidoAdmin from './pages/bienvenidaadmin.jsx'
-import { AuthProvider, useAuth } from './context/AuthContext.jsx'
+import IngresarCodigo from './pages/IngresarCodigo.jsx'
+
+import { AuthProvider, ProtectedRoute, PublicRoute, useAuth } from './context/AuthContext.jsx'
 
 function App() {
   return (
@@ -41,29 +42,28 @@ function App() {
 
 function Content() {
   const location = useLocation();
-  const { isAdmin, user } = useAuth(); // Obtener más información del contexto
+  const { userType, isLoggedIn } = useAuth();
 
-  // Debug: Agregar console.log para verificar el estado
-  console.log('isAdmin:', isAdmin, 'user:', user, 'pathname:', location.pathname);
-
-  // Configuración más detallada de rutas
+  // Configuración de rutas
   const routeConfig = {
     // Rutas que no deben mostrar navegación
-    noNav: ['/primerUso', '/', '/register', '/password', '/recuperarContrasena', '/ingresarCodigo', '/cambiarContrasena'],
+    noNav: ['/primerUso', '/', '/register', '/password', '/recuperarContrasena', '/ingresarCodigo', '/cambiarContrasena', '/verifyCode'],
     
-    // Rutas EXCLUSIVAS de administrador (solo admin puede acceder)
-    adminOnlyRoutes: [
+    // Rutas EXCLUSIVAS de admin/empleado
+    adminEmployeeRoutes: [
       '/agregarEmpleado',
       '/agregarDistruibidor',
       '/agregarProveedor', 
       '/agregarProducto',
       '/verDistruibidor',
       '/verProducto',
-      '/bienvenidaAdmin'
+      '/bienvenidaAdmin',
+      '/agregarProducto'
+
     ],
     
-    // Rutas públicas o de cliente (siempre Nav normal a menos que sea admin)
-    publicRoutes: [
+    // Rutas de cliente
+    customerRoutes: [
       '/productos',
       '/favoritos',
       '/contactanos',
@@ -72,8 +72,7 @@ function Content() {
       '/regular',
       '/economico',
       '/disenado',
-      '/TerminosCondiciones',
-      '/product/:productId/reviews'
+      '/TerminosCondiciones'
     ]
   };
 
@@ -86,21 +85,30 @@ function Content() {
       return 'none';
     }
     
-    // Rutas exclusivas de admin - siempre NavAdmin
-    if (routeConfig.adminOnlyRoutes.includes(currentPath)) {
+    // Si no está logueado, navegación normal por defecto
+    if (!isLoggedIn) {
+      return 'normal';
+    }
+    
+    // Rutas exclusivas de admin/empleado - siempre NavAdmin
+    if (routeConfig.adminEmployeeRoutes.includes(currentPath)) {
       return 'admin';
     }
     
-    // Para rutas públicas, verificar si el usuario es admin Y está autenticado
-    if (routeConfig.publicRoutes.includes(currentPath)) {
-      // Solo mostrar NavAdmin si realmente es admin y está autenticado
-      if (isAdmin === true && user && user.role === 'admin') {
+    // Para rutas de cliente, mostrar Nav normal siempre (incluso si admin está navegando)
+    if (routeConfig.customerRoutes.includes(currentPath)) {
+      // Si es admin o empleado navegando por rutas de cliente, mostrar NavAdmin
+      if (userType === 'Admin' || userType === 'Employee') {
         return 'admin';
       }
       return 'normal';
     }
     
-    // Por defecto, navegación normal
+    // Por defecto según el tipo de usuario
+    if (userType === 'Admin' || userType === 'Employee') {
+      return 'admin';
+    }
+    
     return 'normal';
   };
 
@@ -126,34 +134,176 @@ function Content() {
       {renderNavigation()}
       
       <Routes>
-        <Route path="/contactanos" element={<Contactanos />} />
-        <Route path="/acercadenosotros" element={<AcercaDe />} />
-        <Route path="/productos" element={<Products/>} />
-        <Route path="/register" element={<Register/>} />
-        <Route path="/inicio" element={<Inicio/>} />
-        <Route path="/password" element={<Password/>} />
-        <Route path="/regular" element={<Regular/>} />
-        <Route path="/economico" element={<Economico/>} />
-        <Route path="/disenado" element={<Disenado/>} />
-        <Route path="/TerminosCondiciones" element={<TerminosCondiciones />} />
-        <Route path="/" element={<Login />} />
-        <Route path="/recuperarContrasena" element={<RecuperarContrasena/>} />
-        <Route path="/favoritos" element={<Favoritos/>} />
-        <Route path="/primerUso" element={<PrimerUsoAdmin/>} />
-        <Route path="/agregarEmpleado" element={<AgregarEmpleado/>} />
-        <Route path="/agregarDistruibidor" element={<AgregarDistruibidor />} />
-        <Route path="/agregarProducto" element={<AgregarProducto />} />
-        <Route path="/verDistruibidor" element={<DistributorPage />} />
-        <Route path="/verProducto" element={<ProductsPage />} />
-        <Route path="/agregarProveedor" element={<AgregarProveedor/>} />
-        <Route path="/bienvenidaAdmin" element={<BienvenidoAdmin/>} />
-        <Route path="/product/:productId/reviews" element={<ProductReviews />} />
-        <Route path="/cambiarContrasena" element={<CambiarContrasena />} />
-        <Route path="/verifyCode" element={<VerifyCode />} />
+        {/* Rutas públicas - Solo accesibles si NO está autenticado */}
+        <Route path="/" element={
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        } />
+        
+        <Route path="/register" element={
+          <PublicRoute>
+            <Register />
+          </PublicRoute>
+        } />
+        
+        <Route path="/password" element={
+          <PublicRoute>
+            <Password />
+          </PublicRoute>
+        } />
+        
+        <Route path="/recuperarContrasena" element={
+          <PublicRoute>
+            <RecuperarContrasena />
+          </PublicRoute>
+        } />
+        
+        <Route path="/verifyCode" element={
+          <PublicRoute>
+            <VerifyCode />
+          </PublicRoute>
+        } />
+        
+        <Route path="/ingresarCodigo" element={
+          <PublicRoute>
+            <IngresarCodigo />
+          </PublicRoute>
+        } />
+        
+        <Route path="/cambiarContrasena" element={
+          <PublicRoute>
+            <CambiarContrasena />
+          </PublicRoute>
+        } />
 
+        {/* Rutas protegidas para CLIENTES */}
+        <Route path="/inicio" element={
+          <ProtectedRoute allowedUser Types={['Customer']}>
+            <Inicio />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/productos" element={
+          <ProtectedRoute allowedUser Types={['Customer']}>
+            <Products />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/favoritos" element={
+          <ProtectedRoute allowedUser Types={['Customer']}>
+            <Favoritos />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/regular" element={
+          <ProtectedRoute allowedUser Types={['Customer']}>
+            <Regular />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/economico" element={
+          <ProtectedRoute allowedUser Types={['Customer']}>
+            <Economico />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/disenado" element={
+          <ProtectedRoute allowedUser Types={['Customer']}>
+            <Disenado />
+          </ProtectedRoute>
+        } />
+
+        {/* Rutas accesibles para cualquier usuario autenticado */}
+        <Route path="/contactanos" element={
+          <ProtectedRoute>
+            <Contactanos />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/acercadenosotros" element={
+          <ProtectedRoute>
+            <AcercaDe />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/TerminosCondiciones" element={
+          <ProtectedRoute>
+            <TerminosCondiciones />
+          </ProtectedRoute>
+        } />
+
+        {/* Rutas protegidas para ADMIN y EMPLEADOS */}
+        <Route path="/bienvenidaAdmin" element={
+          <ProtectedRoute allowedUser Types={['Admin', 'Employee']}>
+            <BienvenidoAdmin />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/verDistruibidor" element={
+          <ProtectedRoute allowedUser Types={['Admin', 'Employee']}>
+            <DistributorPage />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/verProducto" element={
+          <ProtectedRoute allowedUser Types={['Admin', 'Employee']}>
+            <ProductsPage />
+          </ProtectedRoute>
+        } />
+
+          <Route path="/agregarProducto" element={
+          <ProtectedRoute allowedUser Types={['Admin', 'Employee']}>
+            <AgregarProducto />
+          </ProtectedRoute>
+        } />
+
+        {/* Rutas EXCLUSIVAS de ADMIN */}
+        <Route path="/primerUso" element={
+          <ProtectedRoute allowedUser Types={['Admin']}>
+            <PrimerUsoAdmin />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/agregarEmpleado" element={
+          <ProtectedRoute allowedUser Types={['Admin']}>
+            <AgregarEmpleado />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/agregarDistruibidor" element={
+          <ProtectedRoute allowedUser Types={['Admin']}>
+            <AgregarDistruibidor />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/agregarProducto" element={
+          <ProtectedRoute allowedUser Types={['Admin']}>
+            <AgregarProducto />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/agregarProveedor" element={
+          <ProtectedRoute allowedUser Types={['Admin']}>
+            <AgregarProveedor />
+          </ProtectedRoute>
+        } />
+
+        {/* Ruta 404 - accesible para todos */}
+        <Route path="*" element={
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="text-center">
+              <h1 className="text-4xl font-bold text-gray-800 mb-4">404</h1>
+              <p className="text-gray-600 mb-6">Página no encontrada</p>
+              <a href="/" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
+                Volver al inicio
+              </a>
+            </div>
+          </div>
+        } />
       </Routes>
       
-      
+      {shouldShowFooter && <Footer />}
     </>
   )
 }

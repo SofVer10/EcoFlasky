@@ -86,6 +86,62 @@ loginController.login = async (req,res) => {
         console.log(error)
         res.status(500).json({message: "Server error", success: false})
     }
+   
+
+// Middleware para verificar token desde cookie
+const verifyTokenFromCookie = (req, res, next) => {
+    const token = req.cookies.authToken;
+    
+    if (!token) {
+        return res.status(401).json({ 
+            isAuthenticated: false, 
+            message: "No token provided" 
+        });
+    }
+
+    try {
+        const decoded = jsonwebtoken.verify(token, config.JWT.secret);
+        req.user = decoded;
+        next();
+    } catch (error) {
+        return res.status(401).json({ 
+            isAuthenticated: false, 
+            message: "Invalid token" 
+        });
+    }
+};
+
+// Endpoint para verificar sesión
+loginController.verifySession = [verifyTokenFromCookie, async (req, res) => {
+    try {
+        const { id, userType } = req.user;
+        
+        // Aquí puedes hacer validaciones adicionales si es necesario
+        // Por ejemplo, verificar si el usuario aún existe en la base de datos
+        
+        res.json({
+            isAuthenticated: true,
+            user: { id },
+            userType: userType
+        });
+    } catch (error) {
+        res.status(500).json({
+            isAuthenticated: false,
+            message: "Server error"
+        });
+    }
+}];
+
+// Endpoint para logout (opcional)
+loginController.logout = (req, res) => {
+    res.clearCookie("authToken");
+    res.json({ 
+        success: true, 
+        message: "Logout successful" 
+    });
+};
+
 }
+
 
 export default loginController
