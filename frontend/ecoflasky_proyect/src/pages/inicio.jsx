@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext'; // Import the shared cart context
 import '../styles/stylesinicio.css';
 import botellaRosa from '../images/vector-1.png';
 import productoimagen from '../images/termonegro.png';
@@ -9,7 +10,6 @@ import ofertas from '../images/ofertas.png';
 import personalizados from '../images/personalizados.png';
 import solidos from '../images/solidos.png';
 import resena from '../images/resenas.png';
-import favoritos from '../pages/favoritos';
 
 // Import review profile images
 import user1Profile from '../images/user1245.png';
@@ -17,6 +17,16 @@ import fernandoProfile from '../images/fernando_re.png';
 import rosaProfile from '../images/rosa567.png';
 
 const Inicio = () => {
+  // Use the shared cart context instead of local state
+  const { 
+    cartItems, 
+    addToCart, 
+    removeFromCart, 
+    updateQuantity, 
+    getCartTotal, 
+    getCartItemsCount 
+  } = useCart();
+
   // Existing products data
   const productos = [
     {
@@ -91,34 +101,6 @@ const Inicio = () => {
   // State for carousel
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // State for shopping cart
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      titulo: "Termo botella 750 ml",
-      imagen: productoimagen,
-      descripcion: "Lorem ipsum dolor sit amet consectetur. Non malesuada tortor suscipit odio volutpat turpis adipiscing. Lorem ipsum dolor sit amet consectetur. Non malesuada tortor suscipit odio volutpat turpis adipiscing.",
-      cantidad: 1,
-      precio: 495
-    },
-    {
-      id: 2,
-      titulo: "Termo básico 500 ml",
-      imagen: par,
-      descripcion: "Lorem ipsum dolor sit amet consectetur. Non malesuada tortor suscipit odio volutpat turpis adipiscing. Lorem ipsum dolor sit amet consectetur. Non malesuada tortor suscipit odio volutpat turpis adipiscing.",
-      cantidad: 1,
-      precio: 375
-    },
-    {
-      id: 3,
-      titulo: "Termo de bambú 500 ml",
-      imagen: termos,
-      descripcion: "Lorem ipsum dolor sit amet consectetur. Non malesuada tortor suscipit odio volutpat turpis adipiscing. Lorem ipsum dolor sit amet consectetur. Non malesuada tortor suscipit odio volutpat turpis adipiscing.",
-      cantidad: 1,
-      precio: 485
-    }
-  ]);
-  
   // State for showing/hiding cart
   const [showCart, setShowCart] = useState(false);
   
@@ -141,25 +123,6 @@ const Inicio = () => {
     }
   };
 
-  // Function to calculate total price
-  const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + (item.precio * item.cantidad), 0);
-  };
-
-  // Function to remove item from cart
-  const removeFromCart = (id) => {
-    setCartItems(cartItems.filter(item => item.id !== id));
-  };
-
-  // Function to update quantity
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity < 1) return;
-    
-    setCartItems(cartItems.map(item => 
-      item.id === id ? {...item, cantidad: newQuantity} : item
-    ));
-  };
-  
   // Function to show product detail
   const showProductDetails = (product) => {
     setSelectedProduct(product);
@@ -178,19 +141,17 @@ const Inicio = () => {
   const addToCartFromDetail = () => {
     if (!selectedProduct) return;
     
-    const existingItem = cartItems.find(item => item.id === selectedProduct.id);
-    
-    if (existingItem) {
-      updateQuantity(selectedProduct.id, existingItem.cantidad + productQuantity);
-    } else {
-      setCartItems([...cartItems, {
-        ...selectedProduct,
-        cantidad: productQuantity
-      }]);
-    }
+    addToCart(selectedProduct, productQuantity);
     
     // Show cart or return to main view
     setShowProductDetail(false);
+    setShowCart(true);
+  };
+
+  // Function to add product to cart from main view
+  const handleAddToCart = (product) => {
+    addToCart(product, 1);
+    // Show cart after adding item
     setShowCart(true);
   };
 
@@ -230,20 +191,6 @@ const Inicio = () => {
     }
     
     return stars;
-  };
-
-  // Function to add product to cart from main view
-  const addToCart = (product) => {
-    const existingItem = cartItems.find(item => item.id === product.id);
-    
-    if (existingItem) {
-      updateQuantity(product.id, existingItem.cantidad + 1);
-    } else {
-      setCartItems([...cartItems, {...product, cantidad: 1}]);
-    }
-    
-    // Show cart after adding item
-    setShowCart(true);
   };
   
   // Available colors for products
@@ -344,58 +291,68 @@ const Inicio = () => {
           <h1 className="cart-page-title">CARRITO DE COMPRAS.</h1>
           
           <div className="cart-page-content">
-            {cartItems.map((item) => (
-              <div key={item.id} className="cart-page-item">
-                <div className="cart-page-item-image">
-                  <img src={item.imagen} alt={item.titulo} />
-                </div>
-                <div className="cart-page-item-info">
-                  <h3 className="cart-page-item-title">{item.titulo}</h3>
-                  <p className="cart-page-item-description">{item.descripcion}</p>
-                </div>
-                <div className="cart-page-item-controls">
-                  <div className="cart-page-quantity">
-                    <label>Cantidad:</label>
-                    <div className="cart-page-quantity-input">
-                      <button 
-                        className="quantity-button" 
-                        onClick={() => updateQuantity(item.id, item.cantidad - 1)}
-                        disabled={item.cantidad <= 1}
-                      >
-                        -
-                      </button>
-                      <input 
-                        type="number" 
-                        min="1"
-                        value={item.cantidad}
-                        onChange={(e) => updateQuantity(item.id, parseInt(e.target.value) || 1)}
-                      />
-                      <button 
-                        className="quantity-button" 
-                        onClick={() => updateQuantity(item.id, item.cantidad + 1)}
-                      >
-                        +
+            {cartItems.length > 0 ? (
+              <>
+                {cartItems.map((item) => (
+                  <div key={item.id} className="cart-page-item">
+                    <div className="cart-page-item-image">
+                      <img src={item.imagen} alt={item.titulo} />
+                    </div>
+                    <div className="cart-page-item-info">
+                      <h3 className="cart-page-item-title">{item.titulo}</h3>
+                      <p className="cart-page-item-description">{item.descripcion}</p>
+                    </div>
+                    <div className="cart-page-item-controls">
+                      <div className="cart-page-quantity">
+                        <label>Cantidad:</label>
+                        <div className="cart-page-quantity-input">
+                          <button 
+                            className="quantity-button" 
+                            onClick={() => updateQuantity(item.id, item.cantidad - 1)}
+                            disabled={item.cantidad <= 1}
+                          >
+                            -
+                          </button>
+                          <input 
+                            type="number" 
+                            min="1"
+                            value={item.cantidad}
+                            onChange={(e) => updateQuantity(item.id, parseInt(e.target.value) || 1)}
+                          />
+                          <button 
+                            className="quantity-button" 
+                            onClick={() => updateQuantity(item.id, item.cantidad + 1)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                      <div className="cart-page-price">
+                        <label>Precio:</label>
+                        <span>${item.precio}</span>
+                      </div>
+                      <button className="cart-page-remove-button" onClick={() => removeFromCart(item.id)}>
+                        ✖
                       </button>
                     </div>
                   </div>
-                  <div className="cart-page-price">
-                    <label>Precio:</label>
-                    <span>${item.precio}</span>
-                  </div>
-                  <button className="cart-page-remove-button" onClick={() => removeFromCart(item.id)}>
-                    ✖
-                  </button>
+                ))}
+                
+                <div className="cart-page-total">
+                  <span>Cantidad total a pagar:</span>
+                  <span className="cart-page-total-price">${getCartTotal()}</span>
                 </div>
+              </>
+            ) : (
+              <div className="empty-cart">
+                <p>Tu carrito está vacío</p>
               </div>
-            ))}
-            
-            <div className="cart-page-total">
-              <span>Cantidad total a pagar:</span>
-              <span className="cart-page-total-price">${calculateTotal()}</span>
-            </div>
+            )}
             
             <div className="cart-page-actions">
-              <button className="cart-page-pay-button">PAGAR</button>
+              {cartItems.length > 0 && (
+                <button className="cart-page-pay-button">PAGAR</button>
+              )}
               <button className="cart-page-continue-button" onClick={toggleCart}>
                 Continuar comprando
               </button>
@@ -451,7 +408,7 @@ const Inicio = () => {
                     className="product-image" 
                     onClick={() => showProductDetails(producto)}
                   />
-                  <button className="cart-button" onClick={() => addToCart(producto)}>
+                  <button className="cart-button" onClick={() => handleAddToCart(producto)}>
                     <span className="cart-icon">🛒</span>
                   </button>
                 </div>
@@ -494,7 +451,7 @@ const Inicio = () => {
       
       {/* Floating cart button for main view */}
       <button className="floating-cart-button" onClick={toggleCart}>
-        🛒 <span className="cart-count">{cartItems.length}</span>
+        🛒 <span className="cart-count">{getCartItemsCount()}</span>
       </button>
     </div>
   );
