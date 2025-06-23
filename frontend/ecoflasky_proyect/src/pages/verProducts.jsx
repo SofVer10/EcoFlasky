@@ -1,6 +1,6 @@
 import React from "react";
-import useDataProducts from "../hooks/useDataProducts";
-import ListProducts from "../components/listProducts.jsx";
+import useDataProducts from "../hooks/UseDataProducts.js";
+import ListProducts from "../components/ListProducts.jsx";
 import "../styles/verProducts.css"; // Importar CSS externo
 import { Link } from "react-router";
 

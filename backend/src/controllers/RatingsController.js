@@ -1,6 +1,6 @@
 import express from "express";
 import Ratings from "../models/Ratings.js"; // Ajusta la ruta según tu estructura
-import { validateAuthToken } from "../middleware/validateAuthToken.js";
+import { validateAuthToken } from "../middleware/ValidateAuthToken.js";
 
 const router = express.Router();
 

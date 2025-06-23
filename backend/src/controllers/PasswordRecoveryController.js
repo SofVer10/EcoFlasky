@@ -2,7 +2,7 @@ import jsonwebToken, { decode } from "jsonwebtoken" // token
 import bcrypt from "bcrypt" //Encriptar contraseña
 
 import clientsModel from "../models/Clients.js";
-import employeeModel from "../models/employee.js";
+import employeeModel from "../models/Employee.js";
 import { sendEmail, HTMLRecoveryEmail } from "../utils/mailPasswordRecovery.js";
 import { config } from "../config.js";
 

@@ -15,7 +15,7 @@ import Metal2 from "../images/metal2.png";
 import Mate from "../images/mate.png";
 import { Link } from 'react-router-dom';
 
-import ProductCard from "../components/cardProducts"; // Asegúrate de que la ruta sea correcta
+import ProductCard from "../components/CardProducts"; // Asegúrate de que la ruta sea correcta
 
 const Regular = () => {
   const products = [

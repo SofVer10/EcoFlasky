@@ -4,7 +4,7 @@ import Products from './pages/products'
 import Nav from "./components/Nav"
 import NavAdmin from "./components/NavAdmin"
 import Footer from "./components/Footer"
-import AcercaDe from './pages/acercadenosotros'
+import AcercaDe from './pages/Acercadenosotros.jsx'
 import CambiarContrasena from './pages/CambiarContrasena.jsx'
 import Register from './pages/register'
 import Login from './pages/login'
@@ -16,12 +16,12 @@ import Contactanos from './pages/contacts';
 import VerifyCode from './pages/verifyCode.jsx'
 import Inicio from './pages/inicio';
 import AgregarEmpleado from './pages/agregarEmpleado';
-import AgregarProveedor from './pages/agergarProveedor';
+import AgregarProveedor from './pages/AgergarProveedor.jsx';
 import RecuperarContrasena from './pages/recuperarContrasenaCorreo';
 import Favoritos from './pages/favoritos';
 import TerminosCondiciones from './pages/terminosycondiciones'
 import PrimerUsoAdmin from "./pages/primerUsoAdmin";
-import AgregarDistruibidor from './pages/agregarDistruibidor'
+import AgregarDistruibidor from './pages/AgregarDistruibidor.jsx'
 import AgregarProducto from './pages/registrarProductos'
 import DistributorPage from './pages/verDistruibidor'
 import ProductsPage from './pages/verProducts'
