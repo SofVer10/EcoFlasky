@@ -12,29 +12,47 @@ const AgregarEmpleado = () => {
     isVerified: false
   });
   const [editingId, setEditingId] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [notification, setNotification] = useState({ show: false, message: "", type: "" });
 
   useEffect(() => {
     getEmployees();
     getSpecialities();
   }, []);
 
+  const showNotification = (message, type = "success") => {
+    setNotification({ show: true, message, type });
+    setTimeout(() => {
+      setNotification({ show: false, message: "", type: "" });
+    }, 4000);
+  };
+
+  const hideNotification = () => {
+    setNotification({ show: false, message: "", type: "" });
+  };
+
   const getEmployees = async () => {
     try {
       const response = await fetch("/api/employee");
+      if (!response.ok) throw new Error('Error al obtener empleados');
       const data = await response.json();
       setEmployees(data);
     } catch (error) {
       console.error("Error al obtener empleados:", error);
+      setError("Error al cargar empleados");
     }
   };
 
   const getSpecialities = async () => {
     try {
       const response = await fetch("/api/speciality");
+      if (!response.ok) throw new Error('Error al obtener especialidades');
       const data = await response.json();
       setSpecialities(data);
     } catch (error) {
       console.error("Error al obtener especialidades:", error);
+      setError("Error al cargar especialidades");
     }
   };
 
@@ -44,46 +62,82 @@ const AgregarEmpleado = () => {
       ...prev, 
       [name]: type === 'checkbox' ? checked : value 
     }));
+    if (error) setError("");
+    if (notification.show) hideNotification();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
+    
     try {
       const formData = {
-        ...form,
+        name: form.name.trim(),
+        email: form.email.trim(),
+        speciality: form.speciality,
         isVerified: Boolean(form.isVerified)
       };
 
+      if (!editingId || form.password.trim()) {
+        formData.password = form.password;
+      }
+
       const url = editingId 
-        ? `/api/registerEmployee/${editingId}`
+        ? `/api/employee/${editingId}`
         : "/api/registerEmployee";
       const method = editingId ? "PUT" : "POST";
 
-      await fetch(url, {
+      const response = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Error al procesar la solicitud');
+      }
+
+      const result = await response.json();
+      console.log('Operación exitosa:', result);
+
       resetForm();
-      getEmployees();
+      await getEmployees();
+      
+      showNotification(
+        editingId ? 'Empleado actualizado correctamente' : 'Empleado creado correctamente',
+        'success'
+      );
+      
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
+      showNotification(error.message || "Error al procesar la solicitud", "error");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleDelete = async (id) => {
     if (!window.confirm("¿Estás seguro de eliminar este empleado?")) return;
     
+    setLoading(true);
     try {
-      await fetch(`/api/employee/${id}`, { method: "DELETE" });
-      getEmployees();
+      const response = await fetch(`/api/employee/${id}`, { method: "DELETE" });
+      if (!response.ok) throw new Error('Error al eliminar empleado');
+      
+      await getEmployees();
+      showNotification('Empleado eliminado correctamente', 'success');
     } catch (error) {
       console.error("Error al eliminar el empleado:", error);
+      showNotification("Error al eliminar el empleado", "error");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleEdit = (employee) => {
+    console.log('Editando empleado:', employee);
     setEditingId(employee._id);
     setForm({
       name: employee.name || "",
@@ -92,6 +146,7 @@ const AgregarEmpleado = () => {
       speciality: employee.speciality?._id || employee.speciality || "",
       isVerified: employee.isVerified || false
     });
+    setError("");
   };
 
   const resetForm = () => {
@@ -103,6 +158,8 @@ const AgregarEmpleado = () => {
       isVerified: false
     });
     setEditingId(null);
+    setError("");
+    hideNotification();
   };
 
   const formatDate = (dateString) => {
@@ -113,12 +170,41 @@ const AgregarEmpleado = () => {
 
   return (
     <div className="empleado-container">
+      {/* Notification Component */}
+      {notification.show && (
+        <div className={`empleado-notification empleado-notification-${notification.type}`}>
+          <div className="empleado-notification-content">
+            <div className="empleado-notification-icon">
+              {notification.type === 'success' ? '✅' : '❌'}
+            </div>
+            <div className="empleado-notification-message">
+              {notification.message}
+            </div>
+            <button 
+              className="empleado-notification-close"
+              onClick={hideNotification}
+              aria-label="Cerrar notificación"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
+      
       <div className="empleado-wrapper">
         {/* Header */}
         <div className="empleado-header">
           <h1>Administración de Empleados</h1>
           <p>Gestiona y administra todos tus empleados en un solo lugar</p>
         </div>
+        
+        {/* Error Message */}
+        {error && (
+          <div className="empleado-error-message">
+            <div className="empleado-error-icon">⚠️</div>
+            <div className="empleado-error-text">{error}</div>
+          </div>
+        )}
         
         {/* Form Section */}
         <div className="empleado-form-section">
@@ -140,11 +226,14 @@ const AgregarEmpleado = () => {
                   required
                   maxLength={100}
                   placeholder="Ingresa el nombre completo"
+                  disabled={loading}
                 />
               </div>
               
               <div className="empleado-form-group">
-                <label htmlFor="password">Contraseña *</label>
+                <label htmlFor="password">
+                  Contraseña {!editingId ? '*' : ''}
+                </label>
                 <input
                   type="password"
                   id="password"
@@ -154,8 +243,13 @@ const AgregarEmpleado = () => {
                   required={!editingId}
                   maxLength={100}
                   placeholder={editingId ? "Dejar vacío para mantener actual" : "Ingresa una contraseña"}
+                  disabled={loading}
                 />
-                {editingId && <span className="empleado-form-hint">Deja vacío para mantener la contraseña actual</span>}
+                {editingId && (
+                  <span className="empleado-form-hint">
+                    Deja vacío para mantener la contraseña actual
+                  </span>
+                )}
               </div>
               
               <div className="empleado-form-group">
@@ -169,6 +263,7 @@ const AgregarEmpleado = () => {
                   required
                   maxLength={100}
                   placeholder="correo@ejemplo.com"
+                  disabled={loading}
                 />
               </div>
               
@@ -180,6 +275,7 @@ const AgregarEmpleado = () => {
                   value={form.speciality}
                   onChange={handleInputChange}
                   required
+                  disabled={loading}
                 >
                   <option value="">Selecciona una especialidad</option>
                   {specialities.map(speciality => (
@@ -197,6 +293,7 @@ const AgregarEmpleado = () => {
                   name="isVerified"
                   checked={form.isVerified}
                   onChange={handleInputChange}
+                  disabled={loading}
                 />
                 <label htmlFor="isVerified">Empleado Verificado</label>
               </div>
@@ -208,6 +305,7 @@ const AgregarEmpleado = () => {
                   type="button" 
                   onClick={resetForm}
                   className="empleado-btn-cancel"
+                  disabled={loading}
                 >
                   Cancelar
                 </button>
@@ -215,8 +313,14 @@ const AgregarEmpleado = () => {
               <button 
                 type="submit"
                 className={`empleado-btn-submit ${editingId ? 'empleado-btn-edit' : ''}`}
+                disabled={loading}
               >
-                {editingId ? "Actualizar Empleado" : "Crear Empleado"}
+                {loading 
+                  ? "Procesando..." 
+                  : editingId 
+                    ? "Actualizar Empleado" 
+                    : "Crear Empleado"
+                }
               </button>
             </div>
           </form>
@@ -262,12 +366,14 @@ const AgregarEmpleado = () => {
                           <button 
                             onClick={() => handleEdit(employee)}
                             className="empleado-btn-edit-action"
+                            disabled={loading}
                           >
                             Editar
                           </button>
                           <button 
                             onClick={() => handleDelete(employee._id)}
                             className="empleado-btn-delete-action"
+                            disabled={loading}
                           >
                             Eliminar
                           </button>

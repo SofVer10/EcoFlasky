@@ -17,6 +17,7 @@ import registerClientRoute from "./src/sources/registerClientRoute.js"
 import registerEmployeeRoute from "./src/sources/registerEmployeeRoutes.js"
 import speciality from "./src/sources/speciality.js";
 import employeeRoute from "./src/sources/employee.js"
+import authStatusRoute from "./src/sources/authStatus.js" // Nueva ruta
 
 import { validateAuthToken } from "./src/middleware/validateAuthToken.js";
 
@@ -50,5 +51,7 @@ app.use("/api/registerClient", registerClientRoute)
 app.use("/api/registerEmployee", registerEmployeeRoute)
 app.use("/api/speciality", speciality)
 app.use("/api/employee", employeeRoute)
+app.use("/api/auth", authStatusRoute) // Nueva ruta para verificar autenticación
 
-export default app;
+export default app;    
+//Aaron

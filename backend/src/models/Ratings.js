@@ -3,6 +3,7 @@
 userId
 rating
 comment
+productId
 */ 
 
 import { Schema, model  } from "mongoose"; 
@@ -23,7 +24,12 @@ comment:{
 type:String,
 require:true,
 maxLenght:200
- }
+ },
+productId: {
+        type: Schema.Types.ObjectId,
+        ref: "Products",
+        require:true
+}
 },
 {
 timestamps:true,

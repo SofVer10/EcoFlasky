@@ -25,6 +25,7 @@ import AgregarDistruibidor from './pages/agregarDistruibidor'
 import AgregarProducto from './pages/registrarProductos'
 import DistributorPage from './pages/verDistruibidor'
 import ProductsPage from './pages/verProducts'
+import ProductReviews from './components/ProductReviews.jsx';
 import BienvenidoAdmin from './pages/bienvenidaadmin.jsx'
 import { AuthProvider, useAuth } from './context/AuthContext.jsx'
 
@@ -71,7 +72,8 @@ function Content() {
       '/regular',
       '/economico',
       '/disenado',
-      '/TerminosCondiciones'
+      '/TerminosCondiciones',
+      '/product/:productId/reviews'
     ]
   };
 
@@ -145,12 +147,13 @@ function Content() {
         <Route path="/verProducto" element={<ProductsPage />} />
         <Route path="/agregarProveedor" element={<AgregarProveedor/>} />
         <Route path="/bienvenidaAdmin" element={<BienvenidoAdmin/>} />
+        <Route path="/product/:productId/reviews" element={<ProductReviews />} />
         <Route path="/cambiarContrasena" element={<CambiarContrasena />} />
         <Route path="/verifyCode" element={<VerifyCode />} />
 
       </Routes>
       
-      {shouldShowFooter && <Footer />}
+      
     </>
   )
 }

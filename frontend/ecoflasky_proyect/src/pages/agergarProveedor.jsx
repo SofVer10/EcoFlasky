@@ -45,11 +45,18 @@ const AgregarProveedor = () => {
     fetchSuppliers();
   }, []);
 
+  // Agregar useEffect para debugging del formulario
+  useEffect(() => {
+    console.log("Estado actual del formulario:", form);
+    console.log("ID en edición:", editingId);
+  }, [form, editingId]);
+
   const fetchSuppliers = async () => {
     setIsLoading(true);
     try {
       const res = await fetch("/api/supplier");
       const data = await res.json();
+      console.log("Datos recibidos de la API:", data);
       setSuppliers(data);
     } catch (error) {
       console.error("Error al obtener proveedores:", error);
@@ -60,10 +67,12 @@ const AgregarProveedor = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    console.log(`Campo ${name} cambió a:`, value);
     setForm((f) => ({ ...f, [name]: value }));
   };
 
   const resetForm = () => {
+    console.log("Reseteando formulario");
     setForm(initialForm);
     setEditingId(null);
   };
@@ -115,17 +124,57 @@ const AgregarProveedor = () => {
   };
 
   const handleEdit = (supplier) => {
-    setEditingId(supplier._id);
-    setForm({
-      name: supplier.name || "",
-      supply: supplier.supply || "",
-      cellphone: supplier.cellphone?.toString() || "",
-      lastShipDate: supplier.lastShipDate ? supplier.lastShipDate.split("T")[0] : "",
-      usualShipDate: supplier.usualShipDate || "",
-      price: supplier.price?.toString() || "",
-      amount: supplier.amount?.toString() || "",
+    console.log("=== INICIANDO EDICIÓN ===");
+    console.log("Proveedor completo recibido:", supplier);
+    console.log("Propiedades individuales:");
+    console.log("- name:", supplier.name, "existe:", !!supplier.name);
+    console.log("- supply:", supplier.supply, "existe:", !!supplier.supply, "tipo:", typeof supplier.supply);
+    console.log("- cellphone:", supplier.cellphone, "existe:", !!supplier.cellphone, "tipo:", typeof supplier.cellphone);
+    console.log("- lastShipDate:", supplier.lastShipDate, "existe:", !!supplier.lastShipDate);
+    console.log("- usualShipDate:", supplier.usualShipDate, "existe:", !!supplier.usualShipDate);
+    console.log("- price:", supplier.price, "existe:", !!supplier.price, "tipo:", typeof supplier.price);
+    console.log("- amount:", supplier.amount, "existe:", !!supplier.amount, "tipo:", typeof supplier.amount);
+
+    // Verificar si existen propiedades alternativas
+    console.log("=== VERIFICANDO PROPIEDADES ALTERNATIVAS ===");
+    const allKeys = Object.keys(supplier);
+    console.log("Todas las propiedades del objeto:", allKeys);
+    
+    // Buscar propiedades que puedan contener los datos
+    allKeys.forEach(key => {
+      if (key.toLowerCase().includes('supply') || key.toLowerCase().includes('suministro')) {
+        console.log(`Propiedad relacionada con suministro: ${key} = ${supplier[key]}`);
+      }
+      if (key.toLowerCase().includes('price') || key.toLowerCase().includes('precio')) {
+        console.log(`Propiedad relacionada con precio: ${key} = ${supplier[key]}`);
+      }
+      if (key.toLowerCase().includes('amount') || key.toLowerCase().includes('cantidad')) {
+        console.log(`Propiedad relacionada con cantidad: ${key} = ${supplier[key]}`);
+      }
     });
-    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    setEditingId(supplier._id);
+    
+    // Crear el nuevo formulario con validaciones más robustas
+    const newForm = {
+      name: supplier.name ? String(supplier.name) : "",
+      supply: supplier.supply ? String(supplier.supply) : "",
+      cellphone: supplier.cellphone ? String(supplier.cellphone) : "",
+      lastShipDate: supplier.lastShipDate ? supplier.lastShipDate.split("T")[0] : "",
+      usualShipDate: supplier.usualShipDate ? String(supplier.usualShipDate) : "",
+      price: (supplier.price !== undefined && supplier.price !== null && supplier.price !== "") ? String(supplier.price) : "",
+      amount: (supplier.amount !== undefined && supplier.amount !== null && supplier.amount !== "") ? String(supplier.amount) : "",
+    };
+
+    console.log("Nuevo formulario creado:", newForm);
+    console.log("=== FIN EDICIÓN ===");
+    setForm(newForm);
+    
+    // Hacer scroll después de un pequeño delay para asegurar que el estado se actualice
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      console.log("Scroll realizado");
+    }, 100);
   };
 
   const formatDate = (dateStr) => {
@@ -187,6 +236,16 @@ const AgregarProveedor = () => {
 
       <motion.section variants={itemVariants} className="form-section11">
         <h2>{editingId ? "Editar Proveedor" : "Nuevo Proveedor"}</h2>
+        
+        {/* Panel de debug - remover en producción */}
+        {editingId && (
+          <div style={{padding: '10px', background: '#f0f0f0', margin: '10px 0', fontSize: '12px'}}>
+            <strong>Debug Info:</strong><br/>
+            Editando ID: {editingId}<br/>
+            Valores actuales: {JSON.stringify(form, null, 2)}
+          </div>
+        )}
+        
         <form onSubmit={handleSubmit} className="supplier-form">
           {Object.entries(form).map(([key, value]) => (
             <div key={key} className="form-group">
@@ -277,7 +336,7 @@ const AgregarProveedor = () => {
                     <td className="mono">{supplier.cellphone}</td>
                     <td>{formatDate(supplier.lastShipDate)}</td>
                     <td>{supplier.usualShipDate}</td>
-                    <td className="price">${parseFloat(supplier.price).toFixed(2)}</td>
+                    <td className="price">${parseFloat(supplier.price || 0).toFixed(2)}</td>
                     <td>{supplier.amount}</td>
                     <td>
                       <div className="actions">
