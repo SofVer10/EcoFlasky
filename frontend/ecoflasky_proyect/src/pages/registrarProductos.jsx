@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/stryleRegistrarProductos.css';
 import { Plus } from 'lucide-react';
 import imageProducts from "../images/products.png";
-import useDataProducts from '../hooks/UseDataProducts';
+import useDataProducts from '../hooks/useDataProducts';
 
 const ProductRegistration = () => {
   const {
