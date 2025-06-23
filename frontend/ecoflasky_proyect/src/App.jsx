@@ -27,7 +27,7 @@ import DistributorPage from './pages/verDistruibidor'
 import ProductsPage from './pages/verProducts'
 import BienvenidoAdmin from './pages/bienvenidaadmin.jsx'
 import IngresarCodigo from './pages/IngresarCodigo.jsx'
-
+import { CartProvider } from './context/CartContext.jsx'
 import { AuthProvider, ProtectedRoute, PublicRoute, useAuth } from './context/AuthContext.jsx'
 
 function App() {
@@ -133,6 +133,7 @@ function Content() {
     <>
       {renderNavigation()}
       
+      <CartProvider> 
       <Routes>
         {/* Rutas públicas - Solo accesibles si NO está autenticado */}
         <Route path="/" element={
@@ -304,8 +305,9 @@ function Content() {
       </Routes>
       
       {shouldShowFooter && <Footer />}
+  </CartProvider>
     </>
-  )
+  );
 }
 
 export default App;
