@@ -28,6 +28,8 @@ import ProductsPage from './pages/verProducts'
 import ProductReviews from './components/ProductReviews.jsx';
 import BienvenidoAdmin from './pages/bienvenidaadmin.jsx'
 import { AuthProvider, useAuth } from './context/AuthContext.jsx'
+import { CartProvider  } from './context/CartContext.jsx'
+
 
 function App() {
   return (
@@ -125,6 +127,7 @@ function Content() {
     <>
       {renderNavigation()}
       
+      <CartProvider> 
       <Routes>
         <Route path="/contactanos" element={<Contactanos />} />
         <Route path="/acercadenosotros" element={<AcercaDe />} />
@@ -151,8 +154,9 @@ function Content() {
         <Route path="/cambiarContrasena" element={<CambiarContrasena />} />
         <Route path="/verifyCode" element={<VerifyCode />} />
 
+
       </Routes>
-      
+      </CartProvider>
       
     </>
   )

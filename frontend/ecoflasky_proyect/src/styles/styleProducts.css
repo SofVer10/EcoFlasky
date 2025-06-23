@@ -1,9 +1,9 @@
 .card-container {
-    margin-top: 55%;
+    margin-top: 40px; /* Reducimos el margen ya que no hay rectángulo celeste */
     display: grid; 
     grid-template-columns: repeat(3, 1fr); 
-    gap: 20px; 
-    padding: 20px;
+    gap: 30px; /* Aumentamos el espacio entre cards */
+    padding: 40px 20px; /* Más padding para mejor espaciado */
 }
 
 .color-before-menu {
@@ -12,62 +12,105 @@
 }
 
 .card {
-    border: 1px solid #ccc; 
-    border-radius: 10px; 
-    padding: 15px;
+    border: 1px solid #e0e0e0; 
+    border-radius: 15px; /* Bordes más redondeados */
+    padding: 20px; /* Más padding interno */
     margin: 10px; 
-    width: 180px; 
+    width: 200px; /* Aumentamos el ancho */
+    min-height: 280px; /* Altura mínima para consistencia */
     position: relative; 
     background-color: white; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animación suave */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Efecto hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .card h4 {
-    margin: 0 0 10px;
+    margin: 0 0 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
 }
 
 .card p {
-    margin: 0; 
+    margin: 0 0 10px;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
 .regular {
-    background-color: rgba(83, 172, 200, 0.5); 
-    border-radius: 40px; 
-    padding: 0px; 
+    background-color: rgba(83, 172, 200, 0.6); 
+    border-radius: 20px; 
+    padding: 4px 12px; 
     margin: 0; 
-    width: 90px; 
-    height: 20px; 
+    width: auto; 
+    min-width: 70px;
+    height: 24px; 
     position: absolute; 
-    top: 10px; 
-    left: 10px; 
+    top: 15px; 
+    left: 15px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
 }
 
 .disenado {
-    background-color: rgba(188, 110, 212, 0.5); 
-    border-radius: 40px; 
+    background-color: rgba(188, 110, 212, 0.6); 
+    border-radius: 20px; 
+    padding: 4px 12px;
     margin: 0; 
-    width: 65px; 
-    height: 20px; 
+    width: auto; 
+    min-width: 70px;
+    height: 24px; 
     position: absolute; 
-    top: 10px; 
-    left: 10px; 
+    top: 15px; 
+    left: 15px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
 }
 
 .economico {
-    background-color: rgba(2, 195, 154, 0.5); 
-    border-radius: 40px; 
-    width: 75px; 
-    height: 20px; 
+    background-color: rgba(2, 195, 154, 0.6); 
+    border-radius: 20px; 
+    padding: 4px 12px;
+    width: auto; 
+    min-width: 70px;
+    height: 24px; 
     position: absolute; 
-    top: 10px; 
-    left: 10px; 
+    top: 15px; 
+    left: 15px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
 }
 
 .carritoCompras {
     position: absolute; 
-    top: 10px; 
-    right: 10px; 
-    width: 20px; 
+    top: 15px; 
+    right: 15px; 
+    width: 22px; 
     height: auto; 
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.carritoCompras:hover {
+    transform: scale(1.1);
 }
 
 .botellaGris {
@@ -75,51 +118,66 @@
     margin-left: auto; 
     margin-right: auto; 
     width: 100%; 
+    max-width: 120px;
     height: auto; 
-    margin-top: 50px;
+    margin-top: 60px;
+    margin-bottom: 20px;
 }
 
 .favorito {
     position: absolute; 
-    top: 12px; 
-    right: 30px; 
+    top: 17px; 
+    right: 45px; 
     width: 20px; 
     height: auto; 
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.favorito:hover {
+    transform: scale(1.1);
 }
 
 .precio {
-    background-color: rgba(46, 192, 249, 0.5); 
-    border-radius: 40px; 
-    padding: 5px 10px; 
+    background-color: rgba(46, 192, 249, 0.7); 
+    border-radius: 20px; 
+    padding: 8px 16px; 
     position: absolute; 
-    bottom: 10px; 
-    right: 10px; 
+    bottom: 15px; 
+    right: 15px; 
     text-align: center; 
+    font-weight: 600;
+    color: #fff;
+    font-size: 14px;
 }
 
 .vermas {
-    text-decoration: underline cadetblue;
+    text-decoration: underline;
+    text-decoration-color: cadetblue;
     text-align: center;
+    margin-top: 40px;
+    font-size: 16px;
+    color: #53ACC8;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-
+.vermas:hover {
+    color: #2E8B8B;
+}
 
 .menu {
     background-color: rgba(83, 172, 200, 0.4); 
-    padding: 15px; 
+    padding: 25px; /* Más padding para mejor espaciado */
     width: 85%; 
-    height: 17%; 
-    position: absolute; 
-    top: 160px; 
-    left: 70px;  
-    border-radius: 40px; 
+    height: auto; /* Altura automática para mejor adaptación */
+    min-height: 140px; /* Altura mínima */
+    position: relative; /* Cambiamos a relative para que fluya naturalmente */
+    margin: 20px auto; /* Centramos el menú con margen */
+    border-radius: 25px; 
     z-index: 2;
     flex-direction: column;
-}
-
-.card-container {
-    margin-top: 18%;
-    margin-left: 5%;
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
 }
 
 .parteMenu {
@@ -127,87 +185,377 @@
     justify-content: flex-start; 
     align-items: center;  
     font-family: bellefair;
-    margin-bottom: 5px; 
+    margin-bottom: 20px; /* Más separación */
     flex-direction: row;
+    gap: 15px; /* Espaciado entre botones */
+}
+
+.parteMenu button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.parteMenu button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.parteMenu button.active-filter {
+    background-color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+    color: #2E8B8B;
+}
+
+.parteMenu p {
+    margin: 0;
+    font-size: 16px;
 }
 
 .explora {
     display: flex;
     text-align: left;
-    gap: 90px;
+    gap: 60px; /* Mejor espaciado entre elementos */
     flex-direction: row;
-    margin-top: 2%;
+    margin-top: 10px;
     font-family: bellefair;
+    align-items: center;
+}
+
+.explora p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
 }
 
 .explora img {
     margin: 0; 
+    transition: transform 0.3s ease;
+}
+
+.explora img:hover {
+    transform: scale(1.1);
 }
 
 .circular {
-    width: 50px; 
-    height: 50px; 
+    width: 55px; 
+    height: 55px; 
     border-radius: 50%; 
     object-fit: cover; 
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
 }
 
-.vermas {
-    flex-direction: column;
-    margin-right: 30%;
+/* Estilos para el contenedor de productos */
+.productos-populares-container {
+    margin-top: 30px;
 }
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-image-container {
+    position: relative;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.product-image {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.product-image:hover {
+    transform: scale(1.05);
+}
+
+.cart-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(83, 172, 200, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-button:hover {
+    background: rgba(83, 172, 200, 1);
+    transform: scale(1.1);
+}
+
+.cart-icon {
+    font-size: 16px;
+}
+
+.product-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.product-description {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 15px;
+    line-height: 1.4;
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: 600;
+    color: #53ACC8;
+    margin: 0 0 15px;
+}
+
+.comprar-button {
+    background: linear-gradient(135deg, #53ACC8, #2E8B8B);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+}
+
+.comprar-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(83, 172, 200, 0.3);
+}
+
+.floating-cart-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #53ACC8, #2E8B8B);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 1000;
+}
+
+.floating-cart-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.cart-count {
+    background: #ff4444;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
 /* Media Queries para Responsividad */
 @media (max-width: 1200px) {
     .card-container {
-        grid-template-columns: repeat(2, 1fr); /* Cambia a dos columnas en pantallas más pequeñas */
-        margin-top: 10%; /* Ajusta el margen superior */
-        margin-left: 2%; /* Ajusta el margen izquierdo */
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 22%;
+        margin-left: 2%;
+        gap: 25px;
     }
 
     .menu {
-        top: 140px; /* Ajusta la posición del menú */
-        left: 20px; /* Ajusta la posición del menú */
-        width: 90%; /* Asegúrate de que el menú ocupe el 90% del ancho */
+        top: 140px;
+        left: 20px;
+        width: 90%;
+        padding: 20px;
     }
 
-    .card {
-        width: 100%; /* Asegúrate de que las tarjetas ocupen el 100% del ancho del contenedor */
-        margin: 5px; /* Ajusta el margen de las tarjetas */
+    .explora {
+        gap: 40px;
     }
 
-    .precio {
-        padding: 4px 8px; /* Ajusta el padding del precio */
+    .circular {
+        width: 45px;
+        height: 45px;
     }
 
-    .regular, .disenado, .economico {
-        width: 70px; /* Ajusta el tamaño de las etiquetas */
-        height: 18px; /* Ajusta la altura de las etiquetas */
-        font-size: 12px; /* Ajusta el tamaño de la fuente */
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
     }
 }
 
 @media (max-width: 768px) {
     .card-container {
-        grid-template-columns: 1fr; /* Cambia a una sola columna en pantallas más pequeñas */
-        margin-top: 5%; /* Ajusta el margen superior */
+        grid-template-columns: 1fr;
+        margin-top: 35%;
+        gap: 20px;
+        padding: 20px 10px;
     }
 
     .menu {
-        top: 100px; /* Ajusta la posición del menú */
-        left: 10px; /* Ajusta la posición del menú */
-        width: 95%; /* Asegúrate de que el menú ocupe el 95% del ancho */
+        top: 120px;
+        left: 10px;
+        width: 95%;
+        padding: 15px;
+    }
+
+    .parteMenu {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .explora {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .explora p {
+        font-size: 16px;
+    }
+
+    .circular {
+        width: 40px;
+        height: 40px;
     }
 
     .card {
-        margin: 10px 0; /* Ajusta el margen de las tarjetas */
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px;
     }
 
     .carritoCompras,
     .favorito {
-        width: 15px; /* Ajusta el tamaño de los íconos */
-        height: auto; /* Mantiene la proporción */
+        width: 18px;
+        height: auto;
     }
 
     .vermas {
-        margin-right: 0; /* Elimina el margen derecho */
+        margin-right: 0;
+        margin-top: 30px;
     }
+
+    .floating-cart-button {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-container {
+        margin-top: 45%;
+        padding: 15px 5px;
+    }
+
+    .menu {
+        top: 100px;
+        left: 5px;
+        width: 98%;
+        padding: 12px;
+    }
+
+    .parteMenu button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .explora p {
+        font-size: 14px;
+    }
+
+    .circular {
+        width: 35px;
+        height: 35px;
+    }
+
+    .products-grid {
+        padding: 10px;
+    }
+}
+
+/* Estilos adicionales para mejor apariencia */
+.no-products {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 16px;
+}
+
+/* Ocultar o quitar el rectángulo celeste */
+.parteCeleste {
+    display: none; /* Ocultamos completamente el rectángulo celeste */
+}
+
+/* Animaciones suaves */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
 }

@@ -44,9 +44,6 @@ const Nav = () => {
           <Link to="/acercadenosotros" className="nav-link" onClick={closeMenu}>ACERCA DE NOSOTROS</Link>
         </li>
         <li className="nav-item">
-          <Link to="/resenas" className="nav-link" onClick={closeMenu}>RESEÑAS</Link>
-        </li>
-        <li className="nav-item">
           <Link to="/productos" className="nav-link" onClick={closeMenu}>PRODUCTOS</Link>
         </li>
       </ul>
