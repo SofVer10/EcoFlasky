@@ -19,18 +19,17 @@ Una plataforma de comercio electrónico especializada en termos ecológicos con 
 
 ## 📋 Tabla de Contenidos
 
-- 🎯 Descripción
-- ✨ Características Principales
-- 🛠️ Tecnologías Utilizadas
-- 🚀 Instalación
-- 📖 Uso
-- 📁 Estructura del Proyecto
-- 🔌 API Endpoints
-- 📸 Capturas de Pantalla
-- 🌱 Características Ecológicas
+- [🎯 Descripción](#-descripción)
+- [✨ Características Principales](#-características-principales)
+- [🛠️ Tecnologías Utilizadas](#️-tecnologías-utilizadas)
+- [🚀 Instalación](#-instalación)
+- [📖 Uso](#-uso)
+- [📁 Estructura del Proyecto](#-estructura-del-proyecto)
+- [🔌 API Endpoints](#-api-endpoints)
+- [📸 Capturas de Pantalla](#-capturas-de-pantalla)
+- [🌱 Características Ecológicas](#-características-ecológicas)
 
-
-🎯 Descripción
+## 🎯 Descripción
 
 **Ecoflasky** es una innovadora tienda en línea que se especializa en la venta de termos fabricados con materiales duraderos y ecológicos. La plataforma permite a los clientes no solo adquirir productos de alta calidad, sino también personalizar sus termos con diseños únicos o elegir entre una amplia gama de diseños prediseñados.
 
@@ -158,9 +157,9 @@ La aplicación estará disponible en `http://localhost:4000`
 
 1. **Registro/Login**: Crear cuenta o iniciar sesión
 2. **Explorar Catálogo**: Navegar por los diferentes tipos de termos
-4. **Agregar al Carrito**: Seleccionar productos y añadir al carrito
-5. **Realizar Pago**: Completar la compra con el método de pago preferido
-6. **Seguir Pedido**: Rastrear el estado del pedido hasta la entrega
+3. **Agregar al Carrito**: Seleccionar productos y añadir al carrito
+4. **Realizar Pago**: Completar la compra con el método de pago preferido
+5. **Seguir Pedido**: Rastrear el estado del pedido hasta la entrega
 
 ### Para Administradores
 
@@ -232,7 +231,6 @@ ecoflasky/
 - `PUT /api/products/:id` - Actualizar producto (Admin)
 - `DELETE /api/products/:id` - Eliminar producto (Admin)
 
-
 ### Administración
 - `GET /api/admin/employees` - Gestionar empleados
 - `POST /api/admin/employees` - Crear empleado
@@ -252,5 +250,3 @@ ecoflasky/
 - **Materiales Sostenibles**: Acero inoxidable de grado alimenticio y bambú certificado
 - **Reducción de Residuos**: Cada termo reutilizable evita cientos de botellas desechables
 - **Embalaje Ecológico**: Packaging biodegradable y reciclable
-- **Certificaciones**: Productos certificados por organizaciones ambientales
-
