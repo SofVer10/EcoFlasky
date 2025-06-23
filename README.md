@@ -27,8 +27,7 @@ Una plataforma de comercio electrónico especializada en termos ecológicos con 
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [API Endpoints](#api-endpoints)
 - [Capturas de Pantalla](#capturas-de-pantalla)
-- [Contribución](#contribución)
-- [Licencia](#licencia)
+
 
 ## 🎯 Descripción
 
