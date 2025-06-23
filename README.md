@@ -29,7 +29,7 @@ Una plataforma de comercio electrónico especializada en termos ecológicos con 
 - [Capturas de Pantalla](#capturas-de-pantalla)
 
 
-## 🎯 Descripción
+#descripción 🎯 Descripción
 
 **Ecoflasky** es una innovadora tienda en línea que se especializa en la venta de termos fabricados con materiales duraderos y ecológicos. La plataforma permite a los clientes no solo adquirir productos de alta calidad, sino también personalizar sus termos con diseños únicos o elegir entre una amplia gama de diseños prediseñados.
 
